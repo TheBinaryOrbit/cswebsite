@@ -15,6 +15,7 @@ import Clubs from './components/Clubs/Clubs'
 import ClubDetails from './components/Clubs/ClubDetails'
 import Gallery from './components/Gallery/Gallery'
 import FacultyDetails from './components/Faculty/FacultyDetails'
+import ScrollToTop from './components/ScrollToTop'
 
 function HomePage() {
   return (
@@ -35,6 +36,7 @@ function App() {
   return (
     <>
       <Header />
+      <ScrollToTop behavior="smooth" />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/placements" element={<PlacementsPage />} />

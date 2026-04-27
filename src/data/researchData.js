@@ -1,343 +1,181 @@
-export const researchPublications = [
-  {
-    id: 1,
-    title: "Adaptive Disease Detection Algorithm Using Hybrid CNN Model for Plant Leaves",
-    projectId: "1934-7898",
-    year: "2024-2025",
-    database: "Scopus",
-    faculty: "Dr. Raj Kumar",
-    impactFactor: "21160",
-    link: "https://link.springer.com/journal/12005",
-    journal: "Optical Memory and Neural Networks",
-    authors: ["Dr. Raj Kumar"],
-    status: "Published",
-  },
-  {
-    id: 2,
-    title: "A domain knowledge infused gated network using integrated sentiment prediction framework for aspect-based sentiment analysis",
-    projectId: "1868-6486",
-    year: "2024-2025",
-    database: "SCIE",
-    faculty: "Dr. Gaurav Dubey",
-    impactFactor: "21324",
-    link: "https://link.springer.com/article/10.1007/s12530-024-09648-8",
-    journal: "Evolving Systems",
-    authors: ["Dr. Gaurav Dubey"],
-    status: "Published",
-  },
-  {
-    id: 3,
-    title: "Deep adaptive fusion with cross-modality feature transition and modality quaternion learning for medical image fusion",
-    projectId: "1868-6486",
-    year: "2024-2025",
-    database: "SCIE",
-    faculty: "Dr. Gaurav Dubey",
-    impactFactor: "21324",
-    link: "https://link.springer.com/article/10.1007/s12530-024-09648-8",
-    journal: "Evolving Systems",
-    authors: ["Dr. Gaurav Dubey"],
-    status: "Published",
-  },
-  {
-    id: 4,
-    title: "Deep neural network for emojis-based sentiment classification",
-    projectId: "2511-2112",
-    year: "2024-2025",
-    database: "Scopus",
-    faculty: "Dr. Kalpna Sagar",
-    impactFactor: "20963",
-    link: "https://link.springer.com/journal/41870",
-    journal: "International Journal of Information Technology",
-    authors: ["Dr. Kalpna Sagar"],
-    status: "Published",
-  },
-  {
-    id: 5,
-    title: "Bit Plane Slicing Concept Realization in Hardware Chip for Digital Image Processing",
-    projectId: "2250-1762",
-    year: "2024-2025",
-    database: "SCIE",
-    faculty: "Sreesh Gaur, Akash Goel, Shrerish Princi Gupta, Ashima Arya, Swasti Singhal",
-    impactFactor: "21324, 21331, 21424, 21332, 21439",
-    link: "https://link.springer.com/journal",
-    journal: "Proceedings of the National Academy of Sciences, India Section A: Physical Sciences",
-    authors: [
-      "Sreesh Gaur",
-      "Akash Goel",
-      "Shrerish Princi Gupta",
-      "Ashima Arya",
-      "Swasti Singhal",
-    ],
-    status: "Published",
-  },
-  {
-    id: 6,
-    title: "Adaptive contextual memory graph transformer with domain-adaptive knowledge graph for aspect-based sentiment analysis",
-    projectId: "0957-4174",
-    year: "2024-2025",
-    database: "SCIE",
-    faculty: "Dr. Gaurav Dubey",
-    impactFactor: "21324",
-    link: "https://www.sciencedirect.com/science/article/abs/pii/S0957417425009224",
-    journal: "Expert System",
-    authors: ["Dr. Gaurav Dubey"],
-    status: "Published",
-  },
-  {
-    id: 7,
-    title: "Reinforcement Learning Framework for Autonomous Vehicle Decision Making",
-    projectId: "1945-7243",
-    year: "2024-2025",
-    database: "Scopus",
-    faculty: "Dr. Akash Rajak",
-    impactFactor: "19854",
-    link: "https://link.springer.com/journal/12345",
-    journal: "IEEE Transactions on Vehicular Technology",
-    authors: ["Dr. Akash Rajak"],
-    status: "Published",
-  },
-  {
-    id: 8,
-    title: "Machine Learning Applications in IoT Security",
-    projectId: "2156-4892",
-    year: "2024-2025",
-    database: "SCIE",
-    faculty: "Dr. Akash Punhani",
-    impactFactor: "18932",
-    link: "https://link.springer.com/journal/security",
-    journal: "Journal of Cybersecurity and Privacy",
-    authors: ["Dr. Akash Punhani"],
-    status: "Published",
-  },
-  {
-    id: 9,
-    title: "Quantum Computing for Optimization Problems",
-    projectId: "1823-5645",
-    year: "2024-2025",
-    database: "Scopus",
-    faculty: "Dr. Rishabh",
-    impactFactor: "17654",
-    link: "https://link.springer.com/journal/quantum",
-    journal: "Quantum Information Processing",
-    authors: ["Dr. Rishabh"],
-    status: "Published",
-  },
-  {
-    id: 10,
-    title: "Federated Learning for Privacy-Preserving Machine Learning",
-    projectId: "2034-5678",
-    year: "2024-2025",
-    database: "SCIE",
-    faculty: "Dr. Abhishek Goyal",
-    impactFactor: "19234",
-    link: "https://link.springer.com/journal/privacy",
-    journal: "ACM Transactions on Privacy and Security",
-    authors: ["Dr. Abhishek Goyal"],
-    status: "Published",
-  },
-  {
-    id: 11,
-    title: "Blockchain-based Smart Contract Verification",
-    projectId: "1756-4892",
-    year: "2023-2024",
-    database: "Scopus",
-    faculty: "Dr. Aatif Jamshed",
-    impactFactor: "16543",
-    link: "https://link.springer.com/journal/blockchain",
-    journal: "Journal of Blockchain Technology",
-    authors: ["Dr. Aatif Jamshed"],
-    status: "Published",
-  },
-  {
-    id: 12,
-    title: "Natural Language Processing for Code Generation",
-    projectId: "2145-6789",
-    year: "2023-2024",
-    database: "SCIE",
-    faculty: "Dr. Gaurav Dubey",
-    impactFactor: "18765",
-    link: "https://link.springer.com/journal/nlp",
-    journal: "ACM Transactions on Software Engineering",
-    authors: ["Dr. Gaurav Dubey"],
-    status: "Published",
-  },
-  {
-    id: 13,
-    title: "Computer Vision for Medical Image Analysis",
-    projectId: "1934-2156",
-    year: "2023-2024",
-    database: "Scopus",
-    faculty: "Dr. Kalpna Sagar",
-    impactFactor: "17892",
-    link: "https://link.springer.com/journal/medical",
-    journal: "IEEE Transactions on Medical Imaging",
-    authors: ["Dr. Kalpna Sagar"],
-    status: "Published",
-  },
-  {
-    id: 14,
-    title: "Graph Neural Networks for Recommendation Systems",
-    projectId: "2056-7234",
-    year: "2023-2024",
-    database: "SCIE",
-    faculty: "Mr. Sreesh Gaur",
-    impactFactor: "16234",
-    link: "https://link.springer.com/journal/gnn",
-    journal: "Journal of Machine Learning Research",
-    authors: ["Mr. Sreesh Gaur"],
-    status: "Published",
-  },
-  {
-    id: 15,
-    title: "Edge Computing for Real-time Data Processing",
-    projectId: "1876-5432",
-    year: "2023-2024",
-    database: "Scopus",
-    faculty: "Dr. Akash Goel",
-    impactFactor: "15876",
-    link: "https://link.springer.com/journal/edge",
-    journal: "IEEE Internet of Things Journal",
-    authors: ["Dr. Akash Goel"],
-    status: "Published",
-  },
-  {
-    id: 16,
-    title: "Time Series Forecasting using Deep Learning",
-    projectId: "2134-5678",
-    year: "2023-2024",
-    database: "SCIE",
-    faculty: "Mr. Pawan Kumar Pal",
-    impactFactor: "17654",
-    link: "https://link.springer.com/journal/timeseries",
-    journal: "International Journal of Forecasting",
-    authors: ["Mr. Pawan Kumar Pal"],
-    status: "Published",
-  },
-  {
-    id: 17,
-    title: "Semantic Segmentation using Convolutional Neural Networks",
-    projectId: "1945-6789",
-    year: "2023-2024",
-    database: "Scopus",
-    faculty: "Dr. Anurag Mishra",
-    impactFactor: "16543",
-    link: "https://link.springer.com/journal/segmentation",
-    journal: "IEEE Access",
-    authors: ["Dr. Anurag Mishra"],
-    status: "Published",
-  },
-  {
-    id: 18,
-    title: "Distributed Systems Architecture for Cloud Computing",
-    projectId: "2056-4321",
-    year: "2023-2024",
-    database: "SCIE",
-    faculty: "Mr. Amit Kumar Singh Sanger",
-    impactFactor: "17234",
-    link: "https://link.springer.com/journal/distributed",
-    journal: "ACM Computing Surveys",
-    authors: ["Mr. Amit Kumar Singh Sanger"],
-    status: "Published",
-  },
-  {
-    id: 19,
-    title: "Anomaly Detection in Network Traffic using ML",
-    projectId: "1834-7654",
-    year: "2023-2024",
-    database: "Scopus",
-    faculty: "Ms. Shreela Pareek",
-    impactFactor: "15432",
-    link: "https://link.springer.com/journal/anomaly",
-    journal: "IEEE Transactions on Information Forensics and Security",
-    authors: ["Ms. Shreela Pareek"],
-    status: "Published",
-  },
-  {
-    id: 20,
-    title: "Transfer Learning for Domain Adaptation",
-    projectId: "2145-7890",
-    year: "2023-2024",
-    database: "SCIE",
-    faculty: "Mr. Vivek Kumar Sharma",
-    impactFactor: "18123",
-    link: "https://link.springer.com/journal/transfer",
-    journal: "IEEE Transactions on Pattern Analysis and Machine Intelligence",
-    authors: ["Mr. Vivek Kumar Sharma"],
-    status: "Published",
-  },
-  {
-    id: 21,
-    title: "Swarm Intelligence for Optimization Problems",
-    projectId: "1756-8934",
-    year: "2023-2024",
-    database: "Scopus",
-    faculty: "Mr. Anmol Jain",
-    impactFactor: "16789",
-    link: "https://link.springer.com/journal/swarm",
-    journal: "Swarm and Evolutionary Computation",
-    authors: ["Mr. Anmol Jain"],
-    status: "Published",
-  },
-  {
-    id: 22,
-    title: "Human-Computer Interaction in Virtual Reality",
-    projectId: "2067-5432",
-    year: "2023-2024",
-    database: "SCIE",
-    faculty: "Mr. Puneet Kumar Goyal",
-    impactFactor: "17567",
-    link: "https://link.springer.com/journal/vr",
-    journal: "IEEE Transactions on Visualization and Computer Graphics",
-    authors: ["Mr. Puneet Kumar Goyal"],
-    status: "Published",
-  },
-  {
-    id: 23,
-    title: "Explainable AI for Decision Support Systems",
-    projectId: "1945-6234",
-    year: "2023-2024",
-    database: "Scopus",
-    faculty: "Ms. Vandana",
-    impactFactor: "16345",
-    link: "https://link.springer.com/journal/xai",
-    journal: "ACM Transactions on Intelligent Systems and Technology",
-    authors: ["Ms. Vandana"],
-    status: "Published",
-  },
-  {
-    id: 24,
-    title: "Automated Test Generation for Software Testing",
-    projectId: "2156-7890",
-    year: "2023-2024",
-    database: "SCIE",
-    faculty: "Mr. Kuldeep Kumar Atariya",
-    impactFactor: "18234",
-    link: "https://link.springer.com/journal/testing",
-    journal: "IEEE Transactions on Software Engineering",
-    authors: ["Mr. Kuldeep Kumar Atariya"],
-    status: "Published",
-  },
-  {
-    id: 25,
-    title: "Object Detection in Complex Scenes",
-    projectId: "1867-4321",
-    year: "2023-2024",
-    database: "Scopus",
-    faculty: "Mr. Bhagwan Krishna Gupta",
-    impactFactor: "17123",
-    link: "https://link.springer.com/journal/objectdetection",
-    journal: "International Journal of Computer Vision",
-    authors: ["Mr. Bhagwan Krishna Gupta"],
-    status: "Published",
-  },
-];
+import rawResearchData from "../../data.txt?raw";
+
+const normalizeLine = (line) => line.replace(/\r/g, "").trim();
+
+const safeCell = (cells, index, fallback = "NA") => {
+  if (!cells[index]) {
+    return fallback;
+  }
+
+  const value = cells[index].trim();
+  return value.length > 0 ? value : fallback;
+};
+
+const sectionBetween = (source, startLabel, endLabel) => {
+  const start = source.indexOf(startLabel);
+  if (start === -1) {
+    return "";
+  }
+
+  const fromStart = source.slice(start + startLabel.length);
+  const end = endLabel ? fromStart.indexOf(endLabel) : -1;
+
+  return end === -1 ? fromStart : fromStart.slice(0, end);
+};
+
+const parseRows = (sectionText) => {
+  const lines = sectionText.split("\n").map(normalizeLine);
+  const rows = [];
+
+  for (const line of lines) {
+    if (!/^\d+\t/.test(line)) {
+      continue;
+    }
+
+    const cells = line
+      .split("\t")
+      .map((cell) => cell.trim())
+      .filter((cell, index, arr) => !(cell === "" && index === arr.length - 1));
+
+    rows.push(cells);
+  }
+
+  return rows;
+};
+
+const journalsSection = sectionBetween(rawResearchData, "journals :", "confrences :");
+const conferencesSection = sectionBetween(rawResearchData, "confrences :", "booked published :");
+const booksSection = sectionBetween(rawResearchData, "booked published :", "");
+
+const journalsData = parseRows(journalsSection).map((cells) => ({
+  id: Number.parseInt(safeCell(cells, 0, "0"), 10),
+  faculty: safeCell(cells, 1),
+  facultyId: safeCell(cells, 2),
+  affiliation: safeCell(cells, 3),
+  publisher: safeCell(cells, 4),
+  title: safeCell(cells, 5),
+  journal: safeCell(cells, 6),
+  year: safeCell(cells, 7),
+  date: safeCell(cells, 8),
+  issn: safeCell(cells, 9),
+  link: safeCell(cells, 10, "NA"),
+  doi: safeCell(cells, 11, "NA"),
+  volume: safeCell(cells, 12, "NA"),
+  issue: safeCell(cells, 13, "NA"),
+  pages: safeCell(cells, 14, "NA"),
+  category: safeCell(cells, 15),
+  citeScore: safeCell(cells, 16, "NA"),
+  status: safeCell(cells, 17, "NA"),
+  proofLink: safeCell(cells, 18, "NA"),
+  studentsInvolved: safeCell(cells, 19),
+  studentNames: safeCell(cells, 20),
+  allAuthors: safeCell(cells, 21),
+  allAuthorsIds: safeCell(cells, 22),
+  sdgs: safeCell(cells, 23),
+  collaboration: safeCell(cells, 24),
+  collabPersons: safeCell(cells, 25),
+  collabInstitutions: safeCell(cells, 26),
+  drcRecommendation: safeCell(cells, 27),
+  firstPageLink: safeCell(cells, 28, "NA"),
+  type: "journal",
+  originalCells: cells,
+}));
+
+const conferencesData = parseRows(conferencesSection).map((cells) => ({
+  id: Number.parseInt(safeCell(cells, 0, "0"), 10),
+  faculty: safeCell(cells, 1),
+  facultyId: safeCell(cells, 2),
+  affiliation: safeCell(cells, 3),
+  level: safeCell(cells, 4),
+  title: safeCell(cells, 5),
+  authors: safeCell(cells, 6),
+  authorsFacultyIds: safeCell(cells, 7),
+  proceedingsTitle: safeCell(cells, 8),
+  volumeIssuePage: safeCell(cells, 9),
+  publisher: safeCell(cells, 10),
+  date: safeCell(cells, 11),
+  isbn: safeCell(cells, 12),
+  link: safeCell(cells, 13, "NA"),
+  proofLink: safeCell(cells, 14, "NA"),
+  studentsInvolved: safeCell(cells, 15),
+  studentNames: safeCell(cells, 16),
+  sdgs: safeCell(cells, 17),
+  collaboration: safeCell(cells, 18),
+  collabPersons: safeCell(cells, 19),
+  collabInstitutions: safeCell(cells, 20),
+  status: safeCell(cells, 21),
+  scopusFlag: safeCell(cells, 22),
+  doi: safeCell(cells, 23, "NA"),
+  drcRecommendation: safeCell(cells, 24),
+  firstPageLink: safeCell(cells, 25, "NA"),
+  type: "conference",
+  originalCells: cells,
+}));
+
+const booksPublishedData = parseRows(booksSection).map((cells) => ({
+  id: Number.parseInt(safeCell(cells, 0, "0"), 10),
+  faculty: safeCell(cells, 1),
+  facultyId: safeCell(cells, 2),
+  department: safeCell(cells, 3),
+  affiliation: safeCell(cells, 4),
+  category: safeCell(cells, 5),
+  book: safeCell(cells, 6),
+  title: safeCell(cells, 7),
+  indexing: safeCell(cells, 8),
+  publisher: safeCell(cells, 9),
+  publisherType: safeCell(cells, 10),
+  date: safeCell(cells, 11),
+  isbn: safeCell(cells, 12),
+  doi: safeCell(cells, 13, "NA"),
+  link: safeCell(cells, 14, "NA"),
+  proofLink: safeCell(cells, 15, "NA"),
+  sdgs: safeCell(cells, 16),
+  collaboration: safeCell(cells, 17),
+  collabPersons: safeCell(cells, 18),
+  collabInstitutions: safeCell(cells, 19),
+  allAuthors: safeCell(cells, 20),
+  allAuthorsIds: safeCell(cells, 21),
+  drcRecommendation: safeCell(cells, 22),
+  firstPageLink: safeCell(cells, 23, "NA"),
+  type: "book",
+  originalCells: cells,
+}));
+
+const sortByYearDesc = (records) => {
+  return [...records].sort((a, b) => {
+    const yearA = Number.parseInt(String(a.year || a.date || "0").match(/\d{4}/)?.[0] || "0", 10);
+    const yearB = Number.parseInt(String(b.year || b.date || "0").match(/\d{4}/)?.[0] || "0", 10);
+    return yearB - yearA;
+  });
+};
+
+export const researchRecords = {
+  journals: sortByYearDesc(journalsData),
+  conferences: sortByYearDesc(conferencesData),
+  books: sortByYearDesc(booksPublishedData),
+};
+
+export const recentResearchRecords = {
+  journals: researchRecords.journals.slice(0, 6),
+  conferences: researchRecords.conferences.slice(0, 6),
+  books: researchRecords.books.slice(0, 6),
+};
+
+// Backward-compatible exports used by existing UI blocks.
+export const researchPublications = researchRecords.journals;
 
 export const researchStats = {
-  total: researchPublications.length,
-  scopusCount: researchPublications.filter((p) => p.database === "Scopus").length,
-  scieCount: researchPublications.filter((p) => p.database === "SCIE").length,
-  years: {
-    "2024-2025": researchPublications.filter((p) => p.year === "2024-2025").length,
-    "2023-2024": researchPublications.filter((p) => p.year === "2023-2024").length,
-  },
+  total:
+    researchRecords.journals.length +
+    researchRecords.conferences.length +
+    researchRecords.books.length,
+  journalCount: researchRecords.journals.length,
+  conferenceCount: researchRecords.conferences.length,
+  bookCount: researchRecords.books.length,
+  scopusCount: researchRecords.journals.filter((item) =>
+    String(item.category).toLowerCase().includes("scopus")
+  ).length,
+  scieCount: researchRecords.journals.filter((item) =>
+    String(item.category).toLowerCase().includes("scie")
+  ).length,
 };

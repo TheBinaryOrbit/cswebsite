@@ -39,7 +39,7 @@ export const TextGenerateEffect = ({
           return (
             <motion.span
               key={word + idx}
-              className={`${["KIET", "CS", "&" ,"CSE-DS"].some(item => word.includes(item))
+              className={`${["KIET", "Computer" , "Science", "&" ,"CSE-Data"].some(item => word.includes(item))
                   ? "text-[#f15b20]"
                   : "text-[#113959]"
                 } opacity-0`}

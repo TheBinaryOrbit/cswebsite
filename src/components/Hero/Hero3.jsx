@@ -171,7 +171,7 @@ function Hero3() {
             <TextGenerateEffect
               duration={1}
               filter={false}
-              words={"Shape your Future With KIET CS & CSE-DS"}
+              words={"Shape your Future With Computer Science & CSE-Data Science"}
               textlen="6xl"
             />
           </div>
@@ -189,23 +189,23 @@ function Hero3() {
         >
           <div className="w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
             <div className="w-full max-w-6xl">
-              
+
               <div className="relative w-full" style={{ lineHeight: 0 }}>
                 <div className="absolute left-1/2 top-2 sm:top-0 z-20 w-[96%] sm:w-[92%] max-w-4xl -translate-x-1/2 flex flex-col items-center text-center px-3 sm:px-6 py-3 sm:py-5 rounded-2xl">
 
                   <h2 className="text-xl font-serif sm:text-3xl lg:text-4xl font-semibold text-[#113959] mb-2 sm:mb-3 leading-tight">
-                    Designed for students who aim to 
+                    Designed for students who aim to
                     {
                       isMobile ? (
                         <>
                           {" "}
                         </>
                       ) : (
-                       <br />
+                        <br />
                       )
                     }
 
-                    
+
                     <em className="text-[#f15b20] font-serif italic">build technology</em>
                   </h2>
                   <p className="text-xs sm:text-sm md:text-base text-gray-500 max-w-lg sm:max-w-xl leading-relaxed italic">
@@ -225,7 +225,7 @@ function Hero3() {
                       "Strong Problem-Solving Skills",
                       "Passion for Technology & Innovation",
                       "Analytical & Critical Thinking",
-                      
+
                     ].map((text, i) => (
                       <div
                         key={i}
@@ -237,8 +237,8 @@ function Hero3() {
                         </div>
 
                         <span className="whitespace-normal leading-tight text-[10px] sm:text-xs md:text-[8px] lg:text-sm">
-  {text}
-</span>
+                          {text}
+                        </span>
                       </div>
                     ))}
 
