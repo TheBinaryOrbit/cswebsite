@@ -1,0 +1,48 @@
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-10px, 10px);
+  }
+}
+
+@keyframes bounceY {
+  0% {
+    transform: translateY(5%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate {
+  animation: bounceY 1s ease-in-out infinite alternate;
+}
+
+.animate1 {
+  animation: bounceY 1s ease-in-out infinite alternate;
+  animation-delay: 1s;
+}
+.animate2 {
+  animation: bounceY 1s ease-in-out infinite alternate;
+  animation-delay: .5s;
+}
+.animate3 {
+  animation: bounceY 1s ease-in-out infinite alternate;
+  animation-delay: 2s;
+}

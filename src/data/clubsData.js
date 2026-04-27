@@ -1,0 +1,163 @@
+import img1 from "../assets/clubs/ai.jpg";
+import img2 from "../assets/clubs/kts.jpg";
+import img3 from "../assets/clubs/cpbyte.jpg";
+import personImg from "../assets/person.jpg";
+
+export const clubsData = [
+  {
+    slug: "hp-ai-skill-lab",
+    name: "Center of Excellence - HP AI Skill Lab",
+    tagline: "Hands-on AI, ML & industry-driven learning",
+    membersSummary: "120+ active",
+    relevance: "Strong industry exposure and AI skill development",
+    impact: "4.9/5",
+    image: img1,
+    about:
+      "HP AI Skill Lab is a Center of Excellence focused on practical artificial intelligence learning. Students work on real datasets, build deployable projects, and collaborate with mentors to understand current industry workflows.",
+    benefits: [
+      "Mentored AI project tracks from beginner to advanced.",
+      "Hands-on sessions on model building, deployment, and evaluation.",
+      "Industry talks and certification-oriented workshops.",
+      "Stronger placement readiness for AI, data, and software roles.",
+    ],
+    members: [
+      {
+        name: "Aarav Singh",
+        role: "Club Lead",
+        year: "4th Year",
+        image: personImg,
+        email: "aarav.singh@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Nisha Gupta",
+        role: "ML Mentor",
+        year: "3rd Year",
+        image: personImg,
+        email: "nisha.gupta@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Rohan Mehta",
+        role: "Project Coordinator",
+        year: "3rd Year",
+        image: personImg,
+        email: "rohan.mehta@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Isha Verma",
+        role: "Research Associate",
+        year: "2nd Year",
+        image: personImg,
+        email: "isha.verma@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+    ],
+    glimpses: [img1, img2, img3],
+  },
+  {
+    slug: "kiet-technical-society",
+    name: "KIET Technical Society",
+    tagline: "Innovation, projects & technical excellence",
+    membersSummary: "200+ active",
+    relevance: "Core tech skills, events and leadership experience",
+    impact: "4.7/5",
+    image: img2,
+    about:
+      "KIET Technical Society drives the campus technical culture through hackathons, project showcases, and peer-led communities. It helps students convert classroom concepts into practical, portfolio-ready outcomes.",
+    benefits: [
+      "Frequent coding contests, mini-hackathons, and build sprints.",
+      "Leadership opportunities in event management and mentoring.",
+      "Exposure to open-source collaboration and teamwork.",
+      "Improved confidence for internships and technical interviews.",
+    ],
+    members: [
+      {
+        name: "Yash Raj",
+        role: "President",
+        year: "4th Year",
+        image: personImg,
+        email: "yash.raj@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Priya Sharma",
+        role: "Events Head",
+        year: "3rd Year",
+        image: personImg,
+        email: "priya.sharma@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Kabir Jain",
+        role: "Dev Lead",
+        year: "3rd Year",
+        image: personImg,
+        email: "kabir.jain@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Sana Khan",
+        role: "Content Lead",
+        year: "2nd Year",
+        image: personImg,
+        email: "sana.khan@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+    ],
+    glimpses: [img2, img3, img1],
+  },
+  {
+    slug: "cp-byte",
+    name: "CP Byte",
+    tagline: "Competitive programming & problem solving",
+    membersSummary: "150+ active",
+    relevance: "Strong DSA and coding interview preparation",
+    impact: "4.8/5",
+    image: img3,
+    about:
+      "CP Byte builds a disciplined problem-solving environment for students preparing for coding rounds. Through regular contests and editorials, members improve algorithmic thinking and speed under pressure.",
+    benefits: [
+      "Structured DSA practice plans and weekly topic ladders.",
+      "Regular mock contests with post-contest analysis sessions.",
+      "Peer support for interview-level coding problems.",
+      "Better performance in online assessments and coding interviews.",
+    ],
+    members: [
+      {
+        name: "Aditya Kumar",
+        role: "CP Lead",
+        year: "4th Year",
+        image: personImg,
+        email: "aditya.kumar@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Megha Soni",
+        role: "Problem Curator",
+        year: "3rd Year",
+        image: personImg,
+        email: "megha.soni@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Dev Arora",
+        role: "Mentor",
+        year: "3rd Year",
+        image: personImg,
+        email: "dev.arora@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+      {
+        name: "Tanvi Rao",
+        role: "Community Coordinator",
+        year: "2nd Year",
+        image: personImg,
+        email: "tanvi.rao@kiet.edu",
+        linkedin: "https://www.linkedin.com/",
+      },
+    ],
+    glimpses: [img3, img1, img2],
+  },
+];
