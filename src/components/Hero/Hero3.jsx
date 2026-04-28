@@ -181,7 +181,7 @@ function Hero3() {
       </section>
 
 
-      <div style={{ height: isMobile ? "auto" : "500vh" }} className="relative w-full bg-[#fafafa]">
+      <div style={{ height: isMobile ? "auto" : "300vh" }} className="relative w-full bg-[#fafafa]">
         {/* Sticky inner: stays pinned while outer is in viewport */}
         <div
           ref={stickyWrapRef}
@@ -251,7 +251,6 @@ function Hero3() {
                   className={`relative w-full h-auto md:aspect-[16/9]  ${isMobile ? "pt-24" : ""} rounded-2xl`}
                   style={{ display: isLoaded ? "block" : "none" }}
                 />
-
                 <div
                   className="absolute inset-0 pointer-events-none z-10"
                   style={{
@@ -263,7 +262,7 @@ function Hero3() {
             </div>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 }

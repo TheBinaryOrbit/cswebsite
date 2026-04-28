@@ -52,11 +52,11 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className='relative z-10  max-w-7xl mx-auto py-5 flex flex-col md:flex-row justify-center items-center mb-8 sm:mb-14 md:mb-28 '>
+            <div className='relative z-10  max-w-7xl mx-auto py-5 flex flex-col md:flex-row justify-end items-center mb-8 sm:mb-14 md:mb-28 italic'>
                 <p className='text-white'>
-                    Made with ❤️ by {" "}
-                    <a href="https://github.com/7anish" target="_blank"  className=" underline cursor-pointer z-50">
-                        @7anish
+                    Design and Developed by{" "}
+                    <a href="https://www.yaytech.in/" target="_blank"  className="cursor-pointer z-50  underline">
+                        YAY Tech
                     </a>
                 </p>
             </div>
