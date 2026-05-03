@@ -1,9 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
+import { animate, motion, useInView, useMotionValue, useTransform } from "framer-motion";
 import ResearchTabs from "./ResearchTabs";
 import { researchRecords, researchStats } from "../../data/researchData";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 const THEME = {
   primary: "#113959",
@@ -41,11 +43,69 @@ function ProgressBar({ value, color }) {
   );
 }
 
+function ResearchStatCard({ label, value, index }) {
+  const ref = React.useRef(null);
+  const inView = useInView(ref, { once: false, amount: 0.55 });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const [displayValue, setDisplayValue] = useState(0);
+  const isAccent = index % 2 === 1;
+
+  useEffect(() => {
+    const unsubscribe = rounded.on("change", setDisplayValue);
+    return () => unsubscribe();
+  }, [rounded]);
+
+  useEffect(() => {
+    if (inView) {
+      count.set(0);
+      const animation = animate(count, value, {
+        duration: 1.35,
+        ease: "easeOut",
+      });
+      return () => animation.stop();
+    }
+    count.set(0);
+    return undefined;
+  }, [count, inView, value]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`rounded-2xl border p-5 shadow-lg ${
+        isAccent
+          ? "border-[#f15b20]/25 bg-[#f15b20] text-white"
+          : "border-[#113959]/15 bg-[#113959] text-white"
+      }`}
+      initial={{ opacity: 0, y: 28, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: false, amount: 0.55 }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+    >
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
+        {label}
+      </p>
+      <p className="mt-4 text-4xl font-extrabold leading-none md:text-5xl">
+        {displayValue}
+        <span className="align-top text-2xl md:text-3xl">+</span>
+      </p>
+      <div className="mt-5 h-1.5 rounded-full bg-white/20">
+        <motion.div
+          className="h-full rounded-full bg-white"
+          initial={{ width: 0 }}
+          animate={inView ? { width: "100%" } : { width: 0 }}
+          transition={{ duration: 1.1, delay: 0.15, ease: "easeOut" }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
 const Research = () => {
   return (
     <section className="w-full py-8 sm:py-10" id="research-section">
       <div className="max-w-7xl mx-auto p-4">
-        <div className="flex justify-center md:justify-end items-center h-fit">
+        <div className="flex justify-center items-center h-fit">
           <p
             className="flex items-center px-3 rounded-lg text-xs gap-1 mb-4 py-1 font-semibold"
             style={{ border: `1px solid ${THEME.primary}33`, color: THEME.primary }}
@@ -55,20 +115,33 @@ const Research = () => {
           </p>
         </div>
 
-        <h1 className="text-center md:text-right text-2xl sm:text-3xl md:text-4xl font-bold capitalize mb-2 leading-tight" style={{ color: THEME.primary }}>
+        <AnimatedHeadline
+          highlight="Research"
+          className="text-center text-2xl sm:text-3xl md:text-4xl font-bold capitalize mb-2 leading-tight"
+          style={{ color: THEME.primary }}
+        >
           Research Data Overview
-        </h1>
-        <p className="text-sm md:text-lg text-center md:text-right text-slate-600 mb-6 md:mb-8">
+        </AnimatedHeadline>
+        <p className="max-w-3xl mx-auto text-sm md:text-lg text-center text-slate-600 mb-6 md:mb-8">
           Recent Journals, Conferences, and Book Published records from the department.
         </p>
 
-        
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {statCards.map((stat, index) => (
+            <ResearchStatCard
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              index={index}
+            />
+          ))}
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4 sm:p-5">
-            <h2 className="text-lg sm:text-xl font-bold mb-3" style={{ color: THEME.primary }}>
+            <AnimatedHeadline as="h2" highlight="Output" className="text-lg sm:text-xl font-bold mb-3" style={{ color: THEME.primary }}>
               Research Output
-            </h2>
+            </AnimatedHeadline>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -120,9 +193,9 @@ const Research = () => {
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4 sm:p-5">
-            <h2 className="text-lg sm:text-xl font-bold mb-3" style={{ color: THEME.primary }}>
+            <AnimatedHeadline as="h2" highlight="Indexing" className="text-lg sm:text-xl font-bold mb-3" style={{ color: THEME.primary }}>
               Journal Indexing
-            </h2>
+            </AnimatedHeadline>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>

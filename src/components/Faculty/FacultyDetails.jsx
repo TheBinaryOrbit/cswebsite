@@ -3,6 +3,7 @@ import { FaArrowLeft, FaLinkedinIn } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { motion } from "framer-motion";
 import { facultyData } from "../../data/facultyData";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -43,7 +44,12 @@ const FacultyDetails = () => {
         >
           <div className="grid md:grid-cols-2">
             <div className="p-6 sm:p-8">
-              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">{faculty.name}</h1>
+              <AnimatedHeadline
+                highlight={faculty.name.split(" ").at(-1)}
+                className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight"
+              >
+                {faculty.name}
+              </AnimatedHeadline>
               <p className="mt-2 text-base sm:text-lg font-semibold text-[#002855]">{faculty.position}</p>
 
               <div className="mt-5 rounded-2xl bg-slate-100 p-4">
@@ -94,7 +100,9 @@ const FacultyDetails = () => {
           variants={fadeUp}
           custom={0.15}
         >
-          <h2 className="text-xl font-bold text-slate-900">More About Faculty</h2>
+          <AnimatedHeadline as="h2" highlight="Faculty" className="text-xl font-bold text-slate-900">
+            More About Faculty
+          </AnimatedHeadline>
           <p className="mt-3 text-slate-600 leading-relaxed">{faculty.about}</p>
         </motion.section>
       </div>

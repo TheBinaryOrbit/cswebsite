@@ -11,6 +11,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { facultyData } from "../../data/facultyData";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 /* ─── Variants ─────────────────────────────────────────────── */
 const fromLeft = {
@@ -209,7 +210,7 @@ const Faculty = () => {
     setTimeout(handleAutoScroll, 400);
   };
 
-  const facultyList = facultyData;
+  const facultyList = facultyData.filter((faculty) => faculty.position !== "Dean & Professor");
 
   return (
     <div id="faculty-section" ref={sectionRef} className="w-full py-5 sm:py-10 overflow-hidden">
@@ -227,11 +228,12 @@ const Faculty = () => {
         </AnimatedSection>
 
         {/* Heading */}
-        <AnimatedSection variants={fromLeft} custom={0.1}>
-          <h1 className="text-center md:text-left text-2xl sm:text-3xl md:text-4xl md:text-4xl/tight font-bold capitalize mb-2 leading-tight text-[#113959]">
-            We have a team of experienced faculty members
-          </h1>
-        </AnimatedSection>
+        <AnimatedHeadline
+          highlight="experienced"
+          className="text-center md:text-left text-2xl sm:text-3xl md:text-4xl md:text-4xl/tight font-bold capitalize mb-2 leading-tight text-[#113959]"
+        >
+          We have a team of experienced faculty members
+        </AnimatedHeadline>
 
         {/* Subtext */}
         <AnimatedSection variants={fromRight} custom={0.2}>
@@ -277,7 +279,7 @@ const Faculty = () => {
               am confident we will continue to achieve our vision with excellence.
             </motion.p>
             <motion.p className="text-sm sm:text-base md:text-md font-semibold text-slate-700" variants={fromBottom} custom={0.6}>
-              Dr. Ajay kumar shrivastav <br />
+              Dr. Ajay Kr. Shrivastava <br />
               Dean CS &amp; CSE-DS
             </motion.p>
           </AnimatedSection>
@@ -289,7 +291,7 @@ const Faculty = () => {
             className="w-full md:w-[260px] lg:w-[400px] h-72 sm:h-72 md:h-auto flex-none order-1 md:order-2"
           >
             <motion.img
-              src={facultyData[0]?.image}
+              src="/cs/DEANnew.jpeg"
               alt="Dean's portrait"
               className="w-full h-full object-cover"
               initial={{ scale: 1.1 }}

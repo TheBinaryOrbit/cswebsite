@@ -1,17 +1,19 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import AnimatedHeadline from "../AnimatedHeadline";
 
-import img1 from '../../assets/Highlights/faculty.jpg';
-import img2 from '../../assets/Highlights/labs.jpg';
-import img3 from '../../assets/Highlights/hh.jpg';
-import img4 from '../../assets/Highlights/pp.jpg';
+import img1 from "../../assets/Highlights/faculty.jpg";
+import img2 from "../../assets/Highlights/labs.jpg";
+import img3 from "../../assets/Highlights/hh.jpg";
+import img4 from "../../assets/Highlights/pp.jpg";
 
-/* ─── Variants ─────────────────────────────────────────────── */
 const fromLeft = {
   hidden: { opacity: 0, x: -80 },
   visible: (delay = 0) => ({
-    opacity: 1, x: 0,
+    opacity: 1,
+    x: 0,
     transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay },
   }),
 };
@@ -19,23 +21,16 @@ const fromLeft = {
 const fromRight = {
   hidden: { opacity: 0, x: 80 },
   visible: (delay = 0) => ({
-    opacity: 1, x: 0,
+    opacity: 1,
+    x: 0,
     transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay },
   }),
 };
 
-const fromBottom = {
-  hidden: { opacity: 0, y: 60 },
-  visible: (delay = 0) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94], delay },
-  }),
-};
-
-/* ─── AnimatedSection helper ────────────────────────────────── */
 function AnimatedSection({ children, variants, custom, className = "" }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
     <motion.div
       ref={ref}
@@ -50,40 +45,35 @@ function AnimatedSection({ children, variants, custom, className = "" }) {
   );
 }
 
-/* ─── Grid Card ─────────────────────────────────────────────── */
-function GridCard({ src, title, description, variants, custom, className = "" }) {
+function GridCard({ src, title, description, variants, custom }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <motion.div
       ref={ref}
-      className={`bg-slate-200 rounded-3xl w-full h-[300px] sm:h-full overflow-hidden relative group ${className}`}
+      tabIndex={0}
+      className="group relative h-[340px] basis-[82vw] shrink-0 snap-start overflow-hidden rounded-3xl bg-slate-200 outline-none transition-[flex-basis,transform,box-shadow] duration-500 ease-out hover:basis-[560px] hover:shadow-2xl focus-visible:basis-[560px] focus-visible:shadow-2xl sm:h-[400px] sm:basis-[420px] lg:basis-[460px]"
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={variants}
       custom={custom}
-      whileHover={{ scale: 1.02, transition: { duration: 0.3, ease: "easeOut" } }}
+      whileHover={{ scale: 1.015, transition: { duration: 0.35, ease: "easeOut" } }}
     >
-      {/* Image */}
       <motion.img
         src={src}
         alt={title}
-        className="w-full h-full object-cover"
-        initial={{ scale: 1.08, filter: "brightness(0.70)" }}
-        whileHover={{ scale: 1.13, filter: "brightness(0.75)" }}
-        transition={{ duration: 0.45, ease: "easeOut" }}
+        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-focus-visible:scale-110"
+        initial={{ scale: 1.03, filter: "brightness(0.82)" }}
+        whileHover={{ filter: "brightness(0.62)" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       />
 
-      {/* Text overlay — slides up on hover */}
-      <motion.div
-        className="absolute bottom-5 sm:bottom-10 left-4 text-white"
-        initial={{ y: 0 }}
-        whileHover={{ y: -6 }}
-        transition={{ duration: 0.3 }}
-      >
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100" />
+
+      <div className="absolute inset-x-0 bottom-0 translate-y-6 p-5 text-white opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 sm:p-7">
         <motion.h2
-          className="text-xl sm:text-2xl font-bold mb-1 px-2 md:px-5"
+          className="mb-2 text-xl font-bold sm:text-2xl"
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, delay: (custom || 0) + 0.2, ease: "easeOut" }}
@@ -91,51 +81,102 @@ function GridCard({ src, title, description, variants, custom, className = "" })
           {title}
         </motion.h2>
         <motion.p
-          className="text-xs sm:text-lg px-2 md:px-5"
+          className="max-w-[34rem] text-sm leading-relaxed sm:text-base"
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, delay: (custom || 0) + 0.32, ease: "easeOut" }}
         >
           {description}
         </motion.p>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
 
-/* ─── Main Section ──────────────────────────────────────────── */
 const Section2 = () => {
+  const scrollRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const scrollHighlights = (direction) => {
+    if (!scrollRef.current) return;
+
+    const scrollAmount = scrollRef.current.clientWidth * 0.75;
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    if (isPaused) return undefined;
+
+    const interval = window.setInterval(() => {
+      const track = scrollRef.current;
+      if (!track) return;
+
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const isAtEnd = track.scrollLeft >= maxScroll - 8;
+
+      track.scrollTo({
+        left: isAtEnd ? 0 : track.scrollLeft + track.clientWidth * 0.75,
+        behavior: "smooth",
+      });
+    }, 2800);
+
+    return () => window.clearInterval(interval);
+  }, [isPaused]);
+
   return (
-    <div className="w-full bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto py-5 sm:py-10 p-4">
+    <div className="w-full overflow-hidden bg-white">
+      <div className="mx-auto max-w-7xl p-4 py-5 sm:py-10">
+        <AnimatedHeadline
+          highlight="Excellence"
+          className="font-serif text-3xl font-bold leading-snug tracking-wide text-[#113959] md:text-5xl"
+        >
+          Excellence in Computer Science
+        </AnimatedHeadline>
 
-        {/* Heading — from left */}
-        <AnimatedSection variants={fromLeft} custom={0}>
-          <h1 className="text-3xl md:text-5xl leading-snug font-bold tracking-wide font-serif text-[#113959]">
-            Excellence in Computer Science
-          </h1>
-        </AnimatedSection>
-
-        {/* Paragraph — from right */}
         <AnimatedSection variants={fromRight} custom={0.15}>
-          <p className="max-w-5xl mt-2 leading-snug ml-1 text-slate-500">
+          <p className="ml-1 mt-2 max-w-5xl leading-snug text-slate-500">
             Our department is committed to academic excellence, cutting-edge research, and industry-oriented learning that prepares students for real-world challenges
           </p>
         </AnimatedSection>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 mt-10 gap-5">
+        <div className="mt-6 flex justify-end gap-3">
+          <button
+            type="button"
+            aria-label="Scroll highlights left"
+            onClick={() => scrollHighlights("left")}
+            className="grid size-11 place-items-center rounded-full border border-slate-200 bg-white text-[#113959] shadow-sm transition hover:bg-[#113959] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#113959]"
+          >
+            <FaChevronLeft aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            aria-label="Scroll highlights right"
+            onClick={() => scrollHighlights("right")}
+            className="grid size-11 place-items-center rounded-full border border-slate-200 bg-white text-[#113959] shadow-sm transition hover:bg-[#113959] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#113959]"
+          >
+            <FaChevronRight aria-hidden="true" />
+          </button>
+        </div>
 
+        <div
+          ref={scrollRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocus={() => setIsPaused(true)}
+          onBlur={() => setIsPaused(false)}
+          className="scrollbar-hide mt-5 flex snap-x snap-mandatory gap-5 overflow-x-auto overflow-y-hidden scroll-smooth pb-5 pr-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           <GridCard
             src={img1}
             title="Expert Faculty & Mentorship"
             description="Learn from experienced faculty members dedicated to teaching, research, and guiding students toward academic and professional excellence."
             variants={fromLeft}
             custom={0.1}
-            className="lg:col-span-2"
           />
 
-          {/* Row 1 — Card 2: right */}
           <GridCard
             src={img2}
             title="Industry-Oriented Curriculum"
@@ -144,26 +185,21 @@ const Section2 = () => {
             custom={0.2}
           />
 
-          {/* Row 2 — Card 3: left */}
           <GridCard
             src={img4}
             title="Placements & Career Opportunities"
             description="Strong placement support with leading companies, internships, and career"
-            
             variants={fromLeft}
             custom={0.15}
           />
 
-          {/* Row 2 — Card 4: right (col-span-2) */}
           <GridCard
             src={img3}
             title="Hands-on Projects & Labs"
             description="Engage in real-world projects, modern labs, and collaborative learning to build strong problem-solving and development skills."
             variants={fromRight}
             custom={0.25}
-            className="lg:col-span-2"
           />
-
         </div>
       </div>
     </div>

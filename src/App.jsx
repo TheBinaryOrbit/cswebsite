@@ -1,4 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
+import { ReactLenis } from 'lenis/react'
+import 'lenis/dist/lenis.css'
 
 import './App.css'
 import Hero3 from './components/Hero/Hero3'
@@ -34,9 +36,22 @@ function HomePage() {
 
 function App() {
   return (
-    <>
+    <ReactLenis
+      root
+      options={{
+        autoRaf: true,
+        smoothWheel: true,
+        syncTouch: true,
+        lerp: 0.08,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.2,
+        gestureOrientation: 'vertical',
+        anchors: { offset: -90 },
+        allowNestedScroll: true,
+      }}
+    >
       <Header />
-      <ScrollToTop behavior="smooth" />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/placements" element={<PlacementsPage />} />
@@ -45,7 +60,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
       </Routes>
       <Footer />
-    </>
+    </ReactLenis>
   )
 }
 

@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { TextGenerateEffect } from "../TextGenerator/Textgenerator";
-import './hero.css'
+import "./hero.css";
 import { motion } from "framer-motion";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 function Hero3() {
   const canvasRef = useRef(null);
@@ -10,9 +11,13 @@ function Hero3() {
   const imagesRef = useRef([]);
   const currentFrameRef = useRef(0);
   const isMobileRef = useRef(false);
+  const statsStartedRef = useRef(false);
   const [loadProgress, setLoadProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [statsStarted, setStatsStarted] = useState(false);
+  const [highestPlacement, setHighestPlacement] = useState(0);
+  const [studentIntake, setStudentIntake] = useState(0);
 
   useEffect(() => {
     const updateViewportMode = () => {
@@ -44,17 +49,19 @@ function Hero3() {
               const img = new Image();
               img.onload = () => {
                 loaded += 1;
-                if (isMounted) setLoadProgress(Math.round((loaded / frames.length) * 100));
+                if (isMounted)
+                  setLoadProgress(Math.round((loaded / frames.length) * 100));
                 resolve(img);
               };
               img.onerror = () => {
                 loaded += 1;
-                if (isMounted) setLoadProgress(Math.round((loaded / frames.length) * 100));
+                if (isMounted)
+                  setLoadProgress(Math.round((loaded / frames.length) * 100));
                 resolve(null);
               };
               img.src = src;
-            })
-        )
+            }),
+        ),
       );
 
       if (!isMounted) return;
@@ -68,7 +75,9 @@ function Hero3() {
 
       canvas.width = firstImg.width;
       canvas.height = firstImg.height;
-      const initialFrameIndex = isMobileRef.current ? imagesRef.current.length - 1 : 0;
+      const initialFrameIndex = isMobileRef.current
+        ? imagesRef.current.length - 1
+        : 0;
       ctx.drawImage(imagesRef.current[initialFrameIndex], 0, 0);
       currentFrameRef.current = initialFrameIndex;
       setIsLoaded(true);
@@ -90,7 +99,20 @@ function Hero3() {
           stickyWrap.parentElement.offsetHeight - window.innerHeight;
 
         const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-        const frameIndex = Math.floor(progress * (imagesRef.current.length - 1));
+        const frameIndex = Math.floor(
+          progress * (imagesRef.current.length - 1),
+        );
+
+        const shouldShowStats = progress > 0.02;
+        if (shouldShowStats !== statsStartedRef.current) {
+          statsStartedRef.current = shouldShowStats;
+          setStatsStarted(shouldShowStats);
+
+          if (!shouldShowStats) {
+            setHighestPlacement(0);
+            setStudentIntake(0);
+          }
+        }
 
         if (frameIndex !== currentFrameRef.current) {
           currentFrameRef.current = frameIndex;
@@ -104,8 +126,10 @@ function Hero3() {
       return () => window.removeEventListener("scroll", handleScroll);
     };
 
-    let cleanup = () => { };
-    loadFrames().then((fn) => { if (fn) cleanup = fn; });
+    let cleanup = () => {};
+    loadFrames().then((fn) => {
+      if (fn) cleanup = fn;
+    });
 
     return () => {
       isMounted = false;
@@ -139,6 +163,29 @@ function Hero3() {
     }
   }, [isMobile, isLoaded]);
 
+  useEffect(() => {
+    if (!statsStarted) return undefined;
+
+    const duration = 1600;
+    const startTime = performance.now();
+    let frameId;
+
+    const animateCounters = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      setHighestPlacement(Math.round(easedProgress * 54));
+      setStudentIntake(Math.round(easedProgress * 300));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animateCounters);
+      }
+    };
+
+    frameId = requestAnimationFrame(animateCounters);
+    return () => cancelAnimationFrame(frameId);
+  }, [statsStarted]);
+
   return (
     <>
       {!isLoaded && (
@@ -171,53 +218,39 @@ function Hero3() {
             <TextGenerateEffect
               duration={1}
               filter={false}
-              words={"Shape your Future With Computer Science & CSE-Data Science"}
+              words={"Shape your Future With Department of Computer Science"}
               textlen="6xl"
             />
           </div>
-
-
         </div>
       </section>
 
-
-      <div style={{ height: isMobile ? "auto" : "300vh" }} className="relative w-full bg-[#fafafa]">
+      <div
+        style={{ height: isMobile ? "auto" : "300vh" }}
+        className="relative w-full bg-[#fafafa]">
         {/* Sticky inner: stays pinned while outer is in viewport */}
         <div
           ref={stickyWrapRef}
-          className={`${isMobile ? "relative" : "sticky top-16 sm:top-24 lg:top-30"} w-full`}
-        >
+          className={`${isMobile ? "relative" : "sticky top-16 sm:top-24 lg:top-30"} w-full`}>
           <div className="w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
             <div className="w-full max-w-6xl">
-
               <div className="relative w-full" style={{ lineHeight: 0 }}>
                 <div className="absolute left-1/2 top-2 sm:top-0 z-20 w-[96%] sm:w-[92%] max-w-4xl -translate-x-1/2 flex flex-col items-center text-center px-3 sm:px-6 py-3 sm:py-5 rounded-2xl">
-
-                  <h2 className="text-xl font-serif sm:text-3xl lg:text-4xl font-semibold text-[#113959] mb-2 sm:mb-3 leading-tight">
-                    Designed for students who aim to
-                    {
-                      isMobile ? (
-                        <>
-                          {" "}
-                        </>
-                      ) : (
-                        <br />
-                      )
-                    }
-
-
-                    <em className="text-[#f15b20] font-serif italic">build technology</em>
-                  </h2>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-500 max-w-lg sm:max-w-xl leading-relaxed italic">
+                  <AnimatedHeadline
+                    as="h2"
+                    highlight="build technology"
+                    className="text-xl font-serif sm:text-3xl lg:text-4xl font-semibold text-[#113959] mb-2 sm:mb-3 leading-tight"
+                  >
+                    Designed for students who aim to build technology
+                  </AnimatedHeadline>
+                  {/* <p className="text-xs sm:text-sm md:text-base text-gray-500 max-w-lg sm:max-w-xl leading-relaxed italic">
                     Where Innovation Meets Integrity and Excellence Thrives
-                  </p>
+                  </p> */}
                 </div>
 
                 <div className="absolute left-1/2 bottom-0 z-20 w-full -translate-x-1/2 flex flex-col items-center justify-center py-3 sm:py-6 gap-3 sm:gap-4 px-3 sm:px-0">
-
                   {/* Badges container */}
                   <div className=" grid-cols-3 lg:grid-cols-2 hidden md:flex lg:flex-wrap justify-center gap-2 sm:gap-3 w-full max-w-5xl">
-
                     {[
                       "Commitment to Continuous Learning",
                       "Collaborative & Team-Oriented",
@@ -225,12 +258,10 @@ function Hero3() {
                       "Strong Problem-Solving Skills",
                       "Passion for Technology & Innovation",
                       "Analytical & Critical Thinking",
-
                     ].map((text, i) => (
                       <div
                         key={i}
-                        className="flex items-start gap-2 px-3 sm:px-4 py-2 rounded-full bg-white shadow-md border border-gray-200  min-w-0"
-                      >
+                        className="flex items-start gap-2 px-3 sm:px-4 py-2 rounded-full bg-white shadow-md border border-gray-200  min-w-0">
                         {/* Red check icon */}
                         <div className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full bg-[#f15b20] text-white text-[10px] sm:text-xs shrink-0 mt-0.5">
                           ✓
@@ -241,10 +272,94 @@ function Hero3() {
                         </span>
                       </div>
                     ))}
-
                   </div>
                 </div>
 
+                <div className="absolute inset-x-4 top-[45%] z-30 hidden -translate-y-1/2 items-center justify-between gap-4 md:flex lg:inset-x-8">
+                  <motion.div
+                    className="w-[180px] rounded-[2rem] border border-white/70 bg-white/72 px-6 py-6 text-center shadow-[0_24px_70px_rgba(17,57,89,0.16)] backdrop-blur-md lg:w-[220px] lg:px-8 lg:py-7"
+                    initial={{ opacity: 0, x: -36, scale: 0.94 }}
+                    animate={statsStarted ? { opacity: 1, x: 0, scale: 1 } : {}}
+                    transition={{ duration: 0.65, ease: "easeOut" }}>
+                    <p
+                      className="leading-none tracking-wide text-[#113959]"
+                      style={{
+                        fontFamily:
+                          "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+                      }}>
+                      <span className="text-6xl lg:text-7xl">
+                        {highestPlacement}
+                      </span>
+                      <span className="ml-1 align-top text-lg lg:text-xl">
+                        LPA
+                      </span>
+                    </p>
+                    <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-[#f15b20] lg:text-base">
+                      Highest Placement
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    className="w-[180px] rounded-[2rem] border border-white/70 bg-white/72 px-6 py-6 text-center shadow-[0_24px_70px_rgba(17,57,89,0.16)] backdrop-blur-md lg:w-[220px] lg:px-8 lg:py-7"
+                    initial={{ opacity: 0, x: 36, scale: 0.94 }}
+                    animate={statsStarted ? { opacity: 1, x: 0, scale: 1 } : {}}
+                    transition={{
+                      duration: 0.65,
+                      delay: 0.12,
+                      ease: "easeOut",
+                    }}>
+                    <p
+                      className="leading-none tracking-wide text-[#113959]"
+                      style={{
+                        fontFamily:
+                          "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+                      }}>
+                      <span className="text-6xl lg:text-7xl">
+                        {studentIntake}
+                      </span>
+                      <span className="align-top text-4xl lg:text-5xl">+</span>
+                    </p>
+                    <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-[#f15b20] lg:text-base">
+                      Student Intake
+                    </p>
+                  </motion.div>
+                </div>
+
+                <div className="absolute inset-x-3 top-[52%] z-30 grid -translate-y-1/2 grid-cols-2 gap-3 md:hidden">
+                  {[
+                    {
+                      value: highestPlacement,
+                      suffix: "LPA",
+                      label: "Highest Placement",
+                    },
+                    {
+                      value: studentIntake,
+                      suffix: "+",
+                      label: "Student Intake",
+                    },
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-3xl border border-white/80 bg-white/80 px-4 py-4 text-center shadow-lg backdrop-blur-md">
+                      <p
+                        className="leading-none text-[#113959]"
+                        style={{
+                          fontFamily:
+                            "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+                        }}>
+                        <span className="text-4xl">{stat.value}</span>
+                        <span
+                          className={`align-top ${stat.suffix === "LPA" ? "ml-0.5 text-xs" : "text-2xl"}`}
+                        >
+                          {stat.suffix}
+                        </span>
+                      </p>
+                      <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#f15b20]">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
 
                 <canvas
                   ref={canvasRef}
@@ -258,7 +373,6 @@ function Hero3() {
                   }}
                 />
               </div>
-
             </div>
           </div>
         </div>

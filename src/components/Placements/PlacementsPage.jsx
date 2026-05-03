@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 const internshipHighlights = [
   {
@@ -201,15 +202,18 @@ const salaryOffersRight = [
   ["SIDDHARTH YADAV", "MeetMux", "12.93 LPA"],
 ];
 
-function SectionHeading({ eyebrow, title, description }) {
+function SectionHeading({ eyebrow, title, description, highlight }) {
   return (
     <div className="mb-6 md:mb-8 text-center">
       <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.28em] text-[#f15b20] mb-3">
         {eyebrow}
       </p>
-      <h1 className="text-3xl md:text-5xl font-serif font-semibold text-[#113959] leading-tight">
+      <AnimatedHeadline
+        highlight={highlight}
+        className="text-3xl md:text-5xl font-serif font-semibold text-[#113959] leading-tight"
+      >
         {title}
-      </h1>
+      </AnimatedHeadline>
       {description ? (
         <p className="max-w-3xl mx-auto mt-4 text-sm md:text-base text-slate-600 leading-7">
           {description}
@@ -307,15 +311,16 @@ const PlacementsPage = () => {
         <SectionHeading
           eyebrow="Placements"
           title="Placement Performance, Readiness, and Opportunities"
+          highlight="Performance"
           description="A consolidated view of internship pathways, student readiness tracking, year-wise outcomes, salary highlights, and parent-faculty support for stronger industry preparation."
         />
 
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl">
             <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Career pipelines</p>
-            <h2 className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
+            <AnimatedHeadline as="h2" highlight="Hackathon" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
               Internship and Hackathon Highlights
-            </h2>
+            </AnimatedHeadline>
             <p className="text-white/80 leading-7 mb-6 max-w-3xl">
               These opportunities reflect the range of internships, women-focused mentoring tracks,
               and competitive hackathons available to students.
@@ -331,9 +336,9 @@ const PlacementsPage = () => {
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl">
             <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Recruitment support</p>
-            <h2 className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
+            <AnimatedHeadline as="h2" highlight="Internship" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
               Recruiter-Linked Internship Opportunities
-            </h2>
+            </AnimatedHeadline>
             <p className="text-white/80 leading-7 mb-6 max-w-3xl">
               A separate list of high-visibility recruiter programs and internships to keep the page easy to scan.
             </p>
@@ -347,9 +352,9 @@ const PlacementsPage = () => {
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-white border border-slate-200 p-6 md:p-8 shadow-xl">
             <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Support system</p>
-            <h2 className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
+            <AnimatedHeadline as="h2" highlight="Readiness" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
               Student Readiness & Tracking
-            </h2>
+            </AnimatedHeadline>
             <p className="text-slate-600 leading-7 mb-6 max-w-3xl">
               The readiness model focuses on proof of work, visibility, and assessment-backed preparation.
             </p>
@@ -363,9 +368,9 @@ const PlacementsPage = () => {
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-white border border-slate-200 p-6 md:p-8 shadow-xl">
             <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Outcomes</p>
-            <h2 className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
+            <AnimatedHeadline as="h2" highlight="Overview" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
               Placement Data Overview: 2022 to 2026
-            </h2>
+            </AnimatedHeadline>
             <p className="text-slate-600 leading-7 mb-6 max-w-3xl">
               Year-wise average package data gives a quick view of progress across recent batches.
             </p>
@@ -463,9 +468,9 @@ const PlacementsPage = () => {
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-white border border-[#e5d7ff] p-6 md:p-8 shadow-xl">
             <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Mentorship</p>
-            <h2 className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#f15b20] mb-4">
+            <AnimatedHeadline as="h2" highlight="Synergy" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
               The Path Ahead: Parent-Faculty Synergy
-            </h2>
+            </AnimatedHeadline>
             <p className="text-slate-700 leading-7 mb-6 max-w-3xl">
               Parents and faculty can collaborate around skills, applications, and communication so students stay aligned with recruitment timelines.
             </p>
@@ -479,9 +484,9 @@ const PlacementsPage = () => {
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl mb-6">
             <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Placement snapshots</p>
-            <h2 className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
+            <AnimatedHeadline as="h2" highlight="Salary" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
               Recent Salary Offers
-            </h2>
+            </AnimatedHeadline>
             <p className="text-white/80 leading-7 max-w-3xl">
               A quick look at recent high-value offers across the program.
             </p>

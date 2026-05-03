@@ -5,6 +5,7 @@ import { FaArrowLeft, FaCheckCircle } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { clubsData } from "../../data/clubsData";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -152,7 +153,12 @@ const ClubDetails = () => {
           custom={0.08}
         >
           <p className="text-xs uppercase tracking-[0.14em] font-semibold text-slate-500">{club.tagline}</p>
-          <h1 className="text-2xl sm:text-4xl font-bold text-slate-900 mt-2 leading-tight">{club.name}</h1>
+          <AnimatedHeadline
+            highlight={club.name.split(" ")[0]}
+            className="text-2xl sm:text-4xl font-bold text-slate-900 mt-2 leading-tight"
+          >
+            {club.name}
+          </AnimatedHeadline>
           <div className="mt-6 grid grid-cols-2 gap-4 max-w-sm">
             <div className="rounded-xl bg-slate-100 px-4 py-3">
               <p className="text-xs text-slate-500">Members</p>
@@ -175,7 +181,9 @@ const ClubDetails = () => {
             variants={fadeUp}
             custom={0.12}
           >
-            <h2 className="text-xl font-bold text-slate-900">About</h2>
+            <AnimatedHeadline as="h2" highlight="About" className="text-xl font-bold text-slate-900">
+              About
+            </AnimatedHeadline>
             <p className="mt-3 text-slate-600 leading-relaxed">{club.about}</p>
           </motion.article>
 
@@ -187,7 +195,9 @@ const ClubDetails = () => {
             variants={fadeUp}
             custom={0.16}
           >
-            <h2 className="text-xl font-bold text-slate-900">Benefits</h2>
+            <AnimatedHeadline as="h2" highlight="Benefits" className="text-xl font-bold text-slate-900">
+              Benefits
+            </AnimatedHeadline>
             <ul className="mt-3 space-y-2">
               {club.benefits.map((benefit) => (
                 <li key={benefit} className="flex items-start gap-2 text-slate-600">
@@ -201,16 +211,9 @@ const ClubDetails = () => {
 
         {/* Members Section */}
         <section className="mt-8">
-          <motion.h2
-            className="text-xl font-bold text-slate-900"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={0.2}
-          >
+          <AnimatedHeadline as="h2" highlight="Members" className="text-xl font-bold text-slate-900">
             Members
-          </motion.h2>
+          </AnimatedHeadline>
           <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {club.members.map((member, index) => (
               <MemberCard key={member.name} member={member} index={index} />

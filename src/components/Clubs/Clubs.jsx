@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import { FaArrowRight } from "react-icons/fa6";
 import { clubsData } from "../../data/clubsData";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 const fromLeft = {
   hidden: { opacity: 0, x: -80 },
@@ -76,11 +77,12 @@ const Clubs = () => {
           </motion.p>
         </AnimatedSection>
 
-        <AnimatedSection variants={fromLeft} custom={0.1}>
-          <h1 className="text-center md:text-left text-2xl sm:text-3xl md:text-4xl md:text-4xl/tight font-bold capitalize mb-2 leading-tight">
-            Center of Excellence & Clubs
-          </h1>
-        </AnimatedSection>
+        <AnimatedHeadline
+          highlight="Excellence"
+          className="text-center md:text-left text-2xl sm:text-3xl md:text-4xl md:text-4xl/tight font-bold capitalize mb-2 leading-tight text-[#113959]"
+        >
+          Center of Excellence & Clubs
+        </AnimatedHeadline>
 
         <AnimatedSection variants={fromRight} custom={0.2}>
           <p className="text-xs sm:text-sm md:text-lg text-center md:text-left text-slate-500 mb-6 md:mb-10 max-w-2xl mx-auto md:mx-0 leading-relaxed">

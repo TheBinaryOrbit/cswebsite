@@ -4,6 +4,7 @@ import React from "react";
 import { FiUser } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { testimonials } from "../../data/testimonialsData";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 const VoicesOfExcellence = () => {
     return (
@@ -14,7 +15,12 @@ const VoicesOfExcellence = () => {
                         <FiUser size={12} /><span className="text-xs -translate-y-[1px]  font-semibold">Alumni</span>
                     </p>
                 </div>
-                <h1 className="text-center md:text-left text-4xl md:text-5xl/tight   font-bold  capitalize mb-2">Voices of Excellence</h1>
+                <AnimatedHeadline
+                    highlight="Excellence"
+                    className="text-center md:text-left text-4xl md:text-5xl/tight font-bold capitalize mb-2 text-[#113959]"
+                >
+                    Voices of Excellence
+                </AnimatedHeadline>
                 <p className="text-sm md:text-lg text-center md:text-left text-slate-500 mb-6 md:mb-10">Hear from our successful alumni who have made their mark in leading companies worldwide.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 overflow-hidden h-[40rem] p-4">
                     <TestimonialsColumn

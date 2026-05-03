@@ -1,136 +1,171 @@
-"use client"
+"use client";
+import { useState } from "react";
 import { BiSolidHappyHeartEyes } from "react-icons/bi";
+import { FiPlus } from "react-icons/fi";
+import { AnimatePresence, motion } from "framer-motion";
+import AnimatedHeadline from "../AnimatedHeadline";
 
+const cards = [
+  {
+    id: "vision",
+    title: "Our Vision",
+    highlight: "Vision",
+    className: "bg-[#113959]",
+    plusClassName: "bg-white text-[#113959]",
+    intro:
+      "To emerge as a leader in the field of computer science education with innovation and research to create a positive global impact.",
+    items: [
+      ["Innovation & Research", "Foster cutting-edge research and innovation."],
+      ["Global Impact", "Create positive change through technology."],
+      ["Educational Excellence", "Lead in quality computer science education."],
+    ],
+  },
+  {
+    id: "mission",
+    title: "Our Mission",
+    highlight: "",
+    className: "bg-[#f15b20]",
+    plusClassName: "bg-white text-[#f15b20]",
+    items: [
+      [
+        "Quality Education",
+        "Provide quality education in computer science to shape next-generation leaders for global community.",
+      ],
+      [
+        "Industry Integration",
+        "Equip students with skills and knowledge by integrating latest technologies and innovative practices.",
+      ],
+      [
+        "Research & Innovation",
+        "Create a conducive environment for research and innovation for providing sustainable solutions.",
+      ],
+      [
+        "Responsible Professionals",
+        "Develop socially responsible professionals while encouraging personal and professional growth.",
+      ],
+    ],
+  },
+  {
+    id: "peo",
+    title: "Program Educational Objectives",
+    highlight: "Educational",
+    className: "bg-gradient-to-br from-[#002855] to-[#113959]",
+    plusClassName: "bg-white text-[#113959]",
+    intro: "Graduates shall be:",
+    items: [
+      [
+        "Successful Career Leaders",
+        "Engaged in successful career in the software industry and higher studies.",
+      ],
+      [
+        "Adaptable Innovators",
+        "Adaptable to recent trends for developing innovative solutions.",
+      ],
+      [
+        "Global Citizens",
+        "Socially responsible global citizen and leaders in their domain.",
+      ],
+    ],
+  },
+  {
+    id: "pso",
+    title: "Program Specific Objectives (PSO)",
+    highlight: "Specific",
+    className: "bg-gradient-to-br from-[#1a5f7a] to-[#0f4c81]",
+    plusClassName: "bg-white text-[#0f4c81]",
+    intro: "Graduates will be:",
+    items: [
+      [
+        "Problem-Solving Experts",
+        "Utilize technical skills of problem solving for boosting their employability and career advancement.",
+      ],
+      [
+        "Research Leaders",
+        "Equipped to leverage domain knowledge and expertise to enhance their research profile and academic contributions.",
+      ],
+    ],
+  },
+];
 
-const Placements2 = () => {
-    return (
-        <div className="w-full py-8">
-            <div className="max-w-7xl mx-auto p-4">
-                {/* Vision and Mission */}
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    <div className="bg-[#113959] rounded-2xl p-6 lg:p-10 flex justify-between flex-col">
-                        <h1 className="lg:text-4xl text-2xl text-white font-serif leading-tight font-medium mb-4 lg:mb-6">Our Vision</h1>
-                        <p className="text-white mb-6 leading-relaxed">To emerge as a leader in the field of computer science education with innovation and research to create a positive global impact.</p>
-                        <ul className="space-y-4">
-                            <li className="rounded-lg cursor-pointer duration-200 flex items-center gap-4">
-                                <div className="bg-white items-center justify-center flex h-8 w-8 rounded-lg shrink-0">
-                                    <BiSolidHappyHeartEyes className="text-[#113959] text-xl" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg text-white font-semibold">Innovation & Research</h3>
-                                    <p className="text-sm font-light text-gray-200">Foster cutting-edge research and innovation.</p>
-                                </div>
-                            </li>
-                            <li className="rounded-lg cursor-pointer duration-200 flex items-center gap-4">
-                                <div className="bg-white items-center justify-center flex h-8 w-8 rounded-lg shrink-0">
-                                    <BiSolidHappyHeartEyes className="text-[#113959] text-xl" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg text-white font-semibold">Global Impact</h3>
-                                    <p className="text-sm font-light text-gray-200">Create positive change through technology.</p>
-                                </div>
-                            </li>
-                            <li className="rounded-lg cursor-pointer duration-200 flex items-center gap-4">
-                                <div className="bg-white items-center justify-center flex h-8 w-8 rounded-lg shrink-0">
-                                    <BiSolidHappyHeartEyes className="text-[#113959] text-xl" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg text-white font-semibold">Educational Excellence</h3>
-                                    <p className="text-sm font-light text-gray-200">Lead in quality computer science education.</p>
-                                </div>
-                            </li>
-                        </ul>
+function ExpandableCard({ card, isOpen, onToggle }) {
+  return (
+    <motion.article
+      className={`${card.className} overflow-hidden rounded-2xl shadow-lg`}
+      layout
+      transition={{ layout: { duration: 0.35, ease: "easeOut" } }}>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="flex w-full items-center justify-between gap-4 p-6 text-left lg:p-8">
+        <AnimatedHeadline
+          highlight={card.highlight}
+          className="text-2xl font-medium leading-tight text-white lg:text-3xl">
+          {card.title}
+        </AnimatedHeadline>
+        <motion.span
+          className={`${card.plusClassName} grid size-10 shrink-0 place-items-center rounded-full shadow-sm`}
+          animate={{ rotate: isOpen ? 45 : 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}>
+          <FiPlus size={22} />
+        </motion.span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.32, ease: "easeOut" }}>
+            <div className="px-6 pb-6 lg:px-8 lg:pb-8">
+              {card.intro ? (
+                <p className="mb-5 text-sm leading-relaxed text-white/85">
+                  {card.intro}
+                </p>
+              ) : null}
+              <ul className="space-y-4">
+                {card.items.map(([title, description]) => (
+                  <li key={title} className="flex items-start gap-3">
+                    <BiSolidHappyHeartEyes className="mt-1 shrink-0 text-xl text-white" />
+                    <div>
+                      <p className="font-semibold text-white">{title}</p>
+                      <p className="text-sm leading-relaxed text-white/82">
+                        {description}
+                      </p>
                     </div>
-
-                    <div className="bg-[#f15b20] rounded-2xl p-6 lg:p-10 flex justify-between flex-col">
-                        <h1 className="lg:text-4xl text-2xl text-white font-serif leading-tight font-medium mb-4 lg:mb-6">Our Mission</h1>
-                        <ul className="space-y-4 mb-6">
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-white text-xl mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold">Quality Education</p>
-                                    <p className="text-sm text-gray-100">Provide quality education in computer science to shape next-generation leaders for global community.</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-white text-xl mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold">Industry Integration</p>
-                                    <p className="text-sm text-gray-100">Equip students with skills and knowledge by integrating latest technologies and innovative practices.</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-white text-xl mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold">Research & Innovation</p>
-                                    <p className="text-sm text-gray-100">Create a conducive environment for research and innovation for providing sustainable solutions.</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-white text-xl mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold">Responsible Professionals</p>
-                                    <p className="text-sm text-gray-100">Develop socially responsible professionals while encouraging personal and professional growth.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* PEO and PSO */}
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-gradient-to-br from-[#002855] to-[#113959] rounded-2xl p-6 lg:p-10">
-                        <h1 className="lg:text-3xl text-2xl text-white font-serif leading-tight font-medium mb-4 lg:mb-6">Program Educational Objectives (PEO)</h1>
-                        <p className="text-gray-200 mb-4 text-sm">Graduates shall be:</p>
-                        <ul className="space-y-3">
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-[#f15b20] text-lg mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold text-sm">Successful Career Leaders</p>
-                                    <p className="text-xs text-gray-300">Engaged in successful career in the software industry and higher studies.</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-[#f15b20] text-lg mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold text-sm">Adaptable Innovators</p>
-                                    <p className="text-xs text-gray-300">Adaptable to recent trends for developing innovative solutions.</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-[#f15b20] text-lg mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold text-sm">Global Citizens</p>
-                                    <p className="text-xs text-gray-300">Socially responsible global citizen and leaders in their domain.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-[#1a5f7a] to-[#0f4c81] rounded-2xl p-6 lg:p-10">
-                        <h1 className="lg:text-3xl text-2xl text-white font-serif leading-tight font-medium mb-4 lg:mb-6">Program Specific Objectives (PSO)</h1>
-                        <p className="text-gray-200 mb-4 text-sm">Graduates will be:</p>
-                        <ul className="space-y-3">
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-[#f15b20] text-lg mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold text-sm">Problem-Solving Experts</p>
-                                    <p className="text-xs text-gray-300">Utilize technical skills of problem solving for boosting their employability and career advancement.</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <BiSolidHappyHeartEyes className="text-[#f15b20] text-lg mt-1 shrink-0" />
-                                <div>
-                                    <p className="text-white font-semibold text-sm">Research Leaders</p>
-                                    <p className="text-xs text-gray-300">Equipped to leverage domain knowledge and expertise to enhance their research profile and academic contributions.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-        </div>
-    )
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.article>
+  );
 }
 
-export default Placements2
+const Placements2 = () => {
+  const [openCard, setOpenCard] = useState(null);
+
+  return (
+    <div className="w-full py-8">
+      <div className="mx-auto max-w-7xl p-4">
+        <div className="grid items-start gap-6 md:grid-cols-2">
+          {cards.map((card) => (
+            <ExpandableCard
+              key={card.id}
+              card={card}
+              isOpen={openCard === card.id}
+              onToggle={() =>
+                setOpenCard(openCard === card.id ? null : card.id)
+              }
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Placements2;

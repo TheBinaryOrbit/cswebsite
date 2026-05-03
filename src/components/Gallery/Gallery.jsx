@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FiZoomIn } from 'react-icons/fi';
 import { IoClose } from 'react-icons/io5';
+import AnimatedHeadline from '../AnimatedHeadline';
 
 // Define total number of gallery images
 const TOTAL_GALLERY_IMAGES = 13;
@@ -36,9 +37,12 @@ const Gallery = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-to-r from-black to-gray-800 bg-clip-text text-transparent">
+          <AnimatedHeadline
+            highlight="Gallery"
+            className="text-3xl sm:text-4xl font-bold mb-2 text-[#113959]"
+          >
             Image Gallery
-          </h1>
+          </AnimatedHeadline>
           <p className="text-gray-400">
             View projects, certificates, and achievements
           </p>

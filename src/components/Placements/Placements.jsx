@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import AnimatedHeadline from "../AnimatedHeadline";
 
 /* ─── Variants ─────────────────────────────────────────────── */
 const fromLeft = {
@@ -181,7 +182,9 @@ function TrustedByScroller() {
       transition={{ duration: 0.6, delay: 0.3 }}
       className="mt-8 sm:mt-10"
     >
-      <h2 className="font-bold text-xl mb-3 text-white">Our Recruiters</h2>
+      <AnimatedHeadline as="h2" highlight="Recruiters" className="font-bold text-xl mb-3 text-white">
+        Our Recruiters
+      </AnimatedHeadline>
       <div className="overflow-hidden w-full relative">
         {/* fade edges */}
 
@@ -355,11 +358,12 @@ const Placements = () => {
           <div className="lg:w-1/2 lg:h-full h-1/2 w-full md:p-10 p-5 flex flex-col justify-between">
 
             {/* Heading */}
-            <AnimatedSection variants={fromLeft} custom={0}>
-              <h1 className="text-2xl md:text-[44px] text-white font-serif leading-tight font-medium mb-6 sm:mb-8">
-                The <span className="text-[#f15b20]">Carrer </span> Outcomes & Industry Connections
-              </h1>
-            </AnimatedSection>
+            <AnimatedHeadline
+              highlight="Career"
+              className="text-2xl md:text-[44px] text-white font-serif leading-tight font-medium mb-6 sm:mb-8"
+            >
+              The Career Outcomes & Industry Connections
+            </AnimatedHeadline>
 
             {/* Feature grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-6 mb-8">
