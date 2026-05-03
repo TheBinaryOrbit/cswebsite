@@ -90,93 +90,29 @@ function FacultyCard({ faculty, index }) {
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       onClick={() => navigate(`/faculty/${faculty.slug}`)}
-      className="relative flex-none w-[78vw] max-w-[220px] sm:w-[42vw] sm:max-w-[240px] md:w-[300px] h-[260px] sm:h-[300px] md:h-[300px] rounded-3xl overflow-hidden bg-[#ebebeb] cursor-pointer"
+      className="relative flex-none w-[70vw] sm:w-[45vw] md:w-[32vw] lg:w-70 h-62.5 sm:h-70 md:h-80 rounded-3xl overflow-hidden bg-[#ebebeb] cursor-pointer"
     >
       {/* Image */}
       <motion.img
         src={faculty.image}
         alt={faculty.name}
         className="w-full h-full object-cover"
-        animate={{
-          filter: hovered ? "grayscale(0%)" : "grayscale(100%)",
-          scale: hovered ? 1.08 : 1.02,
-        }}
+        animate={{ scale: hovered ? 1.08 : 1 }}
         transition={{ duration: 0.4 }}
       />
 
-      {/* Dark overlay */}
-      <motion.div
-        className="absolute inset-0 bg-black"
-        animate={{ opacity: hovered ? 0.28 : 0 }}
-        transition={{ duration: 0.3 }}
-      />
-
-      {/* Social icons — top right, staggered on hover */}
-      {/* <div className="absolute top-3 right-3 flex flex-col gap-2">
-        <AnimatePresence>
-          {hovered && (
-            <>
-              
-              <motion.a
-                key="gmail"
-                href={`mailto:${faculty.email}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                initial={{ opacity: 0, x: 20, scale: 0.7 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: 20, scale: 0.7 }}
-                transition={{ duration: 0.22, delay: 0, ease: "easeOut" }}
-                whileHover={{ scale: 1.2, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-md"
-                style={{ background: "#EA4335" }}
-              >
-                <MdEmail size={15} />
-              </motion.a>
-
-              
-              <motion.a
-                key="linkedin"
-                href={faculty.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                initial={{ opacity: 0, x: 20, scale: 0.7 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: 20, scale: 0.7 }}
-                transition={{ duration: 0.22, delay: 0.08, ease: "easeOut" }}
-                whileHover={{ scale: 1.2, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-md"
-                style={{ background: "#0077B5" }}
-              >
-                <FaLinkedinIn size={13} />
-              </motion.a>
-
-              <Link
-                to={`/faculty/${faculty.slug}`}
-                onClick={(e) => e.stopPropagation()}
-                className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-md bg-black/70"
-                aria-label={`Explore details of ${faculty.name}`}
-              >
-                <FaArrowRight size={12} className="-rotate-45" />
-              </Link>
-            </>
-          )}
-        </AnimatePresence>
-      </div> */}
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60" />
 
       {/* Name badge */}
       <motion.div
-        className="absolute left-2 right-2 sm:left-3 sm:right-3 bottom-2 sm:bottom-3 bg-white rounded-2xl border border-slate-200 shadow-lg px-3 sm:px-4 py-2.5 sm:py-3"
+        className="absolute left-2 right-2 sm:left-3 sm:right-3 bottom-2 sm:bottom-3 bg-white/95 backdrop-blur-sm rounded-2xl border border-slate-200 shadow-lg px-3 sm:px-4 py-2 sm:py-3"
         animate={{ y: hovered ? -4 : 0 }}
         transition={{ duration: 0.25 }}
       >
-        <h3 className="text-lg sm:text-xl font-bold text-slate-900 truncate leading-tight">
+        <h3 className="text-sm sm:text-base md:text-lg font-bold text-slate-900 truncate leading-tight">
           {faculty.name}
         </h3>
-        <p className="text-xs sm:text-sm font-medium text-slate-600 truncate">
+        <p className="text-[10px] sm:text-xs font-medium text-slate-600 truncate">
           {faculty.position}
         </p>
       </motion.div>
@@ -219,18 +155,18 @@ const Faculty = () => {
         {/* Badge */}
         <AnimatedSection variants={fromLeft} custom={0} className="flex justify-center md:justify-start items-center h-fit">
           <motion.p
-            className="flex justify-start items-center border-[1px] border-slate-300 px-3 rounded-lg text-xs gap-1 mb-4 py-1 text-slate-700 font-semibold"
+            className="flex justify-start items-center border px-3 rounded-lg text-xs gap-1 mb-4 py-1 text-slate-700 font-semibold"
             whileHover={{ scale: 1.05 }}
           >
             <FiUser size={12} color="#113959" />
-            <span className="text-xs -translate-y-[1px] text-[#113959] font-semibold">Our Faculty</span>
+            <span className="text-xs -translate-y-px text-[#113959] font-semibold">Our Faculty</span>
           </motion.p>
         </AnimatedSection>
 
         {/* Heading */}
         <AnimatedHeadline
           highlight="experienced"
-          className="text-center md:text-left text-2xl sm:text-3xl md:text-4xl md:text-4xl/tight font-bold capitalize mb-2 leading-tight text-[#113959]"
+          className="text-center md:text-left text-2xl sm:text-3xl md:text-4xl font-bold capitalize mb-2 leading-tight text-[#113959]"
         >
           We have a team of experienced faculty members
         </AnimatedHeadline>
@@ -288,7 +224,7 @@ const Faculty = () => {
           <AnimatedSection
             variants={fromRight}
             custom={0.3}
-            className="w-full md:w-[260px] lg:w-[400px] h-72 sm:h-72 md:h-auto flex-none order-1 md:order-2"
+            className="w-full md:w-65 lg:w-100 h-72 sm:h-72 md:h-auto flex-none order-1 md:order-2"
           >
             <motion.img
               src="/cs/DEANnew.jpeg"
@@ -306,8 +242,12 @@ const Faculty = () => {
           <div
             ref={rowRef}
             onScroll={handleAutoScroll}
-            className="flex overflow-x-auto gap-4 sm:gap-5 md:gap-6 scroll-smooth py-8 pl-2"
-            style={{ scrollbarWidth: "none" }}
+            className="flex overflow-x-auto gap-4 sm:gap-5 md:gap-6 scroll-smooth py-8 pl-1 pr-4 no-scrollbar"
+            style={{ 
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch"
+            }}
           >
             {facultyList.map((faculty, index) => (
               <FacultyCard key={faculty.id} faculty={faculty} index={index} />
@@ -316,11 +256,11 @@ const Faculty = () => {
         </div>
 
         {/* Progress Bar + Arrow Controls */}
-        <div className=" sm:block hidden mt-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-5 rounded-2xl border border-slate-200 bg-white/90 p-3 sm:p-4 shadow-sm">
+        <div className="mt-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 rounded-2xl border border-slate-200 bg-white/90 p-3 sm:p-4 shadow-sm">
 
             {/* Progress bar */}
-            <div className="w-full sm:flex-1 sm:max-w-[700px] flex items-center gap-3">
+            <div className="w-full sm:flex-1 sm:max-w-175 flex items-center gap-3">
               <div className="h-4 flex-1 bg-slate-200 rounded-full overflow-hidden border border-slate-300 shadow-inner">
               <motion.div
                   className="h-full bg-[#002855] rounded-full"

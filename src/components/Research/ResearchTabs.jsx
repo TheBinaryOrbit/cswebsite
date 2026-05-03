@@ -33,7 +33,7 @@ const TAB_CONFIG = {
     ],
   },
   books: {
-    title: "Book Published",
+    title: "Book Chapters",
     // hide raw DOI/link column; title clickable when link present
     columns: ["Book", "Chapter/Article", "Publisher", "Date", "Faculty", "Indexing"],
     mapRow: (item) => [
@@ -72,7 +72,7 @@ export default function ResearchTabs({ data, showAll = false, recentLimit = 8 })
     () => [
       { key: "journals", label: "Journals", count: data.journals.length },
       { key: "conferences", label: "Conferences", count: data.conferences.length },
-      { key: "books", label: "Book Published", count: data.books.length },
+      { key: "books", label: "Book Chapters", count: data.books.length },
     ],
     [data.books.length, data.conferences.length, data.journals.length]
   );

@@ -3,20 +3,18 @@ import { FiZoomIn } from 'react-icons/fi';
 import { IoClose } from 'react-icons/io5';
 import AnimatedHeadline from '../AnimatedHeadline';
 
-// Define total number of gallery images
-const TOTAL_GALLERY_IMAGES = 13;
-
-// Dynamically load gallery images
-const loadGalleryImages = () => {
-  const images = [];
-  for (let i = 1; i <= TOTAL_GALLERY_IMAGES; i++) {
-    images.push({
-      id: i,
-      url: `/gallery/${i}.jpg`
-    });
-  }
-  return images;
-};
+// Load all images from the gallery folder automatically and sort by filename
+const imageGallery = Object.keys(import.meta.glob('/public/gallery/*.{jpg,jpeg,png,svg}', { eager: true }))
+  .sort((a, b) => {
+    // Extract numbers if present to sort numerically (1, 2, 10 instead of 1, 10, 2)
+    const numA = parseInt(a.match(/\d+/)?.[0] || 0);
+    const numB = parseInt(b.match(/\d+/)?.[0] || 0);
+    return numA - numB || a.localeCompare(b);
+  })
+  .map((path, index) => ({
+    id: index + 1,
+    url: path.replace('/public', '')
+  }));
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -25,10 +23,7 @@ const Gallery = () => {
     setSelectedImage(image);
   };
 
-  // Gallery images array loaded dynamically
-  const imageGallery = loadGalleryImages();
 
-  
 
 
 
@@ -44,27 +39,27 @@ const Gallery = () => {
             Image Gallery
           </AnimatedHeadline>
           <p className="text-gray-400">
-            View projects, certificates, and achievements
+            View Department events, workshops, and memorable moments captured in our gallery. Click on any image to see it in full size.
           </p>
         </div>
 
-       
+
 
         {/* Masonry Grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {imageGallery.map((image, index) => (
             <div
               key={`${image.id}-${index}`}
-              className="group relative break-inside-avoid mb-4 cursor-pointer"
+              className="group relative cursor-pointer"
               onClick={() => handleImageClick(image)}
             >
-              <div className="relative overflow-hidden rounded-2xl bg-[#2f2f2f] shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-2xl bg-[#2f2f2f] shadow-lg hover:shadow-2xl transition-all duration-300 aspect-[4/3]">
                 <img
                   src={image.url}
                   alt="Gallery image"
-                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                
+
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <FiZoomIn className="w-8 h-8 text-white" />
@@ -74,7 +69,7 @@ const Gallery = () => {
           ))}
         </div>
 
-    
+
       </div>
 
       {/* Image Modal */}

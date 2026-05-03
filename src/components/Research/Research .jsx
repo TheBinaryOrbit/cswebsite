@@ -15,7 +15,7 @@ const THEME = {
 const statCards = [
   { label: "Journals", value: researchStats.journalCount },
   { label: "Conferences", value: researchStats.conferenceCount },
-  { label: "Book Published", value: researchStats.bookCount },
+  { label: "Book Chapters", value: researchStats.bookCount },
   { label: "Total Records", value: researchStats.total },
 ];
 
@@ -123,7 +123,7 @@ const Research = () => {
           Research Data Overview
         </AnimatedHeadline>
         <p className="max-w-3xl mx-auto text-sm md:text-lg text-center text-slate-600 mb-6 md:mb-8">
-          Recent Journals, Conferences, and Book Published records from the department.
+          Recent Journals, Conferences, and Book Chapters records from the department.
         </p>
 
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

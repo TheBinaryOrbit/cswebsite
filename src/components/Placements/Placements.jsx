@@ -116,39 +116,39 @@ const Placements = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div ref={ref} className="w-full bg-slate-50 py-20 sm:py-28 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto bg-[#0a2840] p-8 rounded-3xl">
+    <div ref={ref} className="w-full bg-slate-50 py-12 sm:py-20 lg:py-28 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto bg-[#0a2840] p-4 sm:p-6 md:p-8 lg:p-12 rounded-2xl sm:rounded-3xl">
 
         {/* Header Section */}
-        <div className="mb-12 text-center">
+        <div className="mb-8 md:mb-12 text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-[#f15b20] uppercase tracking-widest text-sm font-bold mb-3"
+            className="text-[#f15b20] uppercase tracking-widest text-xs sm:text-sm font-bold mb-3"
           >
             Career Outcomes
           </motion.p>
-          <AnimatedHeadline highlight="Success" className="text-white text-4xl md:text-5xl font-serif">
+          <AnimatedHeadline highlight="Success" className="text-white text-3xl sm:text-4xl md:text-5xl font-serif">
             Placement Overview
           </AnimatedHeadline>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-slate-300 mt-4 max-w-2xl mx-auto"
+            className="text-slate-300 mt-4 max-w-2xl mx-auto text-sm sm:text-base px-4"
           >
             Explore our impressive placement records, showcasing the success of our students across various industries and top companies.
           </motion.p>
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 md:mb-10 px-2">
           {placementData.map((year) => (
             <motion.button
               key={year.id}
               onClick={() => setActiveTab(year.id)}
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#f15b20] ${activeTab === year.id
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#f15b20] ${activeTab === year.id
                   ? "bg-white text-[#113959] shadow-lg"
                   : "bg-white/10 text-white hover:bg-white/20"
                 }`}
@@ -160,105 +160,109 @@ const Placements = () => {
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 md:gap-8 items-start">
 
           {/* Left: Snapshot Card */}
           <motion.div
             key={activeTab + "left"}
             initial="hidden" animate="visible" variants={fadeInUp}
-            className="lg:col-span-5 bg-white rounded-3xl p-8 shadow-xl border border-slate-100"
+            className="col-span-1 md:col-span-1 lg:col-span-5 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl border border-slate-100 w-full"
           >
-            <h3 className="text-2xl font-bold text-[#113959] mb-2">Batch Snapshot: <span className="text-[#f15b20]">{data.label}</span></h3>
-            <p className="text-gray-500 mb-8 text-sm leading-relaxed">{data.desc}</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#113959] mb-2 text-center sm:text-left">Batch Snapshot: <span className="text-[#f15b20]">{data.label}</span></h3>
+            <p className="text-gray-500 mb-4 sm:mb-6 md:mb-8 text-xs sm:text-sm leading-relaxed text-center sm:text-left">{data.desc}</p>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
               {([
                 { label: "Total Students", val: data.total, icon: <FaUsers />, color: "text-blue-600" },
                 { label: "Placed", val: data.placed, icon: <FaBriefcase />, color: "text-green-600" },
                 { label: "Avg. Package", val: data.avg, icon: <FaChartLine />, color: "text-orange-500" },
                 { label: "Placement Rate", val: `${data.rate}%`, icon: <FaPercentage />, color: "text-purple-600" }
               ]).map((stat, i) => (
-                <div key={i} className="bg-slate-50/70 p-4 rounded-xl border border-slate-200/80 flex flex-col items-start justify-center">
-                  <div className={`text-2xl mb-2 ${stat.color}`}>{stat.icon}</div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-500">{stat.label}</span>
-                  <span className="text-2xl font-extrabold text-slate-800">{stat.val}</span>
+                <div key={i} className="bg-slate-50/70 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border border-slate-200/80 flex flex-row sm:flex-col items-center sm:items-start gap-2 sm:gap-0">
+                  <div className={`text-lg sm:text-xl md:text-2xl sm:mb-1 md:sm:mb-2 ${stat.color} shrink-0`}>{stat.icon}</div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 truncate">{stat.label}</span>
+                    <span className="text-base sm:text-lg md:text-2xl font-extrabold text-slate-800">{stat.val}</span>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <Link to="/placements" className="mt-8 flex items-center justify-center gap-2 w-full bg-[#f15b20] text-white py-3.5 rounded-xl font-bold hover:bg-[#d94f1a] transition-all duration-300 transform hover:scale-[1.02]">
+            <Link to="/placements" className="mt-4 sm:mt-6 md:mt-8 flex items-center justify-center gap-2 w-full bg-[#f15b20] text-white py-2.5 sm:py-3 md:py-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base font-bold hover:bg-[#d94f1a] transition-all duration-300 transform hover:scale-[1.02]">
               View Detailed Report
             </Link>
           </motion.div>
 
           {/* Right: Chart & Recruiters */}
-          <div className="lg:col-span-7 flex flex-col gap-8">
+          <div className="col-span-1 md:col-span-1 lg:col-span-7 flex flex-col gap-4 sm:gap-6 md:gap-8 w-full">
 
             {/* Pie Chart Card */}
             <motion.div
               key={activeTab + "right"}
               initial="hidden" animate="visible" variants={fadeInUp}
-              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6"
+              className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl border border-slate-100 flex flex-col md:flex-row lg:flex-row items-center justify-between gap-4 sm:gap-6"
             >
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-bold text-[#113959] mb-1">Placement Rate</h3>
-                <p className="text-sm text-slate-500 mb-4">A visual representation of the placement success for the {activeTab} batch.</p>
-                <div className="flex justify-center md:justify-start">
-                  <SimplePieChart percentage={data.rate} inView={inView} />
+              <div className="flex-1 text-center md:text-left lg:text-left w-full md:w-auto">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#113959] mb-1">Placement Rate</h3>
+                <p className="text-xs sm:text-sm text-slate-500 mb-3 sm:mb-4">A visual representation of the placement success for the {activeTab} batch.</p>
+                <div className="flex justify-center md:justify-start lg:justify-start">
+                  <div className="scale-75 sm:scale-90 md:scale-100 origin-top">
+                    <SimplePieChart percentage={data.rate} inView={inView} />
+                  </div>
                 </div>
               </div>
 
-              <div className="w-full md:w-56 space-y-4 self-stretch flex flex-col">
-                <div className="flex-1 p-4 border border-green-200 bg-green-50/50 rounded-2xl flex flex-col justify-center">
+              <div className="w-full md:w-56 lg:w-56 space-y-2 sm:space-y-3 md:space-y-4 self-stretch flex flex-col">
+                <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-green-200 bg-green-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
                   <div className="flex items-center gap-2 text-green-700">
-                    <FaChartPie />
-                    <p className="text-xs font-bold uppercase">Placed</p>
+                    <FaChartPie className="text-xs sm:text-sm md:text-base shrink-0" />
+                    <p className="text-[9px] sm:text-xs font-bold uppercase">Placed</p>
                   </div>
-                  <p className="text-3xl font-bold text-green-600 mt-1">{data.rate}%</p>
-                  <p className="text-xs text-gray-500">{data.placed} of {data.total} students</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-600 mt-1">{data.rate}%</p>
+                  <p className="text-[9px] sm:text-xs text-gray-500">{data.placed} of {data.total} students</p>
                 </div>
-                <div className="flex-1 p-4 border border-slate-200 bg-slate-50/50 rounded-2xl flex flex-col justify-center">
+                <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-slate-200 bg-slate-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
                   <div className="flex items-center gap-2 text-slate-600">
-                    <FaUsers />
-                    <p className="text-xs font-bold uppercase">Not Placed</p>
+                    <FaUsers className="text-xs sm:text-sm md:text-base shrink-0" />
+                    <p className="text-[9px] sm:text-xs font-bold uppercase">Not Placed</p>
                   </div>
-                  <p className="text-3xl font-bold text-slate-500 mt-1">{(100 - data.rate).toFixed(1)}%</p>
-                  <p className="text-xs text-gray-500">{data.notPlaced} remaining</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-slate-500 mt-1">{(100 - data.rate).toFixed(1)}%</p>
+                  <p className="text-[9px] sm:text-xs text-gray-500">{data.notPlaced} remaining</p>
                 </div>
               </div>
             </motion.div>
 
             {/* Recruiter Section */}
-            <div className="bg-white rounded-3xl p-8 overflow-hidden">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold text-[#113959]">Top Recruiters</h3>
-                <span className="bg-orange-50 text-[#f15b20] text-sm font-bold px-3 py-1 rounded-full">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 overflow-x-auto">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#113959]">Top Recruiters</h3>
+                <span className="bg-orange-50 text-[#f15b20] text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded-full whitespace-nowrap">
                   300+ Companies
                 </span>
               </div>
 
-              <div className="relative h-16 flex items-center overflow-hidden">
+              <div className="relative h-10 sm:h-12 md:h-16 flex items-center overflow-hidden">
                 {/* Fade Edges for a smoother look */}
-                <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-white via-transparent to-white" />
+                <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-r from-white via-transparent to-white" />
 
                 <motion.div
-                  className="flex gap-12 items-center w-max" // w-max is crucial to keep logos in one line
-                  animate={{ x: ["0%", "-50%"] }} // Animate to -50% because we doubled the content
+                  className="flex gap-6 sm:gap-8 md:gap-12 items-center w-max"
+                  animate={{ x: ["0%", "-50%"] }}
                   transition={{
                     ease: "linear",
-                    duration: 20, // Adjust speed here
+                    duration: 20,
                     repeat: Infinity,
                   }}
                 >
                   {[...companies, ...companies].map((brand, i) => (
                     <div
                       key={`company-${i}`}
-                      className="flex-shrink-0 w-32 h-12 flex items-center justify-center"
+                      className="shrink-0 w-20 sm:w-24 md:w-32 h-8 sm:h-10 md:h-12 flex items-center justify-center"
                     >
                       <img
                         src={brand.logo}
                         alt={brand.name}
-                        className="max-h-full max-w-full object-contain  transition-all"
+                        className="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                       />
                     </div>
                   ))}

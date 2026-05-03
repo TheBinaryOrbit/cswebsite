@@ -174,7 +174,7 @@ function Hero3() {
       const progress = Math.min((now - startTime) / duration, 1);
       const easedProgress = 1 - Math.pow(1 - progress, 3);
 
-      setHighestPlacement(Math.round(easedProgress * 45));
+      setHighestPlacement(Math.round(easedProgress * 54));
       setStudentIntake(Math.round(easedProgress * 300));
 
       if (progress < 1) {
@@ -218,9 +218,7 @@ function Hero3() {
             <TextGenerateEffect
               duration={1}
               filter={false}
-              words={
-                "Shape your Future With Department of Computer Science and DS."
-              }
+              words={"Shape your Future With Department of Computer Science"}
               textlen="6xl"
             />
           </div>
@@ -241,7 +239,8 @@ function Hero3() {
                   <AnimatedHeadline
                     as="h2"
                     highlight="build technology"
-                    className="text-xl font-serif sm:text-3xl lg:text-4xl font-semibold text-[#113959] mb-2 sm:mb-3 leading-tight">
+                    className="text-xl font-serif sm:text-3xl lg:text-4xl font-semibold text-[#113959] mb-2 sm:mb-3 leading-tight"
+                  >
                     Designed for students who aim to build technology
                   </AnimatedHeadline>
                   {/* <p className="text-xs sm:text-sm md:text-base text-gray-500 max-w-lg sm:max-w-xl leading-relaxed italic">
@@ -325,6 +324,8 @@ function Hero3() {
                     </p>
                   </motion.div>
                 </div>
+
+                
 
                 <canvas
                   ref={canvasRef}

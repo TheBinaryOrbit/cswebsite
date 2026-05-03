@@ -1,5 +1,6 @@
 import img from '../../assets/logofooter.png';
 
+
 const Footer = () => {
     return (
         <footer className="relative w-full bg-black rounded-t-3xl h-fit p-5 overflow-hidden">
@@ -25,10 +26,10 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Resources</h3>
                         <ul className="flex flex-col gap-2 text-sm">
-                            <li className="hover:text-gray-300 cursor-pointer">1<sup>st</sup> Year Syllabus</li>
-                            <li className="hover:text-gray-300 cursor-pointer">2<sup>nd</sup> Year Syllabus</li>
-                            <li className="hover:text-gray-300 cursor-pointer">3<sup>rd</sup> Year Syllabus</li>
-                            <li className="hover:text-gray-300 cursor-pointer">4<sup>th</sup> Year Syllabus</li>
+                            <li className="hover:text-gray-300 cursor-pointer"><a href="/syllabus/1.pdf" target="_blank" rel="noopener noreferrer" className="text-inherit"> 1<sup>st</sup> Year Syllabus</a></li>
+                            <li className="hover:text-gray-300 cursor-pointer"><a href="/syllabus/2.pdf" target="_blank" rel="noopener noreferrer" className="text-inherit">2<sup>nd</sup> Year Syllabus</a></li>
+                            <li className="hover:text-gray-300 cursor-pointer"><a href="/syllabus/3.pdf" target="_blank" rel="noopener noreferrer" className="text-inherit">3<sup>rd</sup> Year Syllabus</a></li>
+                            <li className="hover:text-gray-300 cursor-pointer"><a href="/syllabus/4.pdf" target="_blank" rel="noopener noreferrer" className="text-inherit">4<sup>th</sup> Year Syllabus</a></li>
                         </ul>
                     </div>
                     <div>
