@@ -218,7 +218,9 @@ function Hero3() {
             <TextGenerateEffect
               duration={1}
               filter={false}
-              words={"Shape your Future With Department of Computer Science"}
+              words={
+                "Shape your Future With Department of Computer Science and DS."
+              }
               textlen="6xl"
             />
           </div>
@@ -239,8 +241,7 @@ function Hero3() {
                   <AnimatedHeadline
                     as="h2"
                     highlight="build technology"
-                    className="text-xl font-serif sm:text-3xl lg:text-4xl font-semibold text-[#113959] mb-2 sm:mb-3 leading-tight"
-                  >
+                    className="text-xl font-serif sm:text-3xl lg:text-4xl font-semibold text-[#113959] mb-2 sm:mb-3 leading-tight">
                     Designed for students who aim to build technology
                   </AnimatedHeadline>
                   {/* <p className="text-xs sm:text-sm md:text-base text-gray-500 max-w-lg sm:max-w-xl leading-relaxed italic">
@@ -323,42 +324,6 @@ function Hero3() {
                       Student Intake
                     </p>
                   </motion.div>
-                </div>
-
-                <div className="absolute inset-x-3 top-[52%] z-30 grid -translate-y-1/2 grid-cols-2 gap-3 md:hidden">
-                  {[
-                    {
-                      value: highestPlacement,
-                      suffix: "LPA",
-                      label: "Highest Placement",
-                    },
-                    {
-                      value: studentIntake,
-                      suffix: "+",
-                      label: "Student Intake",
-                    },
-                  ].map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-3xl border border-white/80 bg-white/80 px-4 py-4 text-center shadow-lg backdrop-blur-md">
-                      <p
-                        className="leading-none text-[#113959]"
-                        style={{
-                          fontFamily:
-                            "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
-                        }}>
-                        <span className="text-4xl">{stat.value}</span>
-                        <span
-                          className={`align-top ${stat.suffix === "LPA" ? "ml-0.5 text-xs" : "text-2xl"}`}
-                        >
-                          {stat.suffix}
-                        </span>
-                      </p>
-                      <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#f15b20]">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
                 </div>
 
                 <canvas
