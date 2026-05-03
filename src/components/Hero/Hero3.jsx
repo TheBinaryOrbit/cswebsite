@@ -174,7 +174,7 @@ function Hero3() {
       const progress = Math.min((now - startTime) / duration, 1);
       const easedProgress = 1 - Math.pow(1 - progress, 3);
 
-      setHighestPlacement(Math.round(easedProgress * 54));
+      setHighestPlacement(Math.round(easedProgress * 45));
       setStudentIntake(Math.round(easedProgress * 300));
 
       if (progress < 1) {
