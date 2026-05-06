@@ -8,7 +8,6 @@ const TAB_THEME = {
 const TAB_CONFIG = {
   journals: {
     title: "Journals",
-    // hide raw link column; title will be the clickable link
     columns: ["Title", "Journal", "Year", "Faculty", "Category", "Status"],
     mapRow: (item) => [
       item.title,
@@ -19,39 +18,47 @@ const TAB_CONFIG = {
       item.status,
     ],
   },
-  conferences: {
-    title: "Conferences",
-    // hide raw DOI/link column; title will navigate to provided link if available
-    columns: ["Title", "Proceedings", "Date", "Faculty", "Level", "Status"],
+  conferencesAndChapters: {
+    title: "Conferences & Book Chapters",
+    columns: ["Title", "Proceedings / Book", "Faculty", "Level / Type", "Scopus"],
     mapRow: (item) => [
       item.title,
-      item.proceedingsTitle || item.volumeIssuePage,
-      item.date,
+      item.proceedingsTitle || item.book || item.volumeIssuePage || "",
       item.faculty,
-      item.level,
-      item.status,
+      item.level || item.category || "",
+      item.scopus || item.indexing || "",
     ],
   },
-  books: {
-    title: "Book Chapters",
-    // hide raw DOI/link column; title clickable when link present
-    columns: ["Book", "Chapter/Article", "Publisher", "Date", "Faculty", "Indexing"],
+  book: {
+    title: "Book",
+    columns: ["Book Title", "Chapter / Article", "Publisher", "Date", "Faculty"],
     mapRow: (item) => [
       item.book,
       item.title,
       item.publisher,
       item.date,
       item.faculty,
-      item.indexing || item.category,
+      
+    ],
+  },
+  patents: {
+    title: "Patents",
+    columns: ["Title", "Application No.", "Status", "Date", "Faculty", "Level"],
+    mapRow: (item) => [
+      item.title,
+      item.appNo,
+      item.status,
+      item.date,
+      item.faculty,
+      item.level,
     ],
   },
 };
 
 function RowLink({ item, value }) {
-  if (!item.link || item.link === "NA") {
-    return <span className="line-clamp-2">{value}</span>;
+  if (!item.link || item.link === "NA" || item.link === "") {
+    return <span className="line-clamp-2">{value || "—"}</span>;
   }
-
   return (
     <a
       href={item.link}
@@ -60,36 +67,54 @@ function RowLink({ item, value }) {
       className="line-clamp-2 font-semibold hover:underline"
       style={{ color: TAB_THEME.primary }}
     >
-      {value}
+      {value || "View"}
     </a>
   );
 }
 
-export default function ResearchTabs({ data, showAll = false, recentLimit = 8 }) {
+export default function ResearchTabs({ data = {}, showAll = false, recentLimit = 8 }) {
   const [activeTab, setActiveTab] = useState("journals");
+
+  // ── Safe accessors — never crash if a key is missing ──────────────────────
+  const safeJournals = data?.journals || [];
+  const safeConferences = data?.conferences || [];
+  const safeBooks = data?.books || [];
+  const safePatents = data?.patents || [];
+
+  // Merged tab: conferences + book chapters
+  const conferencesAndChapters = useMemo(() => {
+    const conf = safeConferences.map((r) => ({ ...r, _type: "conference" }));
+    const chap = safeBooks.map((r) => ({ ...r, _type: "chapter" }));
+    return [...conf, ...chap];
+  }, [safeConferences, safeBooks]);
 
   const tabs = useMemo(
     () => [
-      { key: "journals", label: "Journals", count: data.journals.length },
-      { key: "conferences", label: "Conferences", count: data.conferences.length },
-      { key: "books", label: "Book Chapters", count: data.books.length },
+      { key: "journals", label: "Journals", count: safeJournals.length },
+      { key: "conferencesAndChapters", label: "Conferences & Book Chapters", count: conferencesAndChapters.length },
+      { key: "book", label: "Book", count: safeBooks.length },
+      { key: "patents", label: "Patents", count: safePatents.length },
     ],
-    [data.books.length, data.conferences.length, data.journals.length]
+    [safeJournals.length, safeBooks.length, safePatents.length, conferencesAndChapters.length]
   );
 
   const activeRows = useMemo(() => {
-    const rows = data[activeTab] || [];
-    if (showAll) {
-      return rows;
+    let rows;
+    switch (activeTab) {
+      case "conferencesAndChapters": rows = conferencesAndChapters; break;
+      case "book": rows = safeBooks; break;
+      case "journals": rows = safeJournals; break;
+      case "patents": rows = safePatents; break;
+      default: rows = [];
     }
-
-    return rows.slice(0, recentLimit);
-  }, [activeTab, data, recentLimit, showAll]);
+    return showAll ? rows : rows.slice(0, recentLimit);
+  }, [activeTab, safeJournals, safeConferences, safeBooks, safePatents, conferencesAndChapters, recentLimit, showAll]);
 
   const config = TAB_CONFIG[activeTab];
 
   return (
     <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4 sm:p-6">
+      {/* ── Tab buttons ── */}
       <div className="flex flex-wrap gap-2 sm:gap-3 mb-5">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.key;
@@ -105,12 +130,14 @@ export default function ResearchTabs({ data, showAll = false, recentLimit = 8 })
                 backgroundColor: isActive ? TAB_THEME.accent : "#ffffff",
               }}
             >
-              {tab.label} ({tab.count})
+              {tab.label}{" "}
+              
             </button>
           );
         })}
       </div>
 
+      {/* ── Table ── */}
       <div className="overflow-x-auto">
         <table className="w-full text-xs sm:text-sm">
           <thead>
@@ -130,15 +157,20 @@ export default function ResearchTabs({ data, showAll = false, recentLimit = 8 })
                 </td>
               </tr>
             )}
-
-            {activeRows.map((item) => {
+            {activeRows.map((item, rowIdx) => {
               const cells = config.mapRow(item);
-
               return (
-                <tr key={`${activeTab}-${item.id}`} className="border-b border-slate-100 hover:bg-slate-50">
-                  {cells.map((value, index) => (
-                    <td key={`${item.id}-${index}`} className="py-3 px-2 sm:px-4 align-top text-slate-700">
-                      {index === 0 ? <RowLink item={item} value={value} /> : <span>{value || "NA"}</span>}
+                <tr
+                  key={item.id || `${activeTab}-${rowIdx}`}
+                  className="border-b border-slate-100 hover:bg-slate-50"
+                >
+                  {cells.map((value, colIdx) => (
+                    <td key={`${item.id}-${colIdx}`} className="py-3 px-2 sm:px-4 align-top text-slate-700">
+                      {colIdx === 0 ? (
+                        <RowLink item={item} value={value} />
+                      ) : (
+                        <span>{value || "—"}</span>
+                      )}
                     </td>
                   ))}
                 </tr>
@@ -150,7 +182,7 @@ export default function ResearchTabs({ data, showAll = false, recentLimit = 8 })
 
       {!showAll && (
         <p className="mt-4 text-xs sm:text-sm text-slate-500">
-          Showing recent entries only. Use the Research Details page to view complete data.
+          Showing recent {recentLimit} entries. View the Research Details page for complete data.
         </p>
       )}
     </div>

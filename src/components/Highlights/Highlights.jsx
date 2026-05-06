@@ -177,7 +177,7 @@ const Section2 = () => {
     });
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (isPaused) return undefined;
 
     const interval = window.setInterval(() => {
@@ -194,7 +194,7 @@ const Section2 = () => {
     }, 3500);
 
     return () => window.clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused]); */
 
   return (
     <div className="w-full overflow-hidden bg-white">

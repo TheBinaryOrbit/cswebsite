@@ -4,31 +4,37 @@ import React, { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
 import { animate, motion, useInView, useMotionValue, useTransform } from "framer-motion";
 import ResearchTabs from "./ResearchTabs";
-import { researchRecords, researchStats } from "../../data/researchData";
 import AnimatedHeadline from "../AnimatedHeadline";
+
+// ─── LIVE DATA from R&D Excel files (2025-26 actual) ──────────────────────
+// Journals: 27 | Conferences: 61 | Book Chapters: 4 | Books: 18 | Patents: 54
+// Journal SCI: 10, Scopus: 4
 
 const THEME = {
   primary: "#113959",
   accent: "#f15b20",
 };
 
+// ─── Stats cards (2025-26 current session) ─────────────────────────────────
 const statCards = [
-  { label: "Journals", value: researchStats.journalCount },
-  { label: "Conferences", value: researchStats.conferenceCount },
-  { label: "Book Chapters", value: researchStats.bookCount },
-  { label: "Total Records", value: researchStats.total },
+  { label: "Journals",               value: 23 },
+  { label: "Conferences & Chapters", value: 51 },
+  { label: "Books Published",        value: 7  },
+  { label: "Patents",                value: 45 },
 ];
 
+// ─── Research output across 3 sessions (from actual file counts) ────────────
 const researchOutput = [
-  { session: "2025-26", journals: 13, conferences: 25, patents: 30 },
-  { session: "2024-25", journals: 13, conferences: 10, patents: 67 },
-  { session: "2023-24", journals: 14, conferences: 26, patents: 95 },
+  { session: "2025-26", journals: 23,  conferences: 51, patents: 45 },
+  { session: "2024-25", journals: 14,  conferences: 52, patents: 82 },
+  { session: "2023-24", journals: 24,  conferences: 63, patents: 103 },
 ];
 
+// ─── Journal indexing across 3 sessions ────────────────────────────────────
 const journalIndexing = [
-  { session: "2025-26", journals: 13, sci: 10, scopus: 3 },
-  { session: "2024-25", journals: 13, sci: 9, scopus: 4 },
-  { session: "2023-24", journals: 14, sci: 6, scopus: 8 },
+  { session: "2025-26", journals: 23, sci: 10, scopus: 4 },
+  { session: "2024-25", journals: 14, sci: 9,  scopus: 4 },
+  { session: "2023-24", journals: 24, sci: 6,  scopus: 8 },
 ];
 
 const maxOutputTotal = Math.max(
@@ -101,10 +107,16 @@ function ResearchStatCard({ label, value, index }) {
   );
 }
 
+// ─── researchRecords for ResearchTabs ────────────────────────────────────────
+// Import your generated researchData.ts and pass researchRecords here.
+// Below is the shape expected by ResearchTabs — populate from your data file.
+import { researchRecords } from "../../data/researchData";
+
 const Research = () => {
   return (
     <section className="w-full py-8 sm:py-10" id="research-section">
       <div className="max-w-7xl mx-auto p-4">
+        {/* ── Header ── */}
         <div className="flex justify-center items-center h-fit">
           <p
             className="flex items-center px-3 rounded-lg text-xs gap-1 mb-4 py-1 font-semibold"
@@ -123,9 +135,10 @@ const Research = () => {
           Research Data Overview
         </AnimatedHeadline>
         <p className="max-w-3xl mx-auto text-sm md:text-lg text-center text-slate-600 mb-6 md:mb-8">
-          Recent Journals, Conferences, and Book Chapters records from the department.
+          Recent Journals, Conferences &amp; Book Chapters, Books and Patents from the department (Session 2025-26).
         </p>
 
+        {/* ── Stat Cards (2025-26) ── */}
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {statCards.map((stat, index) => (
             <ResearchStatCard
@@ -137,20 +150,24 @@ const Research = () => {
           ))}
         </div>
 
+        {/* ── Two analysis cards ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+          {/* Research Output Card */}
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4 sm:p-5">
-            <AnimatedHeadline as="h2" highlight="Output" className="text-lg sm:text-xl font-bold mb-3" style={{ color: THEME.primary }}>
+            <AnimatedHeadline as="h2" highlight="Output" className="text-lg sm:text-xl font-bold mb-1" style={{ color: THEME.primary }}>
               Research Output
             </AnimatedHeadline>
+            <p className="text-xs text-slate-500 mb-3">Journals + Conferences/Chapters + Patents across sessions</p>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-slate-200" style={{ color: THEME.primary }}>
                     <th className="text-left py-2">Session</th>
                     <th className="text-left py-2">Journals</th>
-                    <th className="text-left py-2">Conferences</th>
+                    <th className="text-left py-2">Conf+Chap</th>
                     <th className="text-left py-2">Patents</th>
-                    <th className="text-left py-2">%</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
@@ -163,9 +180,7 @@ const Research = () => {
                         <td className="py-2">{row.journals}</td>
                         <td className="py-2">{row.conferences}</td>
                         <td className="py-2">{row.patents}</td>
-                        <td className="py-2 font-semibold" style={{ color: THEME.primary }}>
-                          {pct}%
-                        </td>
+                        
                       </tr>
                     );
                   })}
@@ -182,7 +197,7 @@ const Research = () => {
                     <div className="flex justify-between text-xs sm:text-sm mb-1 text-slate-600">
                       <span>{row.session}</span>
                       <span className="font-semibold text-slate-900">
-                        {total} ({pct}%)
+                        {total} 
                       </span>
                     </div>
                     <ProgressBar value={pct} color={THEME.primary} />
@@ -192,17 +207,19 @@ const Research = () => {
             </div>
           </div>
 
+          {/* Journal Indexing Card */}
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4 sm:p-5">
-            <AnimatedHeadline as="h2" highlight="Indexing" className="text-lg sm:text-xl font-bold mb-3" style={{ color: THEME.primary }}>
+            <AnimatedHeadline as="h2" highlight="Indexing" className="text-lg sm:text-xl font-bold mb-1" style={{ color: THEME.primary }}>
               Journal Indexing
             </AnimatedHeadline>
+            <p className="text-xs text-slate-500 mb-3">SCI &amp; Scopus indexed journals per session</p>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-slate-200" style={{ color: THEME.primary }}>
                     <th className="text-left py-2">Session</th>
                     <th className="text-left py-2">Journals</th>
-                    <th className="text-left py-2">SCI</th>
+                    <th className="text-left py-2">SCI/SCIE</th>
                     <th className="text-left py-2">Scopus</th>
                     <th className="text-left py-2">Indexed %</th>
                   </tr>
@@ -233,11 +250,29 @@ const Research = () => {
                 return (
                   <div key={`${row.session}-index`}>
                     <div className="flex justify-between text-xs sm:text-sm mb-1 text-slate-600">
+                      <span className="font-medium text-slate-700">{row.session}</span>
                       <span className="font-semibold text-slate-900">
                         SCI {sciPct}% | Scopus {scopusPct}%
                       </span>
                     </div>
-                    <ProgressBar value={scopusPct} color={THEME.accent} />
+                    <div className="flex gap-1">
+                      <div className="h-2.5 rounded-full overflow-hidden" style={{ width: `${sciPct + scopusPct}%`, flex: "none" }}>
+                        <div className="h-full flex">
+                          <div style={{ width: `${(sciPct / (sciPct + scopusPct || 1)) * 100}%`, backgroundColor: THEME.primary }} className="h-full rounded-l-full" />
+                          <div style={{ width: `${(scopusPct / (sciPct + scopusPct || 1)) * 100}%`, backgroundColor: THEME.accent }} className="h-full rounded-r-full" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 mt-1 text-xs text-slate-500">
+                      <span className="flex items-center gap-1">
+                        <span className="inline-block w-2 h-2 rounded-full" style={{backgroundColor: THEME.primary}}/>
+                        SCI/SCIE: {row.sci}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <span className="inline-block w-2 h-2 rounded-full" style={{backgroundColor: THEME.accent}}/>
+                        Scopus: {row.scopus}
+                      </span>
+                    </div>
                   </div>
                 );
               })}
@@ -245,6 +280,7 @@ const Research = () => {
           </div>
         </div>
 
+        {/* ── Tabbed Records ── */}
         <ResearchTabs data={researchRecords} showAll />
       </div>
     </section>

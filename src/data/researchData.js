@@ -1,181 +1,1532 @@
-import rawResearchData from "../../data.txt?raw";
 
-const normalizeLine = (line) => line.replace(/\r/g, "").trim();
 
-const safeCell = (cells, index, fallback = "NA") => {
-  if (!cells[index]) {
-    return fallback;
+// ─── 2025-26 Records ─────────────────────────────────────────────────────────
+
+export const journals2526= [
+  {
+    "id": "j1",
+    "faculty": "Dr. Akash Goel",
+    "publisher": "Springer",
+    "title": "Recurrent Neural Network Chip for Fast Switching and Minimum Delay on Different Hardware",
+    "journal": "National Academy Science Letter",
+    "year": "2025",
+    "date": "03.07.2025",
+    "link": "https://link.springer.com/journal/40009",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j2",
+    "faculty": "Dr. Raj Kumar, Mr. Amit Kumar Singh Sanger, Dr. Ajay Kumar Shrivastava, Dr. Anurag Mishra",
+    "publisher": "World Scientific Publishing Co Pte Ltd",
+    "title": "An Image-Based Recommendation System Using Voting-Assisted Ensemble Machine Learning Approach",
+    "journal": "International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems",
+    "year": "2025",
+    "date": "01.09.2025",
+    "link": "https://www.worldscientific.com/doi/abs/10.1142/S0218488525500242?srsltid=AfmBOop4QCqsd69mwlkDduCxGLoNz7UJzX5qDhD-wNFJdyV2YaXCaf5f",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j3",
+    "faculty": "Dr. Aatif Jamshed",
+    "publisher": "Asia PacificAcademy of Science Pte. Ltd",
+    "title": "Metafusion: hybrid ML-based object recognition and GPU rendering forreal-time 3D metaverse visualization",
+    "journal": "Metaverse 2025",
+    "year": "2025",
+    "date": "10.10.2025",
+    "link": "https://aber.apacsci.com/index.php/met/index",
+    "category": "Scopus",
+    "status": "Published"
+  },
+  {
+    "id": "j4",
+    "faculty": "Dr. Aatif Jamshed",
+    "publisher": "Asia PacificAcademy of Science Pte. Ltd",
+    "title": "Bridging deep segmentation and metaverse visualization: Cellpose-based 3Dbrain tumor reconstruction from MRI",
+    "journal": "Metaverse 2026",
+    "year": "2025",
+    "date": "10.10.2025",
+    "link": "https://aber.apacsci.com/index.php/met/index",
+    "category": "Scopus",
+    "status": "Published"
+  },
+  {
+    "id": "j5",
+    "faculty": "Dr. Aatif Jamshed, Dr. Anurag Mishra ,Dr. Harsh Khatter, Dr.Raj Kumar",
+    "publisher": "Elsevier",
+    "title": "A novel enhanced digital image correlation framework for structural health\nmonitoring of aircraft",
+    "journal": "Measurement",
+    "year": "2025",
+    "date": "14.10.2025",
+    "link": "https://www.sciencedirect.com/journal/measurement",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j6",
+    "faculty": "Mr. Sreesh Gaur",
+    "publisher": "Wiley",
+    "title": "A Multi-Layered Aggregation and Lightweight Prediction Framework for IoT-Based WSNs",
+    "journal": "Concurrency and Computation: Practice and Experience",
+    "year": "2025",
+    "date": "19.10.2025",
+    "link": "https://onlinelibrary.wiley.com/journal/15320634",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j7",
+    "faculty": "Dr. Gaurav Dubey",
+    "publisher": "Wiley",
+    "title": "A Privacy-Preserving and Interpretable Federated Learning Framework With Clinician Feedback for Multi-Hospital Clinical Decision Support",
+    "journal": "Concurrency and Computation: Practice and Experience",
+    "year": "2025",
+    "date": "30.10.2025",
+    "link": "https://onlinelibrary.wiley.com/toc/15320634/2025/37/27-28",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j8",
+    "faculty": "Dr. Gaurav Dubey",
+    "publisher": "Elsevier",
+    "title": "DiEff-MSwinNet: Dilated efficientnet based multi-scale swin transformers for spectrogram-powered epileptic seizure detection in real time",
+    "journal": "Knowledge-Based Systems",
+    "year": "2025",
+    "date": "15.11.2025",
+    "link": "https://www.sciencedirect.com/journal/knowledge-based-systems",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j9",
+    "faculty": "Dr. Abhishek Goyal",
+    "publisher": "CCIS",
+    "title": "Can Public Code Smells Datasets Be Trusted?",
+    "journal": "JOURNAL OF COMMUNICATIONS SOFTWARE AND SYSTEMS,",
+    "year": "2025",
+    "date": "2025-12-01 00:00:00",
+    "link": "https://jcoms.fesb.unist.hr/",
+    "category": "SCOPUS",
+    "status": "Published"
+  },
+  {
+    "id": "j10",
+    "faculty": "Dr. Gaurav Dubey",
+    "publisher": "Springer",
+    "title": "Socially enhanced graph network for early identification of at-risk students in virtual learning environments",
+    "journal": "User Modeling and User-Adapted Interaction",
+    "year": "2023",
+    "date": "2026-03-02 00:00:00",
+    "link": "https://link.springer.com/article/10.1007/s11257-025-09436-2#citeas",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j11",
+    "faculty": "Dr. Ajay K Shrivastava",
+    "publisher": "Elsevier",
+    "title": "Computational design and screening of novel dipeptide analogues as potent antileprotic agents against alanine racemase and ligase",
+    "journal": "Letters in Drug Design & Discovery",
+    "year": "2026",
+    "date": "2026-12-02 00:00:00",
+    "link": "",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j12",
+    "faculty": "Dr. Akash Rajak",
+    "publisher": "",
+    "title": "Neural Signatures of Alcoholism Revealed by Event-Related Potential Analysis of Open EEG Data",
+    "journal": "JASTT",
+    "year": "2026",
+    "date": "2026-02-03 00:00:00",
+    "link": "https://jastt.org/index.php/jasttpath/article/view/333",
+    "category": "Scopus",
+    "status": "Published"
+  },
+  {
+    "id": "j13",
+    "faculty": "Dr. Anurag Mishra, Dr. Ajay K Shrivastava",
+    "publisher": "",
+    "title": "EnSa-EAE: A New EEG-Based Framework for Human Cognitive Workload Recognition",
+    "journal": "",
+    "year": "",
+    "date": "",
+    "link": "https://www.tandfonline.com/doi/full/10.1080/10447318.2026.2625965",
+    "category": "SCIE",
+    "status": "Published"
+  },
+  {
+    "id": "j14",
+    "faculty": "Prof. Pawan Kumar Pal",
+    "publisher": "World Scientific Connect",
+    "title": "Optimized Resource Allocation in Monitoring of Biological Systems Using Fog Computing and Big Data Analytics for\nEnhanced Health Management",
+    "journal": "International Journal of Information Technology & Decision Making",
+    "year": "2026",
+    "date": "Accepted 17/04/26",
+    "link": "https://www.worldscientific.com/worldscinet/ijitdm",
+    "category": "SCIE",
+    "status": "Accepted"
+  },
+  // {
+  //   "id": "j15",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // },
+  // {
+  //   "id": "j16",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // },
+  // {
+  //   "id": "j17",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // },
+  // {
+  //   "id": "j18",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // },
+  // {
+  //   "id": "j19",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // },
+  // {
+  //   "id": "j20",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // },
+  // {
+  //   "id": "j21",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // },
+  // {
+  //   "id": "j22",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // },
+  // {
+  //   "id": "j23",
+  //   "faculty": "",
+  //   "publisher": "",
+  //   "title": "",
+  //   "journal": "",
+  //   "year": "",
+  //   "date": "",
+  //   "link": "",
+  //   "category": "",
+  //   "status": ""
+  // }
+];
+
+export const conferences2526= [
+  {
+    "id": "c1",
+    "faculty": "Mr. Vivek Kumar Sharma",
+    "level": "International",
+    "title": "Desktop-Based Virtual Assistant Using Python Based on Natural Language Processing",
+    "proceedingsTitle": "Data Mining and Information Security",
+    "volumeIssuePage": "3",
+    "publisher": "29-08-25",
+    "date": "978-981-96-6063-6_3",
+    "link": "https://link.springer.com/chapter/10.1007/978-981-96-6063-6_3",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c2",
+    "faculty": "Ms. Arti Sharma",
+    "level": "International",
+    "title": "SecureVote: Enhancing Electoral Integrity Using Blockchain-Based E-Voting",
+    "proceedingsTitle": "International Conference on Communication, Security and Artificial Intelligence (ICCSAI), 2025",
+    "volumeIssuePage": "2025",
+    "publisher": "14-07-25",
+    "date": "979-8-3315-3607-7",
+    "link": "SecureVote: Enhancing Electoral Integrity Using Blockchain-Based E-Voting | IEEE Conference Publication | IEEE Xplore",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c3",
+    "faculty": "Ms. Arti Sharma",
+    "level": "International",
+    "title": "ERP for Academic Institutions: Enhancing Academic Management with Innovative Solutions",
+    "proceedingsTitle": "2025 International Conference on Electronics, AI and Computing (EAIC)",
+    "volumeIssuePage": "2025",
+    "publisher": "2025-11-08 00:00:00",
+    "date": "979-8-3315-5358-6",
+    "link": "ERP for Academic Institutions: Enhancing Academic Management with Innovative Solutions | IEEE Conference Publication | IEEE Xplore",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c4",
+    "faculty": "Mr. Puneet Kumar Goyal",
+    "level": "International",
+    "title": "Comparative Analysis of Machine Learning Algorithms for Early Sepsis Detection",
+    "proceedingsTitle": "Data Mining and Information Security",
+    "volumeIssuePage": "59",
+    "publisher": "19-08-25",
+    "date": "978-981-96-6065-0",
+    "link": "Comparative Analysis of Machine Learning Algorithms for Early Sepsis Detection | SpringerLink",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c5",
+    "faculty": "Dr. Aatif Jamshed",
+    "level": "International",
+    "title": "Pet’s Hub – An Integrated Smart Analytics Platform for Pet Health, Safety, and Management",
+    "proceedingsTitle": "International Conference on Data Analytics & Management",
+    "volumeIssuePage": "LNNS,volume 1607",
+    "publisher": "2025-04-10 00:00:00",
+    "date": "978-3-032-03750-3",
+    "link": "https://link.springer.com/chapter/10.1007/978-3-032-03751-0_43",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c6",
+    "faculty": "Ms. Arti Sharma",
+    "level": "International",
+    "title": "Smart Fog Gateway with ML Techniques to Reduce Latency in Networks",
+    "proceedingsTitle": "International Conference on Data Analytics & Management",
+    "volumeIssuePage": "LNNS,volume 1615",
+    "publisher": "20-10-25",
+    "date": "978-3-032-04222-4",
+    "link": "Smart Fog Gateway with ML Techniques to Reduce Latency in Networks | SpringerLink",
+    "status": "Amity University , Noida",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c7",
+    "faculty": "Dr Raj Kumar",
+    "level": "International",
+    "title": "Smart E-Commerce Model Using for Artisans",
+    "proceedingsTitle": "International Conference on Data Analytics & Management",
+    "volumeIssuePage": "LNNS,volume 1602",
+    "publisher": "2025-07-11 00:00:00",
+    "date": "978-3-032-03558-5",
+    "link": "Smart E-Commerce Model Using for Artisans | SpringerLink",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c8",
+    "faculty": "Dr. Akash Goel",
+    "level": "International",
+    "title": "Development and Implementation of an Integrated Web-Based Office Document Management System",
+    "proceedingsTitle": "International Conference on Sustainable Business Practices and Innovative Models (ICSBPIM-2025",
+    "volumeIssuePage": "102-110",
+    "publisher": "2025-04-11 00:00:00",
+    "date": "978-94-6463-872-1 / 2352-5428",
+    "link": "https://www.atlantis-press.com/proceedings/icsbpim-25/126017635",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c9",
+    "faculty": "Dr. Akash Goel",
+    "level": "International",
+    "title": "BillWise Pro: A Web-Based Solution for Streamlined Billing and Inventory Management in SMEs",
+    "proceedingsTitle": "International Conference on Sustainable Business Practices and Innovative Models (ICSBPIM-2025",
+    "volumeIssuePage": "2025-04-15 00:00:00",
+    "publisher": "2025-04-11 00:00:00",
+    "date": "978-94-6463-872-1 / 2352-5428",
+    "link": "https://www.atlantis-press.com/proceedings/icsbpim-25/126017622",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c10",
+    "faculty": "Dr. Akash Rajak",
+    "level": "International",
+    "title": "Harnessing Behavioural Insights for Autism Spectrum Disorder Prediction via Machine Learning",
+    "proceedingsTitle": "2025 12th International Conference on Reliability, Infocom Technologies and Optimization",
+    "volumeIssuePage": "2025-01-04 00:00:00",
+    "publisher": "27-11-2025",
+    "date": "979-8-3315-5421-7",
+    "link": "https://ieeexplore.ieee.org/document/11241561",
+    "status": "MRIIRS, Faridabad",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c11",
+    "faculty": "Dr. Sunil Kumar",
+    "level": "International",
+    "title": "Evaluating the Inspiration of Randomised Search CV in Machine Learning Algorithms for Prediction of Cardiac Infection",
+    "proceedingsTitle": "2025 12th International Conference on Reliability, Infocom Technologies and Optimization",
+    "volumeIssuePage": "2025-01-04 00:00:00",
+    "publisher": "27-11-2025",
+    "date": "979-8-3315-5421-7",
+    "link": "https://ieeexplore.ieee.org/document/11241538",
+    "status": "MRIIRS, Faridabad",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c12",
+    "faculty": "Dr. Akash Goel",
+    "level": "International",
+    "title": "A Comparative Study of Machine Learning Algorithms for Predicting Engineering and Technology Admissions",
+    "proceedingsTitle": "EditorsProceedings of International Conference on Computational Intelligence and Information Retrieval",
+    "volumeIssuePage": "2",
+    "publisher": "2026-05-01 00:00:00",
+    "date": "978-3-032-04538-6",
+    "link": "https://link.springer.com/book/10.1007/978-3-032-02790-0",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c13",
+    "faculty": "Dr. Akash Rajak",
+    "level": "International",
+    "title": "A Framework for Achieving Course Outcome and Program Outcomes in Engineering Education",
+    "proceedingsTitle": "2025 IEEE 7th International Conference on Computing, Communication and Automation (ICCCA), Greater Noida, India",
+    "volumeIssuePage": "",
+    "publisher": "19-01-2026",
+    "date": "979-8-3315-6980-8",
+    "link": "https://ieeexplore.ieee.org/document/11325658",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c14",
+    "faculty": "Ms. Arti Sharma",
+    "level": "International",
+    "title": "Empowering Educators and Engaging Learners: A Framework for a Blended Learning Management System",
+    "proceedingsTitle": "2025 IEEE 7th International Conference on Computing, Communication and Automation (ICCCA), Greater Noida, India",
+    "volumeIssuePage": "",
+    "publisher": "19-01-2026",
+    "date": "979-8-3315-6980-8",
+    "link": "Empowering Educators and Engaging Learners: A Framework for a Blended Learning Management System",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c15",
+    "faculty": "Dr. Akash Rajak",
+    "level": "International",
+    "title": "Improving Tuberculosis Detection from X-Ray Images of Chest Radiographs through Transfer Learning",
+    "proceedingsTitle": "2025 IEEE International Conference on Intelligent Signal Processing and Effective Communication Technologies (INSPECT)",
+    "volumeIssuePage": "",
+    "publisher": "2025-07-11 00:00:00",
+    "date": "979-8-3315-5349-4",
+    "link": "https://ieeexplore.ieee.org/document/11350802",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c16",
+    "faculty": "Anmol Jain",
+    "level": "International",
+    "title": "Diagnosing Respiratory Variability: Deep learning Approach for Pneumonia Detection in Chest X-Rays Using Attention",
+    "proceedingsTitle": "2025 2ND INTERNATIONAL CONFERENCE\non\nADVANCED COMPUTING & EMERGING TECHNOLOGIES (ACET)\n\n21–22 November, 2025",
+    "volumeIssuePage": "",
+    "publisher": "17-03-2026",
+    "date": "",
+    "link": "https://ieeexplore.ieee.org/document/11430280",
+    "status": "",
+    "scopus": ""
+  },
+  {
+    "id": "c17",
+    "faculty": "Vivek Kumar Sharma",
+    "level": "International",
+    "title": "Analysis of AI based IT training system",
+    "proceedingsTitle": "IEEE Conference Recore no-",
+    "volumeIssuePage": "2026-01-05 00:00:00",
+    "publisher": "2026-01-19 00:00:00",
+    "date": "979-8-3315-6980-8",
+    "link": "https://ieeexplore.ieee.org/document/11325698",
+    "status": "-",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c18",
+    "faculty": "Ms. Arti Sharma",
+    "level": "International",
+    "title": "Enhancing Spiritual Tourism Through ARCore-Powered XR Pilgrimage Experiences in India",
+    "proceedingsTitle": "International Conference on Data Analytics & Management",
+    "volumeIssuePage": "Vol. 1690, Page No. 411-420",
+    "publisher": "2026-03-02 00:00:00",
+    "date": "978-3-032-08859-8",
+    "link": "Enhancing Spiritual Tourism Through ARCore-Powered XR Pilgrimage Experiences in India | Springer Nature Link",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c19",
+    "faculty": "Dr. Gaurav Dubey",
+    "level": "International",
+    "title": "Healthcare Management System: Enhancing Patient Care with Smart Integration",
+    "proceedingsTitle": "International Conference on Data Analytics & Management",
+    "volumeIssuePage": "Vol. 1690, Page No. 274-287",
+    "publisher": "2026-03-02 00:00:00",
+    "date": "978-3-032-08859-8",
+    "link": "Healthcare Management System: Enhancing Patient Care with Smart Integration | Springer Nature Link",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c20",
+    "faculty": "Dr. Gaurav Dubey",
+    "level": "International",
+    "title": "Early Detection of Brain Tumour with MRI Scan Using CNNs",
+    "proceedingsTitle": "International Conference on Data Analytics & Management",
+    "volumeIssuePage": "Vol. 1597, Page No. 530–540",
+    "publisher": "19-10-2025",
+    "date": "978-3-032-02831-0",
+    "link": "Early Detection of Brain Tumour with MRI Scan Using CNNs | Springer Nature Link",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c21",
+    "faculty": "Dr. Gaurav Dubey",
+    "level": "International",
+    "title": "Visual Question Answering with Satellite Images",
+    "proceedingsTitle": "International Conference on Data Analytics & Management",
+    "volumeIssuePage": "Vol. 1615, Page No.455–465",
+    "publisher": "20-10-2025",
+    "date": "978-3-032-04222-4",
+    "link": "Visual Question Answering with Satellite Images | Springer Nature Link",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c22",
+    "faculty": "Dr. Gaurav Dubey, Ms. Arti Sharma",
+    "level": "International",
+    "title": "A Unified Platform for Summarizing E-Commerce Product Reviews Using Generative AI Tool",
+    "proceedingsTitle": "2025 International Conference on Innovations and Emerging Technologies In AI & Communication Systems (IETACS)",
+    "volumeIssuePage": "421-427",
+    "publisher": "21-02-2026",
+    "date": "979-8-3315-7073-6",
+    "link": "A Unified Platform for Summarizing E-Commerce Product Reviews Using Generative AI Tool | IEEE Conference Publication | IEEE Xplore",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c23",
+    "faculty": "Ms. Arti Sharma",
+    "level": "International",
+    "title": "AI-Based Solution to Enable Ease of Grievance Lodging and Tracking for Citizens Across Multiple Departments",
+    "proceedingsTitle": "2025 International Conference on Innovations and Emerging Technologies In AI & Communication Systems (IETACS)",
+    "volumeIssuePage": "409-414",
+    "publisher": "21-02-2026",
+    "date": "979-8-3315-7073-6",
+    "link": "AI-Based Solution to Enable Ease of Grievance Lodging and Tracking for Citizens Across Multiple Departments | IEEE Conference Publication | IEEE Xplore",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c24",
+    "faculty": "Dr. Akash Rajak",
+    "level": "International",
+    "title": "FlyDrop: Markerless Navigation for Autonomous Drones",
+    "proceedingsTitle": "2025 Modern Electronics Devices and Intelligent Communication Systems (MEDCOM)",
+    "volumeIssuePage": "979-8-3315-7444-4",
+    "publisher": "2026-02-03 00:00:00",
+    "date": "979-8-3315-7445-1",
+    "link": "https://ieeexplore.ieee.org/document/11405093",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c25",
+    "faculty": "Dr Sunil Kumar",
+    "level": "International",
+    "title": "Invsio Track: An integrated crime investigation tool",
+    "proceedingsTitle": "2025 Modern Electronics Devices and Intelligent Communication Systems (MEDCOM)",
+    "volumeIssuePage": "58–63",
+    "publisher": "2026-02-03 00:00:00",
+    "date": "979-8-3315-7445-1",
+    "link": "https://ieeexplore.ieee.org/document/11404890",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c26",
+    "faculty": "Arti Sharma",
+    "level": "International",
+    "title": "A Conceptual Framework for Load Balancing in Fog Using Sigmoid-Based GWO with Deep Learning",
+    "proceedingsTitle": "2025 2nd International Conference on Advanced Computing and Emerging Technologies (ACET)",
+    "volumeIssuePage": "2026-01-06 00:00:00",
+    "publisher": "18-03-2026",
+    "date": "979-8-3315-6783-5",
+    "link": "A Conceptual Framework for Load Balancing in Fog Using Sigmoid-Based GWO with Deep Learning | IEEE Conference Publication | IEEE Xplore",
+    "status": "Banarsidas Chandiwala Institute of Information Technology, GGSIPU, New Delhi, India                              Govt. Engineering College Nawada, Bihar, India",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c27",
+    "faculty": "Dr. Gaurav Dubey, Ms. Arti Sharma",
+    "level": "International",
+    "title": "Agrocare: Iot-Based Crop Recommendation and Automated Irrigation",
+    "proceedingsTitle": "2025 2nd International Conference on Advanced Computing and Emerging Technologies (ACET)",
+    "volumeIssuePage": "",
+    "publisher": "18-03-2026",
+    "date": "979-8-3315-6783-5",
+    "link": "Agrocare: Iot-Based Crop Recommendation and Automated Irrigation | IEEE Conference Publication | IEEE Xplore",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c28",
+    "faculty": "Arti Sharma",
+    "level": "International",
+    "title": "Enhanced Security and Blockchain Based Online Meeting Platform",
+    "proceedingsTitle": "025 1st IEEE Uttar Pradesh Section Women in Engineering International Conference on Electrical Electronics and Computer Engineering (UPWIECON), Dehradun, India",
+    "volumeIssuePage": "368-373",
+    "publisher": "23-02-2026",
+    "date": "979-8-3315-6628-9",
+    "link": "https://ieeexplore.ieee.org/document/11390372",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c29",
+    "faculty": "Dr. Akash Rajak",
+    "level": "International",
+    "title": "A Hybrid Machine Learning Approach for Cyber Threat Detection Using Random Forest and Deep Neural Networks",
+    "proceedingsTitle": "2025 2nd International Conference on Advanced Computing and Emerging Technologies (ACET)",
+    "volumeIssuePage": "",
+    "publisher": "17-03-2026",
+    "date": "979-8-3315-6783-5",
+    "link": "https://ieeexplore.ieee.org/document/11430231/",
+    "status": "na",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c30",
+    "faculty": "Dr. Akash Rajak",
+    "level": "International",
+    "title": "Code Invaders: Detecting Malicious Activity in Embedded Systems",
+    "proceedingsTitle": "2025 2nd International Conference on Advanced Computing and Emerging Technologies (ACET)",
+    "volumeIssuePage": "",
+    "publisher": "17-03-2026",
+    "date": "979-8-3315-6783-5",
+    "link": "https://ieeexplore.ieee.org/document/11430301",
+    "status": "na",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c31",
+    "faculty": "Dr. Aatif Jamshed",
+    "level": "International",
+    "title": "Zero-Shot Medical Image Segmentation Using Vision-Language Foundation Models",
+    "proceedingsTitle": "2025 2nd International Conference on Advanced Computing and Emerging Technologies (ACET)",
+    "volumeIssuePage": "pp. 1-6",
+    "publisher": "19-03-2026",
+    "date": "979-8-3315-6784-2",
+    "link": "https://ieeexplore.ieee.org/document/11430396",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c32",
+    "faculty": "Nishant Raj",
+    "level": "International",
+    "title": "Towards Inclusive AI: Text-Aware Image Captioning with a Unified Transformer",
+    "proceedingsTitle": "2025 2nd International Conference on Advanced Computing and Emerging Technologies (ACET)",
+    "volumeIssuePage": "pp. 1-6",
+    "publisher": "2026-03-17 00:00:00",
+    "date": "979-8-3315-6784-2",
+    "link": "https://ieeexplore.ieee.org/document/11430207?source=AUTHORALERT&dld=Z21haWwuY29t",
+    "status": "",
+    "scopus": ""
+  },
+  {
+    "id": "c33",
+    "faculty": "Sreesh Gaur",
+    "level": "International",
+    "title": "AI-Automated Proctoring and Evaluation Model for Digital Education Ecosystems",
+    "proceedingsTitle": "2025 2nd International Conference on Advanced Computing and Emerging Technologies (ACET)",
+    "volumeIssuePage": "",
+    "publisher": "17/03/2026",
+    "date": "979-8-3315-6783-5",
+    "link": "https://ieeexplore.ieee.org/abstract/document/11430332",
+    "status": "",
+    "scopus": ""
+  },
+  {
+    "id": "c34",
+    "faculty": "Tarsh Vaibhav",
+    "level": "International",
+    "title": "Privacy-Preserving Brain Tumor Classification Using Federated Learning with Differential Privacy and Secure Aggregation",
+    "proceedingsTitle": "2026 IEEE International Conference on Interdisciplinary Approaches in Technology and Management for Social Innovation (IATMSI)",
+    "volumeIssuePage": "",
+    "publisher": "2026-04-07 00:00:00",
+    "date": "979-8-3315-4970-1",
+    "link": "https://ieeexplore.ieee.org/document/11466012",
+    "status": "",
+    "scopus": ""
+  },
+  {
+    "id": "c35",
+    "faculty": "Dr. Sunil Kumar, Dr. Akash Rajak",
+    "level": "",
+    "title": "Urban Flood Risk Prediction Using Hybrid Explainable AI Framework with Deep Learning on Multimodal Geospatial and Climate Data",
+    "proceedingsTitle": "2026 2nd International Conference on Cognitive Computing in Engineering, Communications, Sciences and Biomedical Health Informatics (IC3ECSBHI)",
+    "volumeIssuePage": "",
+    "publisher": "14-04-2026",
+    "date": "979-8-3315-5691-4",
+    "link": "https://ieeexplore.ieee.org/document/11468903",
+    "status": "LPU, ITS, Accurate",
+    "scopus": ""
+  },
+  {
+    "id": "c36",
+    "faculty": "Dr. Sunil Kumar, Dr. Akash Rajak",
+    "level": "",
+    "title": "Identification and Prediction of Traffic and Accident Based on ML and DL Approaches",
+    "proceedingsTitle": "2026 2nd International Conference on Cognitive Computing in Engineering, Communications, Sciences and Biomedical Health Informatics (IC3ECSBHI)",
+    "volumeIssuePage": "",
+    "publisher": "14-04-2026",
+    "date": "979-8-3315-5691-4",
+    "link": "https://ieeexplore.ieee.org/document/11469087",
+    "status": "Dept. of CSE, Bharat Institute of Technology, Greater Noida, India",
+    "scopus": ""
+  },
+  {
+    "id": "c37",
+    "faculty": "Dr. Akash Rajak, Dr. Sunil Kumar",
+    "level": "",
+    "title": "A Systematic Approach for Enhancing the Curriculum Development based on the Gap Analysis to Meets the Standards of Accreditation",
+    "proceedingsTitle": "2026 5th International Conference on Innovative Practices in Technology and Management (ICIPTM)",
+    "volumeIssuePage": "",
+    "publisher": "13-04-2026",
+    "date": "979-8-3195-4328-8",
+    "link": "https://ieeexplore.ieee.org/document/11465369",
+    "status": "",
+    "scopus": ""
+  },
+  {
+    "id": "c38",
+    "faculty": "Dr. Akash Rajak",
+    "level": "",
+    "title": "Evaluating the Robustness of Machine Learning Models Against Adversarial Cyber Attacks",
+    "proceedingsTitle": "2026 5th International Conference on Innovative Practices in Technology and Management (ICIPTM)",
+    "volumeIssuePage": "",
+    "publisher": "13-04-2026",
+    "date": "979-8-3195-4328-8",
+    "link": "https://ieeexplore.ieee.org/document/11465956",
+    "status": "",
+    "scopus": ""
+  },
+  {
+    "id": "c39",
+    "faculty": "Dr. Akash Rajak, Dr. Sunil Kumar",
+    "level": "",
+    "title": "AI that Understands Us: LLM-Based Emotion and Stress Insights from Online Communication",
+    "proceedingsTitle": "2026 5th International Conference on Innovative Practices in Technology and Management (ICIPTM)",
+    "volumeIssuePage": "",
+    "publisher": "13-04-2026",
+    "date": "979-8-3195-4328-8",
+    "link": "https://ieeexplore.ieee.org/document/11465340/",
+    "status": "",
+    "scopus": ""
+  },
+  {
+    "id": "c40",
+    "faculty": "Dr. Ajay Kumar Shrivastava, Vivek Kumar Sharma",
+    "level": "Conference",
+    "title": "MindCare : Federated Machine Learning Chatbot for Mental Health Diagnosis",
+    "proceedingsTitle": "Silchar Subsection Conference (SILCON), IEEE",
+    "volumeIssuePage": "1-228",
+    "publisher": "19/01/2026",
+    "date": "67893- SILCON",
+    "link": "https://ieeexplore.ieee.org/document/11327170",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c41",
+    "faculty": "Tarul",
+    "level": "International Conference",
+    "title": "Harris Hawk Optimization for Rumor Detection on Social Media Using Machine Learning and Explainable AI Techniques",
+    "proceedingsTitle": "7th International Conference on Computational Intelligence in Communications and Business Analytics",
+    "volumeIssuePage": "2861/ page no 156-170",
+    "publisher": "21/04/2026",
+    "date": "978-3-032-17181-8",
+    "link": "https://link.springer.com/chapter/10.1007/978-3-032-17181-8_12",
+    "status": "Indira Gandhi Delhi Technical University for Women (IGDTUW), Delhi",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c42",
+    "faculty": "Shivani",
+    "level": "International Conference",
+    "title": "Conflict Removal in Task Scheduling for Cloud Computing",
+    "proceedingsTitle": "International Conference on Data-Processing and Networking (ICDPN-2025)",
+    "volumeIssuePage": "",
+    "publisher": "",
+    "date": "",
+    "link": "",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c43",
+    "faculty": "Shivani",
+    "level": "International Conference",
+    "title": "A Geospatial approach for E-waste Facility Locating",
+    "proceedingsTitle": "2026 International Conference on Intelligent Computing and Automation for Sustainable Solutions (ICASS)",
+    "volumeIssuePage": "",
+    "publisher": "",
+    "date": "",
+    "link": "",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c44",
+    "faculty": "Kirti Sharma",
+    "level": "International Conference",
+    "title": "Predicting Mental Health Help-Seeking in Tech: A Machine Learning Study",
+    "proceedingsTitle": "4th IEEE International Conference on Interdisciplinary Approaches in \nTechnology and Management for Social Innovation \n(IEEE IATMSI-2026)",
+    "volumeIssuePage": "",
+    "publisher": "",
+    "date": "",
+    "link": "",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c45",
+    "faculty": "Rohan Rathore",
+    "level": "International Conference",
+    "title": "Developing a software for debugging of videos from english to other regional language",
+    "proceedingsTitle": "International Conference on Engineering Innovation, Computing & Management (ICEICM2026)",
+    "volumeIssuePage": "",
+    "publisher": "",
+    "date": "",
+    "link": "",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c46",
+    "faculty": "Abhishek Goyal",
+    "level": "International Conference",
+    "title": "Conflict Removal in Task Scheduling for Cloud Computing",
+    "proceedingsTitle": "International Conference on Data-Processing and Networking (ICDPN-2025)",
+    "volumeIssuePage": "",
+    "publisher": "",
+    "date": "",
+    "link": "",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  {
+    "id": "c47",
+    "faculty": "Abhishek Goyal",
+    "level": "International Conference",
+    "title": "Deep Feature Fusion and Hybrid CNN-SVM Architecture for \nReliable and Explainable Drug Toxicity Prediction",
+    "proceedingsTitle": "INCSTIC-2025\n1st International Conference on Smart Technologies and Intelligent Computing",
+    "volumeIssuePage": "",
+    "publisher": "",
+    "date": "",
+    "link": "https://www.taylorfrancis.com/chapters/edit/10.1201/9781003666929-101/deep-feature-fusion-hybrid-cnn-svm-architecture-reliable-explainable-drug-toxicity-prediction-abhishek-goyal-shweta-sharma-urvashi-vashisht-mamta-gautam-mansi-jaiswal-sonal-wadhwa",
+    "status": "",
+    "scopus": "Scopus"
+  },
+  // {
+  //   "id": "c48",
+  //   "faculty": "",
+  //   "level": "",
+  //   "title": "",
+  //   "proceedingsTitle": "",
+  //   "volumeIssuePage": "",
+  //   "publisher": "",
+  //   "date": "",
+  //   "link": "",
+  //   "status": "",
+  //   "scopus": ""
+  // },
+  // {
+  //   "id": "c49",
+  //   "faculty": "",
+  //   "level": "",
+  //   "title": "",
+  //   "proceedingsTitle": "",
+  //   "volumeIssuePage": "",
+  //   "publisher": "",
+  //   "date": "",
+  //   "link": "",
+  //   "status": "",
+  //   "scopus": ""
+  // }
+];
+
+/** Book Chapters — also exposed as "books" key in researchRecords for ResearchTabs */
+export const bookChapters2526= [
+  {
+    "id": "bc1",
+    "faculty": "Dr. Abhishek Goyal",
+    "category": "Book Chapter",
+    "book": "Generative AI in Modern Healthcare",
+    "title": "A Review of Studies on AI-Driven Healthcare\nInnovation: \nPathway \nHealthcare",
+    "indexing": "SCOPUS",
+    "publisher": "Bentham International",
+    "date": "2026-04-04 00:00:00",
+    "link": "Book - Generative AI in Modern Healthcare | Bentham Science",
+    "status": "Published"
+  },
+  {
+    "id": "bc2",
+    "faculty": "Ms Shivani",
+    "category": "Book Chapter",
+    "book": "Generative AI in Modern Healthcare",
+    "title": "A Review of Studies on AI-Driven Healthcare\nInnovation: \nPathway \nHealthcare",
+    "indexing": "SCOPUS",
+    "publisher": "Bentham International",
+    "date": "2026-04-04 00:00:00",
+    "link": "Book - Generative AI in Modern Healthcare | Bentham Science",
+    "status": "Published"
   }
+];
 
-  const value = cells[index].trim();
-  return value.length > 0 ? value : fallback;
-};
+export const patents2526= [
+  {
+    "id": "p1",
+    "faculty": "Dr. Gaurav Dubey",
+    "appNo": "202511060819",
+    "title": "CENTRALIZED PLATFORM FOR PRODUCT FEEDBACK AND VERIFIED CUSTOMER OPINION",
+    "status": "Published",
+    "date": "2025-07-11 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p2",
+    "faculty": "Ms. Arti Sharma",
+    "appNo": "202511060821",
+    "title": "SCALABLE ERP SYSTEM FOR COMPETITIVE PROGRAMMING AND FACULTY DEVELOPMENT MANAGEMENT",
+    "status": "Published",
+    "date": "2025-07-11 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p3",
+    "faculty": "Mr. Pawan Kr Pal",
+    "appNo": "202511061179",
+    "title": "REAL-TIME NETWORK TRAFFIC & ANOMALY DETECTION SYSTEM",
+    "status": "Published",
+    "date": "2025-07-11 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p4",
+    "faculty": "Ms. Arti Sharma",
+    "appNo": "202511061856",
+    "title": "AI-BASED SOLUTION TO ENABLE EASE OF GRIEVANCE LODGING AND TRACKING FOR CITIZEN",
+    "status": "Published",
+    "date": "2025-07-11 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p5",
+    "faculty": "Dr. Anurag Mishra",
+    "appNo": "202511061425",
+    "title": "SYSTEM AND METHOD FOR AI-BASED REAL-TIME YOGA POSE RECOGNITION AND FEEDBACK USING POSE\nESTIMATION AND MACHINE LEARNING MODELS",
+    "status": "Published",
+    "date": "2025-07-11 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p6",
+    "faculty": "Dr. Akash Rajak",
+    "appNo": "202511074908",
+    "title": "A SECURED SELF-CHECKOUT SYSTEM FOR THE RETAIL INDUSTRY",
+    "status": "Published",
+    "date": "2025-08-29 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p7",
+    "faculty": "Ms. Arti Sharma",
+    "appNo": "202511069065",
+    "title": "Adaptive Learning Management System with Gamification Elements for Enhancing Educational Engagement",
+    "status": "Published",
+    "date": "2025-08-08 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p8",
+    "faculty": "Mr. Vivek Kumar Sharma",
+    "appNo": "202511061895",
+    "title": "SYSTEM AND METHOD FOR PLANT DISEASE PREDICTION USING CONVOLUTIONAL NEURAL NETWORKS",
+    "status": "Published",
+    "date": "2025-11-07 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p9",
+    "faculty": "Mr. Vivek Kumar Sharma",
+    "appNo": "202511074708",
+    "title": "CONVOLUTIONAL NEURAL NETWORK BASED SYSTEM FOR TERRAIN CLASSIFICATION AND PREDICTION FROM SATELLITE OR AERIAL IMAGERY",
+    "status": "Published",
+    "date": "29/08/2025",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p10",
+    "faculty": "Mr. Sreesh Gaur",
+    "appNo": "202511073501 A",
+    "title": "AI-BASED EXAMINATION HOSTING AND PROCTORING SYSTEM FOR DIGITAL ASSESSMENTS",
+    "status": "Published",
+    "date": "22/08/2025",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p11",
+    "faculty": "Dr. Akash Rajak",
+    "appNo": "202511088760",
+    "title": "Proactive Cyber Defense: An AI-Based Intelligence Framework",
+    "status": "Published",
+    "date": "2025-10-10 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p12",
+    "faculty": "Ms. Shivani",
+    "appNo": "202511084092",
+    "title": "AI-BASED MONITORING AND EVALUATION SYSTEM FOR ONLINE EXAMINATIONS",
+    "status": "Published",
+    "date": "2025-09-19 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p13",
+    "faculty": "Dr. Gaurav Dubey, Ms. Arti Sharma",
+    "appNo": "202511084096",
+    "title": "OBE Automation System: A Web- Based Platform for Automated Course Outcome (PO) Mapping, Attainment Calculation, and Gap Analysis in Outcome Based Education (OBE)",
+    "status": "Published",
+    "date": "2025-09-19 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p14",
+    "faculty": "Dr. Akash Rajak",
+    "appNo": "202511084145 A",
+    "title": "IOT ENABLED SYSTEM FOR ACCIDENT DETECTION, VICTIM REPORTING AND REAL-TIME MEDICAL ASSISTANCE",
+    "status": "Published",
+    "date": "2025-09-19 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p15",
+    "faculty": "Dr. Akash Rajak",
+    "appNo": "202511084139 A",
+    "title": "PIR AND TOXIC GAS SENSOR BASED ALERT SYSTEM FOR CONFINED SPACE SAFETY",
+    "status": "Published",
+    "date": "2025-09-19 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p16",
+    "faculty": "Mr. Sreesh Gaur",
+    "appNo": "202511084093 A",
+    "title": "MACHINE LEARNING BASED EARLY WARNING SYSTEM FOR NATURAL CALAMITIES",
+    "status": "Published",
+    "date": "2025-09-19 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p17",
+    "faculty": "Mr. Sreesh Gaur",
+    "appNo": "202511084144 A",
+    "title": "WEB-BASED ALUMNI ASSOCIATION PLATFORM FOR UNIVERSITIES AND COLLEGES",
+    "status": "Published",
+    "date": "2025-09-19 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p18",
+    "faculty": "Tushtee Singh\nSurabhi Agnihotri\nKushagra Singh\nNancy Srivastava",
+    "appNo": "202511061176 A",
+    "title": "KRISHAK - A PARTNER IN YOUR HARD WORK, A NEW PATH TO PROSPERITY",
+    "status": "Published",
+    "date": "2025-11-07 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p19",
+    "faculty": "Arti Sharma",
+    "appNo": "202511098285 A",
+    "title": "AI-Powered Virtual Legal Assistant for Rural Accessibility and Document Automation",
+    "status": "Published",
+    "date": "2025-12-05 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p20",
+    "faculty": "Dr. Gaurav Dubey",
+    "appNo": "202511112669 A",
+    "title": "ADVANCED AI-BASED VEHICLE NUMBER PLATE DETECTION SYSTEM FOR ADVERSE WEATHER CONDITIONS",
+    "status": "Published",
+    "date": "2026-01-09 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p21",
+    "faculty": "Dr. Aatif Jamshed",
+    "appNo": "202511098284 A",
+    "title": "Integrated Smart Pet Care System with IoT Monitoring and Predictive Health Management",
+    "status": "Published",
+    "date": "2025-12-05 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p22",
+    "faculty": "Dr. Akash Rajak",
+    "appNo": "202511098293 A",
+    "title": "ASSURED CONTRACT FARMING SYSTEM FOR STABLE MARKET ACCESS",
+    "status": "Published",
+    "date": "2025-12-05 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p23",
+    "faculty": "Anmol Jain",
+    "appNo": "202511107631 A",
+    "title": "DIGITAL CASE MANAGEMENT AND HEARING FACILITATION SYSTEM",
+    "status": "Published",
+    "date": ": 26/12/2025",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p24",
+    "faculty": "Dr Raj Kumar",
+    "appNo": "202511098298 A",
+    "title": "SYSTEM AND METHOD FOR PREDICTING AND MITIGATING EDUCATIONAL DROPOUT USING DATA-DRIVEN ANALYSIS",
+    "status": "Published",
+    "date": "2025-12-05 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p25",
+    "faculty": "Dr Raj Kumar",
+    "appNo": "202511112809 A",
+    "title": "WEB-BASED RURAL EDUCATION EMPOWERMENT SYSTEM WITH INTEGRATED MENTORSHIP, PROGRESS ANALYTICS, AND GOVERNMENT ASSISTANCE ENABLEMENT",
+    "status": "Published",
+    "date": "2026-01-09 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p26",
+    "faculty": "Dr Raj Kumar",
+    "appNo": "202511112672 A",
+    "title": "AI AND MACHINE LEARNING-ENABLED RAILWAY SURVEILLANCE SYSTEM FOR AUTOMATED SECURITY, CROWD, AND OPERATIONAL MANAGEMENT",
+    "status": "Published",
+    "date": "2026-01-09 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p27",
+    "faculty": "Dr. Anurag Mishra",
+    "appNo": "202511112666 A",
+    "title": "INTELLIGENT CROWDFUNDING PLATFORM WITH MULTI-STEP VERIFICATION, AUTOMATED COMPLIANCE, AND \nSECURE ESCROW-BASED FUND MANAGEMENT",
+    "status": "Published",
+    "date": "2026-01-09 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p28",
+    "faculty": "Shreela Pareek",
+    "appNo": "202511112812 A",
+    "title": "VIRTUAL REALITY AND AI-POWERED MENTAL HEALTH SUPPORT PLATFORM FOR ANXIETY, PHOBIA, AND STRESS \nMANAGEMENT",
+    "status": "Published",
+    "date": "2026-01-09 00:00:00",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p29",
+    "faculty": "Shivani",
+    "appNo": "202311069284",
+    "title": "A method and system for Manager Selection using Network Centrality in Organisations",
+    "status": "Granted",
+    "date": "14/10/23",
+    "level": "National",
+    "link": "Indian"
+  },
+  {
+    "id": "p30",
+    "faculty": "Dr. Akash Rajak",
+    "appNo": "476722-001",
+    "title": "Bottle with Concave Base",
+    "status": "Design Patent",
+    "date": "25/02/2026",
+    "level": "National",
+    "link": "Indian"
+  },
+  // {
+  //   "id": "p31",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p32",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p33",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p34",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p35",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p36",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p37",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p38",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p39",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p40",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p41",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p42",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p43",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p44",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // },
+  // {
+  //   "id": "p45",
+  //   "faculty": "",
+  //   "appNo": "",
+  //   "title": "",
+  //   "status": "",
+  //   "date": "",
+  //   "level": "",
+  //   "link": ""
+  // }
+];
 
-const sectionBetween = (source, startLabel, endLabel) => {
-  const start = source.indexOf(startLabel);
-  if (start === -1) {
-    return "";
-  }
+export const booksPublished2526= [
+  {
+    "id": "b1",
+    "faculty": "Dr. Aatif Jamshed",
+    "title": "Cybercrime and Digital Security",
+    "publisher": "BPB Publications",
+    "edition": "1",
+    "date": "21-12-2025",
+    "publisherType": "National",
+    "link": "https://www.amazon.com/Cybercrime-Digital-Security-Understanding-connected-ebook/dp/B0G9LWP4VT?sr=8-1",
+    "status": "Published"
+  },
+  // {
+  //   "id": "b2",
+  //   "faculty": "Dr. Om Prakash",
+  //   "title": "Modern Perspectives on Machine Learning and Deep Learning Techniques",
+  //   "publisher": "Scientific International Publishing House (SIPH)",
+  //   "edition": "1",
+  //   "date": "To be published",
+  //   "publisherType": "International",
+  //   "link": "",
+  //   "status": "Published"
+  // },
+  // {
+  //   "id": "b3",
+  //   "faculty": "",
+  //   "title": "",
+  //   "publisher": "",
+  //   "edition": "",
+  //   "date": "",
+  //   "publisherType": "",
+  //   "link": "",
+  //   "status": "Published"
+  // },
+  // {
+  //   "id": "b4",
+  //   "faculty": "",
+  //   "title": "",
+  //   "publisher": "",
+  //   "edition": "",
+  //   "date": "",
+  //   "publisherType": "",
+  //   "link": "",
+  //   "status": "Published"
+  // },
+  // {
+  //   "id": "b5",
+  //   "faculty": "",
+  //   "title": "",
+  //   "publisher": "",
+  //   "edition": "",
+  //   "date": "",
+  //   "publisherType": "",
+  //   "link": "",
+  //   "status": "Published"
+  // },
+  // {
+  //   "id": "b6",
+  //   "faculty": "",
+  //   "title": "",
+  //   "publisher": "",
+  //   "edition": "",
+  //   "date": "",
+  //   "publisherType": "",
+  //   "link": "",
+  //   "status": "Published"
+  // },
+  // {
+  //   "id": "b7",
+  //   "faculty": "",
+  //   "title": "",
+  //   "publisher": "",
+  //   "edition": "",
+  //   "date": "",
+  //   "publisherType": "",
+  //   "link": "",
+  //   "status": "Published"
+  // }
+];
 
-  const fromStart = source.slice(start + startLabel.length);
-  const end = endLabel ? fromStart.indexOf(endLabel) : -1;
-
-  return end === -1 ? fromStart : fromStart.slice(0, end);
-};
-
-const parseRows = (sectionText) => {
-  const lines = sectionText.split("\n").map(normalizeLine);
-  const rows = [];
-
-  for (const line of lines) {
-    if (!/^\d+\t/.test(line)) {
-      continue;
-    }
-
-    const cells = line
-      .split("\t")
-      .map((cell) => cell.trim())
-      .filter((cell, index, arr) => !(cell === "" && index === arr.length - 1));
-
-    rows.push(cells);
-  }
-
-  return rows;
-};
-
-const journalsSection = sectionBetween(rawResearchData, "journals :", "confrences :");
-const conferencesSection = sectionBetween(rawResearchData, "confrences :", "booked published :");
-const booksSection = sectionBetween(rawResearchData, "booked published :", "");
-
-const journalsData = parseRows(journalsSection).map((cells) => ({
-  id: Number.parseInt(safeCell(cells, 0, "0"), 10),
-  faculty: safeCell(cells, 1),
-  facultyId: safeCell(cells, 2),
-  affiliation: safeCell(cells, 3),
-  publisher: safeCell(cells, 4),
-  title: safeCell(cells, 5),
-  journal: safeCell(cells, 6),
-  year: safeCell(cells, 7),
-  date: safeCell(cells, 8),
-  issn: safeCell(cells, 9),
-  link: safeCell(cells, 10, "NA"),
-  doi: safeCell(cells, 11, "NA"),
-  volume: safeCell(cells, 12, "NA"),
-  issue: safeCell(cells, 13, "NA"),
-  pages: safeCell(cells, 14, "NA"),
-  category: safeCell(cells, 15),
-  citeScore: safeCell(cells, 16, "NA"),
-  status: safeCell(cells, 17, "NA"),
-  proofLink: safeCell(cells, 18, "NA"),
-  studentsInvolved: safeCell(cells, 19),
-  studentNames: safeCell(cells, 20),
-  allAuthors: safeCell(cells, 21),
-  allAuthorsIds: safeCell(cells, 22),
-  sdgs: safeCell(cells, 23),
-  collaboration: safeCell(cells, 24),
-  collabPersons: safeCell(cells, 25),
-  collabInstitutions: safeCell(cells, 26),
-  drcRecommendation: safeCell(cells, 27),
-  firstPageLink: safeCell(cells, 28, "NA"),
-  type: "journal",
-  originalCells: cells,
-}));
-
-const conferencesData = parseRows(conferencesSection).map((cells) => ({
-  id: Number.parseInt(safeCell(cells, 0, "0"), 10),
-  faculty: safeCell(cells, 1),
-  facultyId: safeCell(cells, 2),
-  affiliation: safeCell(cells, 3),
-  level: safeCell(cells, 4),
-  title: safeCell(cells, 5),
-  authors: safeCell(cells, 6),
-  authorsFacultyIds: safeCell(cells, 7),
-  proceedingsTitle: safeCell(cells, 8),
-  volumeIssuePage: safeCell(cells, 9),
-  publisher: safeCell(cells, 10),
-  date: safeCell(cells, 11),
-  isbn: safeCell(cells, 12),
-  link: safeCell(cells, 13, "NA"),
-  proofLink: safeCell(cells, 14, "NA"),
-  studentsInvolved: safeCell(cells, 15),
-  studentNames: safeCell(cells, 16),
-  sdgs: safeCell(cells, 17),
-  collaboration: safeCell(cells, 18),
-  collabPersons: safeCell(cells, 19),
-  collabInstitutions: safeCell(cells, 20),
-  status: safeCell(cells, 21),
-  scopusFlag: safeCell(cells, 22),
-  doi: safeCell(cells, 23, "NA"),
-  drcRecommendation: safeCell(cells, 24),
-  firstPageLink: safeCell(cells, 25, "NA"),
-  type: "conference",
-  originalCells: cells,
-}));
-
-const booksPublishedData = parseRows(booksSection).map((cells) => ({
-  id: Number.parseInt(safeCell(cells, 0, "0"), 10),
-  faculty: safeCell(cells, 1),
-  facultyId: safeCell(cells, 2),
-  department: safeCell(cells, 3),
-  affiliation: safeCell(cells, 4),
-  category: safeCell(cells, 5),
-  book: safeCell(cells, 6),
-  title: safeCell(cells, 7),
-  indexing: safeCell(cells, 8),
-  publisher: safeCell(cells, 9),
-  publisherType: safeCell(cells, 10),
-  date: safeCell(cells, 11),
-  isbn: safeCell(cells, 12),
-  doi: safeCell(cells, 13, "NA"),
-  link: safeCell(cells, 14, "NA"),
-  proofLink: safeCell(cells, 15, "NA"),
-  sdgs: safeCell(cells, 16),
-  collaboration: safeCell(cells, 17),
-  collabPersons: safeCell(cells, 18),
-  collabInstitutions: safeCell(cells, 19),
-  allAuthors: safeCell(cells, 20),
-  allAuthorsIds: safeCell(cells, 21),
-  drcRecommendation: safeCell(cells, 22),
-  firstPageLink: safeCell(cells, 23, "NA"),
-  type: "book",
-  originalCells: cells,
-}));
-
-const sortByYearDesc = (records) => {
-  return [...records].sort((a, b) => {
-    const yearA = Number.parseInt(String(a.year || a.date || "0").match(/\d{4}/)?.[0] || "0", 10);
-    const yearB = Number.parseInt(String(b.year || b.date || "0").match(/\d{4}/)?.[0] || "0", 10);
-    return yearB - yearA;
-  });
-};
+// ─── researchRecords — shape consumed by ResearchTabs ────────────────────────
+// ResearchTabs expects: { journals, conferences, books }
+// "books" key = book chapters per the existing TAB_CONFIG
 
 export const researchRecords = {
-  journals: sortByYearDesc(journalsData),
-  conferences: sortByYearDesc(conferencesData),
-  books: sortByYearDesc(booksPublishedData),
+  journals:    journals2526,
+  conferences: conferences2526,
+  books:       booksPublished2526,  // book chapters — ResearchTabs reads data.books
+  patents:     patents2526,
 };
 
-export const recentResearchRecords = {
-  journals: researchRecords.journals.slice(0, 6),
-  conferences: researchRecords.conferences.slice(0, 6),
-  books: researchRecords.books.slice(0, 6),
-};
-
-// Backward-compatible exports used by existing UI blocks.
-export const researchPublications = researchRecords.journals;
-
+// ─── Stat cards (2025-26 current session) ────────────────────────────────────
 export const researchStats = {
-  total:
-    researchRecords.journals.length +
-    researchRecords.conferences.length +
-    researchRecords.books.length,
-  journalCount: researchRecords.journals.length,
-  conferenceCount: researchRecords.conferences.length,
-  bookCount: researchRecords.books.length,
-  scopusCount: researchRecords.journals.filter((item) =>
-    String(item.category).toLowerCase().includes("scopus")
-  ).length,
-  scieCount: researchRecords.journals.filter((item) =>
-    String(item.category).toLowerCase().includes("scie")
-  ).length,
+  journalCount:    23,
+  conferenceCount: 51,   // conferences + book chapters
+  bookCount:       7,
+  patentCount:     45,
+  total:           126,
 };
+
+// ─── 3-year session stats (for the two analysis cards) ───────────────────────
+// 2024-25 & 2023-24 counts sourced from their respective Excel files
+export const sessionStats= [
+  {
+    session:     "2025-26",
+    journals:    23,
+    conferences: 51,
+    patents:     45,
+    sci:         10,
+    scopus:      4,
+  },
+  {
+    session:     "2024-25",
+    journals:    14,
+    conferences: 52,   // 37 conf + 15 chapters
+    patents:     82,
+    sci:         9,
+    scopus:      4,
+  },
+  {
+    session:     "2023-24",
+    journals:    24,
+    conferences: 63,   // 47 conf + 16 chapters
+    patents:     103,
+    sci:         6,
+    scopus:      8,
+  },
+];
