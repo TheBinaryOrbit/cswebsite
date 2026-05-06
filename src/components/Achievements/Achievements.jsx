@@ -1,13 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import AnimatedHeadline from "../AnimatedHeadline";
 import achievementsData from "../../data/achievementsData.json";
-import faculty from "../../assets/Highlights/faculty.jpg";
-import labs from "../../assets/Highlights/labs.jpg";
-import pp from "../../assets/Highlights/pp.jpg";
-import hh from "../../assets/Highlights/hh.jpg";
 
 const fromLeft = {
   hidden: { opacity: 0, x: -80 },
@@ -45,67 +41,24 @@ function AnimatedSection({ children, variants, custom, className = "" }) {
   );
 }
 
-// Extract file ID from Google Drive link
-const getGoogleDriveImageUrl = (driveLink) => {
-  const fileIdMatch = driveLink.match(/\/d\/([a-zA-Z0-9-_]+)/);
-  if (fileIdMatch) {
-    return `https://drive.google.com/thumbnail?id=${fileIdMatch[1]}&sz=w400`;
+const getBackgroundColor = (achievementType) => {
+  switch (achievementType) {
+    case "Winner":
+      return "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)";
+    case "First Runner Up":
+      return "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)";
+    case "Second Runner Up":
+      return "linear-gradient(135deg, #f97316 0%, #ea580c 100%)";
+    case "PARTICIPATION":
+      return "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)";
+    default:
+      return "linear-gradient(135deg, #10b981 0%, #059669 100%)";
   }
-  return null;
 };
-
-function GridCard({ src, title, description, variants, custom }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      tabIndex={0}
-      className="group relative h-[340px] basis-[82vw] shrink-0 snap-start overflow-hidden rounded-3xl bg-slate-200 outline-none transition-[flex-basis,transform,box-shadow] duration-500 ease-out hover:basis-[560px] hover:shadow-2xl focus-visible:basis-[560px] focus-visible:shadow-2xl sm:h-[400px] sm:basis-[420px] lg:basis-[460px]"
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={variants}
-      custom={custom}
-      whileHover={{ scale: 1.015, transition: { duration: 0.35, ease: "easeOut" } }}
-    >
-      <motion.img
-        src={src}
-        alt={title}
-        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-focus-visible:scale-110"
-        initial={{ scale: 1.03, filter: "brightness(0.82)" }}
-        whileHover={{ filter: "brightness(0.62)" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      />
-
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100" />
-
-      <div className="absolute inset-x-0 bottom-0 translate-y-6 p-5 text-white opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 sm:p-7">
-        <motion.h2
-          className="mb-2 text-xl font-bold sm:text-2xl"
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: (custom || 0) + 0.2, ease: "easeOut" }}
-        >
-          {title}
-        </motion.h2>
-        <motion.p
-          className="max-w-[34rem] text-sm leading-relaxed sm:text-base"
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: (custom || 0) + 0.32, ease: "easeOut" }}
-        >
-          {description}
-        </motion.p>
-      </div>
-    </motion.div>
-  );
-}
 
 function AchievementCard({ achievement, variants, custom }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const imageUrl = getGoogleDriveImageUrl(achievement.proof_link);
 
   return (
     <motion.a
@@ -114,22 +67,18 @@ function AchievementCard({ achievement, variants, custom }) {
       target="_blank"
       rel="noopener noreferrer"
       tabIndex={0}
-      className="group relative h-[340px] basis-[82vw] shrink-0 snap-start overflow-hidden rounded-3xl bg-slate-900 outline-none transition-[flex-basis,transform,box-shadow] duration-500 ease-out hover:basis-[560px] hover:shadow-2xl focus-visible:basis-[560px] focus-visible:shadow-2xl sm:h-[400px] sm:basis-[420px] lg:basis-[460px]"
+      className="group relative h-[340px] basis-[82vw] shrink-0 snap-start overflow-hidden rounded-3xl bg-slate-200 outline-none transition-[flex-basis,transform,box-shadow] duration-500 ease-out hover:basis-[560px] hover:shadow-2xl focus-visible:basis-[560px] focus-visible:shadow-2xl sm:h-[400px] sm:basis-[420px] lg:basis-[460px]"
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={variants}
       custom={custom}
       whileHover={{ scale: 1.015, transition: { duration: 0.35, ease: "easeOut" } }}
+      style={{ 
+        background: getBackgroundColor(achievement.achievement_type),
+      }}
     >
-      {/* Drive Certificate Image */}
-      <motion.img
-        src={imageUrl}
-        alt={achievement.title}
-        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-focus-visible:scale-110"
-        initial={{ scale: 1.03, filter: "brightness(0.82)" }}
-        whileHover={{ filter: "brightness(0.62)" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      />
+      {/* Background overlay */}
+      <div className="absolute inset-0" style={{ background: getBackgroundColor(achievement.achievement_type) }} />
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100" />
 
@@ -151,7 +100,7 @@ function AchievementCard({ achievement, variants, custom }) {
           {achievement.title}
         </motion.h2>
         <motion.p
-          className="max-w-[34rem] text-sm leading-relaxed sm:text-base"
+          className="max-w-[34rem] text-sm leading-relaxed sm:text-base line-clamp-2"
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, delay: (custom || 0) + 0.32, ease: "easeOut" }}
@@ -163,11 +112,11 @@ function AchievementCard({ achievement, variants, custom }) {
   );
 }
 
-const Section2 = () => {
+const Achievements = () => {
   const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  const scrollHighlights = (direction) => {
+  const scrollAchievements = (direction) => {
     if (!scrollRef.current) return;
 
     const scrollAmount = scrollRef.current.clientWidth * 0.75;
@@ -197,13 +146,13 @@ const Section2 = () => {
   }, [isPaused]);
 
   return (
-    <div className="w-full overflow-hidden bg-white">
+    <section className="w-full overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl p-4 py-5 sm:py-10">
         <AnimatedHeadline
           highlight="Achievements"
           className="font-serif text-3xl font-bold leading-snug tracking-wide text-[#113959] md:text-5xl"
         >
-          Department Highlights & Achievements
+          Student Achievements & Awards
         </AnimatedHeadline>
 
         <AnimatedSection variants={fromRight} custom={0.15}>
@@ -216,7 +165,9 @@ const Section2 = () => {
           <button
             type="button"
             aria-label="Scroll achievements left"
-            onClick={() => scrollHighlights("left")}
+            onClick={() => scrollAchievements("left")}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
             className="grid size-11 place-items-center rounded-full border border-slate-200 bg-white text-[#113959] shadow-sm transition hover:bg-[#113959] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#113959]"
           >
             <FaChevronLeft aria-hidden="true" />
@@ -224,7 +175,9 @@ const Section2 = () => {
           <button
             type="button"
             aria-label="Scroll achievements right"
-            onClick={() => scrollHighlights("right")}
+            onClick={() => scrollAchievements("right")}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
             className="grid size-11 place-items-center rounded-full border border-slate-200 bg-white text-[#113959] shadow-sm transition hover:bg-[#113959] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#113959]"
           >
             <FaChevronRight aria-hidden="true" />
@@ -239,40 +192,6 @@ const Section2 = () => {
           onBlur={() => setIsPaused(false)}
           className="scrollbar-hide mt-5 flex snap-x snap-mandatory gap-5 overflow-x-auto overflow-y-hidden scroll-smooth pb-5 pr-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {/* 4 Highlight Images First */}
-          <GridCard
-            src={faculty}
-            title="Expert Faculty & Mentorship"
-            description="Learn from experienced faculty members dedicated to teaching, research, and guiding students toward academic and professional excellence."
-            variants={fromLeft}
-            custom={0.1}
-          />
-
-          <GridCard
-            src={labs}
-            title="Industry-Oriented Curriculum"
-            description="Our curriculum is regularly updated to match industry standards"
-            variants={fromRight}
-            custom={0.2}
-          />
-
-          <GridCard
-            src={pp}
-            title="Placements & Career Opportunities"
-            description="Strong placement support with leading companies, internships, and career"
-            variants={fromLeft}
-            custom={0.15}
-          />
-
-          <GridCard
-            src={hh}
-            title="Hands-on Projects & Labs"
-            description="Engage in real-world projects, modern labs, and collaborative learning to build strong problem-solving and development skills."
-            variants={fromRight}
-            custom={0.25}
-          />
-
-          {/* Then All Achievements */}
           {achievementsData.map((achievement, index) => (
             <AchievementCard
               key={index}
@@ -283,8 +202,8 @@ const Section2 = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Section2;
+export default Achievements;

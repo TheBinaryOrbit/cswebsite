@@ -1,8 +1,8 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
 import AnimatedHeadline from "../AnimatedHeadline";
+import { Link } from "react-router-dom";
 import { FaChartPie, FaUsers, FaBriefcase, FaPercentage, FaBuilding, FaChartLine } from "react-icons/fa";
 
 /* ─── Variants ─────────────────────────────────────────────── */
@@ -103,7 +103,7 @@ function SimplePieChart({ percentage, inView }) {
 }
 
 const Placements = () => {
-  const [activeTab, setActiveTab] = useState("2022-2026");
+  const activeTab = "2021-2025";
   const rawData = placementData.find(d => d.id === activeTab);
 
   const data = {
@@ -142,24 +142,6 @@ const Placements = () => {
           </motion.p>
         </div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 md:mb-10 px-2">
-          {placementData.map((year) => (
-            <motion.button
-              key={year.id}
-              onClick={() => setActiveTab(year.id)}
-              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#f15b20] ${activeTab === year.id
-                  ? "bg-white text-[#113959] shadow-lg"
-                  : "bg-white/10 text-white hover:bg-white/20"
-                }`}
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 1 }}
-            >
-              {year.label}
-            </motion.button>
-          ))}
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 md:gap-8 items-start">
 
           {/* Left: Snapshot Card */}
@@ -173,10 +155,10 @@ const Placements = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
               {([
-                { label: "Total Students", val: data.total, icon: <FaUsers />, color: "text-blue-600" },
-                { label: "Placed", val: data.placed, icon: <FaBriefcase />, color: "text-green-600" },
-                { label: "Avg. Package", val: data.avg, icon: <FaChartLine />, color: "text-orange-500" },
-                { label: "Placement Rate", val: `${data.rate}%`, icon: <FaPercentage />, color: "text-purple-600" }
+                { label: "Highest Placement", val: "45 LPA", icon: <FaChartLine />, color: "text-orange-500" },
+                { label: "Total Students", val: 206, icon: <FaUsers />, color: "text-blue-600" },
+                { label: "Placed", val: 188, icon: <FaBriefcase />, color: "text-green-600" },
+                { label: "Total Offers", val: 261, icon: <FaPercentage />, color: "text-purple-600" }
               ]).map((stat, i) => (
                 <div key={i} className="bg-slate-50/70 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border border-slate-200/80 flex flex-row sm:flex-col items-center sm:items-start gap-2 sm:gap-0">
                   <div className={`text-lg sm:text-xl md:text-2xl sm:mb-1 md:sm:mb-2 ${stat.color} shrink-0`}>{stat.icon}</div>
@@ -188,9 +170,10 @@ const Placements = () => {
               ))}
             </div>
 
-            <Link to="/placements" className="mt-4 sm:mt-6 md:mt-8 flex items-center justify-center gap-2 w-full bg-[#f15b20] text-white py-2.5 sm:py-3 md:py-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base font-bold hover:bg-[#d94f1a] transition-all duration-300 transform hover:scale-[1.02]">
-              View Detailed Report
+            <Link to="/placements" className="bg-[#f15b20] text-white text-sm font-semibold px-4 py-2 rounded-xl mt-6 inline-block transition hover:bg-[#d14e1a] w-full text-center ">
+              View Detailed Placement Report &rarr;
             </Link>
+            
           </motion.div>
 
           {/* Right: Chart & Recruiters */}
@@ -213,21 +196,21 @@ const Placements = () => {
               </div>
 
               <div className="w-full md:w-56 lg:w-56 space-y-2 sm:space-y-3 md:space-y-4 self-stretch flex flex-col">
-                <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-green-200 bg-green-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
-                  <div className="flex items-center gap-2 text-green-700">
-                    <FaChartPie className="text-xs sm:text-sm md:text-base shrink-0" />
-                    <p className="text-[9px] sm:text-xs font-bold uppercase">Placed</p>
+                <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-blue-200 bg-blue-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
+                  <div className="flex items-center gap-2 text-blue-700">
+                    <FaChartLine className="text-xs sm:text-sm md:text-base shrink-0" />
+                    <p className="text-[9px] sm:text-xs font-bold uppercase">Avg Package</p>
                   </div>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-600 mt-1">{data.rate}%</p>
-                  <p className="text-[9px] sm:text-xs text-gray-500">{data.placed} of {data.total} students</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-600 mt-1">6.08 LPA</p>
+                  <p className="text-[9px] sm:text-xs text-gray-500">Per Placement</p>
                 </div>
-                <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-slate-200 bg-slate-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <FaUsers className="text-xs sm:text-sm md:text-base shrink-0" />
-                    <p className="text-[9px] sm:text-xs font-bold uppercase">Not Placed</p>
+                <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-purple-200 bg-purple-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
+                  <div className="flex items-center gap-2 text-purple-700">
+                    <FaBriefcase className="text-xs sm:text-sm md:text-base shrink-0" />
+                    <p className="text-[9px] sm:text-xs font-bold uppercase">Dream Offers</p>
                   </div>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-slate-500 mt-1">{(100 - data.rate).toFixed(1)}%</p>
-                  <p className="text-[9px] sm:text-xs text-gray-500">{data.notPlaced} remaining</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-600 mt-1">14</p>
+                  <p className="text-[9px] sm:text-xs text-gray-500">Premium Companies</p>
                 </div>
               </div>
             </motion.div>

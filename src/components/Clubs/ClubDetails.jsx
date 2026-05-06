@@ -164,10 +164,10 @@ const ClubDetails = () => {
               <p className="text-xs text-slate-500">Members</p>
               <p className="text-lg font-bold text-slate-900">{club.membersSummary}</p>
             </div>
-            <div className="rounded-xl bg-slate-100 px-4 py-3">
+            {/* <div className="rounded-xl bg-slate-100 px-4 py-3">
               <p className="text-xs text-slate-500">Impact</p>
               <p className="text-lg font-bold text-[#f15b20]">{club.impact}</p>
-            </div>
+            </div> */}
           </div>
         </motion.section>
 
@@ -210,7 +210,7 @@ const ClubDetails = () => {
         </section>
 
         {/* Members Section */}
-        <section className="mt-8">
+        {/* <section className="mt-8">
           <AnimatedHeadline as="h2" highlight="Members" className="text-xl font-bold text-slate-900">
             Members
           </AnimatedHeadline>
@@ -219,7 +219,7 @@ const ClubDetails = () => {
               <MemberCard key={member.name} member={member} index={index} />
             ))}
           </div>
-        </section>
+        </section> */}
       </div>
     </main>
   );

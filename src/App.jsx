@@ -18,6 +18,7 @@ import ClubDetails from './components/Clubs/ClubDetails'
 import Gallery from './components/Gallery/Gallery'
 import FacultyDetails from './components/Faculty/FacultyDetails'
 import ScrollToTop from './components/ScrollToTop'
+import About from './components/About/About'
 
 function HomePage() {
   return (
@@ -54,6 +55,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<About />} />
         <Route path="/placements" element={<PlacementsPage />} />
         <Route path="/clubs/:clubSlug" element={<ClubDetails />} />
         <Route path="/faculty/:facultySlug" element={<FacultyDetails />} />

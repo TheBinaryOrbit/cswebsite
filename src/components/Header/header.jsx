@@ -45,6 +45,7 @@ const Header = () => {
                 </Link>
                 <nav  className="">
                     <ul className="style-none hidden lg:flex gap-5 text-black ml-24">
+                        <Link to="/about" className="font-medium capitalize text-[#113959] hover:text-[#f15b20] font-serif">About</Link>
                         <button onClick={() => handleScrollToSection("faculty-section")} className="font-medium capitalize text-[#113959] hover:text-[#f15b20] font-serif cursor-pointer bg-transparent border-none">Faculty</button>
                         <Link to="/placements" className="font-medium capitalize text-[#113959] hover:text-[#f15b20] font-serif">Placements</Link>
                         <Link to="/gallery" className="font-medium capitalize text-[#113959] hover:text-[#f15b20] font-serif">Gallery</Link>
@@ -140,6 +141,13 @@ const Header = () => {
             {isMobileOpen && (
                 <div className="lg:hidden mt-3 mx-5 rounded-2xl border border-[#113959]/20 bg-[#fafafa] shadow-md">
                     <div className="p-4 flex flex-col gap-3 text-[#113959]">
+                        <Link
+                            to="/about"
+                            onClick={closeMobileMenu}
+                            className="font-semibold font-serif hover:text-[#f15b20]"
+                        >
+                            About
+                        </Link>
                         <button
                             onClick={() => handleScrollToSection("faculty-section")}
                             className="font-semibold font-serif hover:text-[#f15b20] bg-transparent border-none text-left cursor-pointer"

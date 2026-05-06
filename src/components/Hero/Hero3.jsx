@@ -174,7 +174,7 @@ function Hero3() {
       const progress = Math.min((now - startTime) / duration, 1);
       const easedProgress = 1 - Math.pow(1 - progress, 3);
 
-      setHighestPlacement(Math.round(easedProgress * 54));
+      setHighestPlacement(Math.round(easedProgress * 45));
       setStudentIntake(Math.round(easedProgress * 300));
 
       if (progress < 1) {
@@ -218,7 +218,7 @@ function Hero3() {
             <TextGenerateEffect
               duration={1}
               filter={false}
-              words={"Shape your Future With Department of Computer Science"}
+              words={"Shape your Future With Department of Computer Science & CSE-DS"}
               textlen="6xl"
             />
           </div>
@@ -320,7 +320,7 @@ function Hero3() {
                       <span className="align-top text-4xl lg:text-5xl">+</span>
                     </p>
                     <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-[#f15b20] lg:text-base">
-                      Student Intake
+                      Recruiters
                     </p>
                   </motion.div>
                 </div>

@@ -60,6 +60,16 @@ function AnimatedSection({ children, variants, custom, className = "" }) {
 const Clubs = () => {
   const sectionRef = useRef(null);
 
+  const getClubLink = (club) => {
+    if (club.slug === "kiet-technical-society") {
+      return "https://kts-website.netlify.app/";
+    }
+    if (club.slug === "cp-byte") {
+      return "https://cpbyte.in/";
+    }
+    return null;
+  };
+
   return (
     <section ref={sectionRef} className="w-full py-5 sm:py-10 overflow-hidden">
       <div className="max-w-7xl mx-auto p-4">
@@ -113,21 +123,33 @@ const Clubs = () => {
                     <p className="text-lg font-semibold leading-none text-slate-700">{club.membersSummary}</p>
                     <p className="text-sm text-slate-500 mt-2">Members</p>
                   </div>
-                  <div className="pl-3">
+                  {/* <div className="pl-3">
                     <p className="text-3xl font-serif leading-none text-[#f15b20]">{club.impact}</p>
                     <p className="text-sm text-slate-500 mt-2">Impact score</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
               <div className="px-4 sm:px-5 py-4">
-                <Link
-                  to={`/clubs/${club.slug}`}
-                  className="text-sm font-semibold text-[#f15b20] inline-flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer text-serif italic"
-                >
-                  Explore more
-                  <FaArrowRight size={12} className="-rotate-45 translate-y-0.5" />
-                </Link>
+                {getClubLink(club) ? (
+                  <a
+                    href={getClubLink(club)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-[#f15b20] inline-flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer text-serif italic"
+                  >
+                    Visit Website
+                    <FaArrowRight size={12} className="-rotate-45 translate-y-0.5" />
+                  </a>
+                ) : (
+                  <Link
+                    to={`/clubs/${club.slug}`}
+                    className="text-sm font-semibold text-[#f15b20] inline-flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer text-serif italic"
+                  >
+                    Explore more
+                    <FaArrowRight size={12} className="-rotate-45 translate-y-0.5" />
+                  </Link>
+                )}
               </div>
 
               <div className="relative">
