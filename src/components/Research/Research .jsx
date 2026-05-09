@@ -12,14 +12,6 @@ const THEME = {
   accent: "#f15b20",
 };
 
-// ─── Stats cards (Session 2025-26 Aggregate) ──────────────────────────────
-const statCards = [
-  { label: "Journals (Total)", value: 28 }, // Faculty (14) + Students (Placeholder/Verified)
-  { label: "Conferences", value: 62 },      // Faculty (20) + Students (42)
-  { label: "Patents Published", value: 28 }, // Faculty (2) + Students (26)
-  { label: "Patents Granted", value: 2 },   // Faculty (2)
-];
-
 // ─── Data from Image 1: Faculty Publications ──────────────────────────────
 const facultyPublications = [
   { session: "2025-26*", journals: 14, conferences: 20, pubPatents: 2, grantPatents: 2 },
@@ -32,6 +24,28 @@ const studentPublications = [
   { session: "2025-26*", conferences: 42, patents: 26, details: "29-Published, 13-Registered" },
   { session: "2024-25", conferences: 3, patents: 52, details: "" },
   { session: "2023-24", conferences: 14, patents: 68, details: "" },
+];
+
+// ─── Stats cards (Aggregated Totals) ──────────────────────────────
+const statCards = [
+  { 
+    label: "Journals (Total)", 
+    value: facultyPublications.reduce((acc, row) => acc + row.journals, 0) 
+  },
+  { 
+    label: "Conferences", 
+    value: facultyPublications.reduce((acc, row) => acc + row.conferences, 0) + 
+           studentPublications.reduce((acc, row) => acc + row.conferences, 0) 
+  },
+  { 
+    label: "Patents Published", 
+    value: facultyPublications.reduce((acc, row) => acc + row.pubPatents, 0) + 
+           studentPublications.reduce((acc, row) => acc + row.patents, 0) 
+  },
+  { 
+    label: "Patents Granted", 
+    value: facultyPublications.reduce((acc, row) => acc + row.grantPatents, 0) 
+  },
 ];
 
 const maxFacultyTotal = Math.max(...facultyPublications.map(f => f.journals + f.conferences + f.pubPatents + f.grantPatents));

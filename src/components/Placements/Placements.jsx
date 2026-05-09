@@ -157,7 +157,7 @@ const Placements = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
               {([
                 { label: "Highest Placement", val: "45 LPA", icon: <FaChartLine />, color: "text-orange-500" },
-                { label: "Avg Package", val: "6.08LPA", icon: <FaWallet />, color: "text-blue-600" },
+                { label: "Avg Package", val: "6.08 LPA", icon: <FaWallet />, color: "text-blue-600" },
                 { label: "Placed", val: 188, icon: <FaBriefcase />, color: "text-green-600" },
                 { label: "Total Offers", val: 261, icon: <FaEnvelope />, color: "text-purple-600" }
               ]).map((stat, i) => (
@@ -210,7 +210,7 @@ const Placements = () => {
                     <FaBriefcase className="text-xs sm:text-sm md:text-base shrink-0" />
                     <p className="text-[9px] sm:text-xs font-bold uppercase">Dream Offers</p>
                   </div>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-600 mt-1">14</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-600 mt-1">22</p>
                   <p className="text-[9px] sm:text-xs text-gray-500">Premium Companies</p>
                 </div>
               </div>

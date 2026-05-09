@@ -45,14 +45,6 @@ function AnimatedSection({ children, variants, custom, className = "" }) {
   );
 }
 
-// Extract file ID from Google Drive link
-const getGoogleDriveImageUrl = (driveLink) => {
-  const fileIdMatch = driveLink.match(/\/d\/([a-zA-Z0-9-_]+)/);
-  if (fileIdMatch) {
-    return `https://drive.google.com/thumbnail?id=${fileIdMatch[1]}&sz=w400`;
-  }
-  return null;
-};
 
 function GridCard({ src, title, description, variants, custom }) {
   const ref = useRef(null);
@@ -105,7 +97,6 @@ function GridCard({ src, title, description, variants, custom }) {
 function AchievementCard({ achievement, variants, custom }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const imageUrl = getGoogleDriveImageUrl(achievement.proof_link);
 
   return (
     <motion.a
@@ -121,9 +112,9 @@ function AchievementCard({ achievement, variants, custom }) {
       custom={custom}
       whileHover={{ scale: 1.015, transition: { duration: 0.35, ease: "easeOut" } }}
     >
-      {/* Drive Certificate Image */}
+      {/* Local Achievement Thumbnail */}
       <motion.img
-        src={imageUrl}
+        src={achievement.thumbnail}
         alt={achievement.title}
         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-focus-visible:scale-110"
         initial={{ scale: 1.03, filter: "brightness(0.82)" }}

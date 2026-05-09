@@ -61,6 +61,9 @@ const Clubs = () => {
   const sectionRef = useRef(null);
 
   const getClubLink = (club) => {
+    if (club.slug === "hp-ai-skill-lab") {
+      return "https://www.linkedin.com/in/coe-ai-skills-lab/";
+    }
     if (club.slug === "kiet-technical-society") {
       return "https://kts-website.netlify.app/";
     }
@@ -138,7 +141,7 @@ const Clubs = () => {
                     rel="noopener noreferrer"
                     className="text-sm font-semibold text-[#f15b20] inline-flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer text-serif italic"
                   >
-                    Visit Website
+                    Explore more
                     <FaArrowRight size={12} className="-rotate-45 translate-y-0.5" />
                   </a>
                 ) : (

@@ -41,20 +41,6 @@ function AnimatedSection({ children, variants, custom, className = "" }) {
   );
 }
 
-const getBackgroundColor = (achievementType) => {
-  switch (achievementType) {
-    case "Winner":
-      return "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)";
-    case "First Runner Up":
-      return "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)";
-    case "Second Runner Up":
-      return "linear-gradient(135deg, #f97316 0%, #ea580c 100%)";
-    case "PARTICIPATION":
-      return "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)";
-    default:
-      return "linear-gradient(135deg, #10b981 0%, #059669 100%)";
-  }
-};
 
 function AchievementCard({ achievement, variants, custom }) {
   const ref = useRef(null);
@@ -67,18 +53,22 @@ function AchievementCard({ achievement, variants, custom }) {
       target="_blank"
       rel="noopener noreferrer"
       tabIndex={0}
-      className="group relative h-[340px] basis-[82vw] shrink-0 snap-start overflow-hidden rounded-3xl bg-slate-200 outline-none transition-[flex-basis,transform,box-shadow] duration-500 ease-out hover:basis-[560px] hover:shadow-2xl focus-visible:basis-[560px] focus-visible:shadow-2xl sm:h-[400px] sm:basis-[420px] lg:basis-[460px]"
+      className="group relative h-[340px] basis-[82vw] shrink-0 snap-start overflow-hidden rounded-3xl bg-slate-900 outline-none transition-[flex-basis,transform,box-shadow] duration-500 ease-out hover:basis-[560px] hover:shadow-2xl focus-visible:basis-[560px] focus-visible:shadow-2xl sm:h-[400px] sm:basis-[420px] lg:basis-[460px]"
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={variants}
       custom={custom}
       whileHover={{ scale: 1.015, transition: { duration: 0.35, ease: "easeOut" } }}
-      style={{ 
-        background: getBackgroundColor(achievement.achievement_type),
-      }}
     >
-      {/* Background overlay */}
-      <div className="absolute inset-0" style={{ background: getBackgroundColor(achievement.achievement_type) }} />
+      {/* Local Achievement Thumbnail */}
+      <motion.img
+        src={achievement.thumbnail}
+        alt={achievement.title}
+        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-focus-visible:scale-110"
+        initial={{ scale: 1.03, filter: "brightness(0.82)" }}
+        whileHover={{ filter: "brightness(0.62)" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      />
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100" />
 

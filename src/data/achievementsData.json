@@ -1,43 +1,15 @@
+
 [
   {
-    "name": "Mansi verma",
-    "title": "Fellowship in DoraDAO #Girlswhoyap a biggest web3 community in Dubai",
-    "category": "Extra - Curricular",
-    "event_type": "International Event",
-    "description": "I'm excited to share that I've been selected for the Doradão GirlsWhoYap Fellowship in Dubai! 🌟 This program brings together innovative women in tech for learning, networking, and global exposure.",
-    "short_description": "DoraDAO GirlsWhoYap Fellowship in Dubai! 🌟 This program brings together innovative women in tech for learning, networking, and global exposure.",
-    "achievement_type": "PARTICIPATION",
-    "proof_link": "https://drive.google.com/file/d/1wCJBOvFVD1Ky_PvQIFsfBwlJRnA4zXG3/view?usp=drivesdk"
-  },
-  {
-    "name": "KAUSTUV",
-    "title": "Built CampusXchange",
+    "name": "KAUSTUV, AYUSH GUPTA, AVIRAL SRIVASTAVA, LAKSHYA JAISWAL",
+    "title": "Secured 2nd Runner-Up at Dron-O-War 1.0",
     "category": "Extra - Curricular",
     "event_type": "National Event",
-    "description": "MoU/Project/Freelancing",
-    "short_description": "I built a peer-to-peer marketplace for students across the Nation. Currently live across 3+ campuses.",
-    "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/drive/folders/1c70X-QAn5hvMrUALaVv_6uXiEBzsP4ND?usp=sharing"
-  },
-  {
-    "name": "Yuvika Jindal",
-    "title": "UI/UX Design Internship at ICanCaRe",
-    "category": "Extra - Curricular",
-    "event_type": "National Event",
-    "description": "Selected as a UI/UX Intern at Innovative Cancer Care and Rehabilitation Pvt. Ltd. (ICanCaRe) for a period of two months. Designed marketing and promotional materials including web pages, landing pages, logos, banners, posters, and social media graphics.",
-    "short_description": "UI/UX Design Internship - Designed marketing and promotional materials for ICanCaRe.",
-    "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/file/d/1KwEO-YgO0FY176V4a44uq3kHoLOLoS-F/view?usp=sharing"
-  },
-  {
-    "name": "DEEP RAJ",
-    "title": "Edunet Foundations Internship",
-    "category": "Extra - Curricular",
-    "event_type": "National Event",
-    "description": "Completed 6 weeks internship at Edunet foundations partnered with AICTE and IBM in frontend web development.",
-    "short_description": "Frontend web development internship at Edunet Foundation (IBM+AICTE).",
-    "achievement_type": "PARTICIPATION",
-    "proof_link": "https://drive.google.com/drive/folders/15-xwPQh_Qi0L7e0aZ3RjK8mtIptBvEo3?usp=sharing"
+    "description": "Drone Competition / Autonomous Mission / Payload Delivery",
+    "short_description": "Built and competed with a custom drone at JIIT's Dron-O-War 1.0, securing ₹40k cash, ₹1 lakh in coupons, 2nd runner-up in payload delivery, and a special mention in the autonomous mission.",
+    "achievement_type": "Runner-Up",
+    "proof_link": "https://www.linkedin.com/posts/kaustuv117_droneowar-jiit-buildermindset-activity-7458086208707919872-4YbI?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFKzlDwBkaR3uHeK-RSvN-1Sz0xLHixGQl4",
+    "thumbnail": "/achievements/kaustuvDrone.jpeg"
   },
   {
     "name": "Prachi Sharma",
@@ -47,77 +19,8 @@
     "description": "International Collegiate Programming Contest - Team P3 has secured 7th Rank in the KIET Group of Institutions.",
     "short_description": "International Collegiate Programming Contest - Secured 7th Rank at KIET.",
     "achievement_type": "PARTICIPATION",
-    "proof_link": "https://drive.google.com/drive/folders/1o3bf0y9B25rZoXtKy4NyLLQ_rckzT0rU?usp=sharing"
-  },
-  {
-    "name": "Pari Singhal",
-    "title": "Innotech'25",
-    "category": "Extra - Curricular",
-    "event_type": "Inter college Event (Organised Inside KIET Group of Institutions)",
-    "description": "Presented hardware+software project called NagarDarpan - An ecosystem for the nagarnigam to track a city's progress.",
-    "short_description": "NagarDarpan project presentation at Innotech'25 - Ecosystem for city progress tracking.",
-    "achievement_type": "PARTICIPATION",
-    "proof_link": "https://drive.google.com/file/d/1fc0hB58E_7Wd46dSpuonF5Vks8stGrZV/view?usp=drivesdk"
-  },
-  {
-    "name": "Shubham Bhatt",
-    "title": "Website Development Internship",
-    "category": "Extra - Curricular",
-    "event_type": "National Event",
-    "description": "Full stack development internship at Agri India Foods.",
-    "short_description": "Full stack web development internship at Agri India Foods.",
-    "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/file/d/1zDBC1a9fz9pJs1Jg7A2ul_gQUp62hPmf/view?usp=sharing"
-  },
-  {
-    "name": "Sudiksha Chauhan",
-    "title": "Rann '26 - Mixed Doubles Pool Tournament",
-    "category": "Extra - Curricular",
-    "event_type": "Inter college Event (Organised Inside KIET Group of Institutions)",
-    "description": "Secured 2nd Position in the Mixed Doubles Pool Tournament at RANN'26. Awarded trophy, medal, certificate, and cash prize.",
-    "short_description": "2nd Position in Mixed Doubles Pool Tournament - RANN'26 Sports Fest.",
-    "achievement_type": "First Runner up",
-    "proof_link": "https://drive.google.com/file/d/19lulZMPawyztnNEF1Rq5nGH9Sg2jy7iK/view?usp=sharing"
-  },
-  {
-    "name": "Piyush Singh Bhakuni",
-    "title": "Techsprint 26 - Hackathon",
-    "category": "Hackathon",
-    "event_type": "Hackathon",
-    "description": "Winner of GDG intra-college hackathon at Sir Chhotu Ram Institute of Engineering and Technology using Google technologies.",
-    "short_description": "Winner - Techsprint 26 Hackathon organized by Google Developer Group SCRIET.",
-    "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/file/d/1_QndsbmdAII_-nn_SPNiWtOeWliQHYeu/view?usp=drivesdk"
-  },
-  {
-    "name": "Fiza Khan",
-    "title": "Hackathons - Innotech 2025",
-    "category": "Hackathon",
-    "event_type": "Hackathon",
-    "description": "Got 1st position at the departmental level. Represented CS department at the innotech.",
-    "short_description": "1st Position at Departmental Level - Innotech 2025 Hackathon.",
-    "achievement_type": "Participation",
-    "proof_link": "https://drive.google.com/file/d/114drDiuEYIDCvtCXq0z9uL4cHH0PP3Qi/view?usp=drivesdk"
-  },
-  {
-    "name": "Vaibhav Agarwal",
-    "title": "ICPC - International Collegiate Programming Contest",
-    "category": "Award/ Certification",
-    "event_type": "International Event",
-    "description": "The International Collegiate Programming Contest (ICPC) is the world's largest and most prestigious algorithmic programming competition for college students.",
-    "short_description": "Participation in ICPC - World's largest programming competition.",
-    "achievement_type": "Participation",
-    "proof_link": "https://drive.google.com/drive/folders/1cHdHQ2o2a9_0ZNTetZRfTArC4M33HqIj?usp=sharing"
-  },
-  {
-    "name": "Parul Yadav",
-    "title": "NCC Felicitation",
-    "category": "Award/ Certification",
-    "event_type": "Co-Curricular",
-    "description": "Felicitated for securing the 1st position in Case Manthan, a competition held during the fest SAMANTH at Delhi Technological University (DTU).",
-    "short_description": "1st Position in Case Manthan - Felicitated for excellence in NCC activities.",
-    "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/drive/u/0/folders/1g50zd0gRRi3jGYjWSAtR_s0Uq5WDJ91X"
+    "proof_link": "https://drive.google.com/drive/folders/1o3bf0y9B25rZoXtKy4NyLLQ_rckzT0rU?usp=sharing",
+    "thumbnail": "/achievements/prachi-sharma.jpeg"
   },
   {
     "name": "Riddhi Yadav",
@@ -127,17 +30,8 @@
     "description": "UI/UX Design competition organised by E-Summit IIT Indore on 30-31 August 2025.",
     "short_description": "First Runner Up - Design Odyssey UI/UX Competition at IIT Indore E-Summit.",
     "achievement_type": "First Runner Up",
-    "proof_link": "https://drive.google.com/drive/folders/1SKLrAkbcoSSIuxx-x8ac3tzXnf10_LtR"
-  },
-  {
-    "name": "Aditya Maurya",
-    "title": "Research Paper Publication",
-    "category": "Publications",
-    "event_type": "Co-Curricular",
-    "description": "Research paper published under the guidance of faculty.",
-    "short_description": "Research paper published at National Level.",
-    "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/file/d/12QL5ssTGkrE8FFo6Ggu8l8tWQEYOYmk5/view?usp=drivesdk"
+    "proof_link": "https://drive.google.com/drive/folders/1SKLrAkbcoSSIuxx-x8ac3tzXnf10_LtR",
+    "thumbnail": "/achievements/riddhi-yadav.jpeg"
   },
   {
     "name": "Saksham",
@@ -147,7 +41,8 @@
     "description": "Hackathon organised by IIIT Delhi with food-related APIs and unique ideas challenge.",
     "short_description": "Participation in Foodoscope Fork IT Challenge - National Hackathon by IIIT Delhi.",
     "achievement_type": "PARTICIPATION",
-    "proof_link": "https://drive.google.com/drive/folders/165QP3G223oLjjPrIqzXSvGxW80Yrroz3?usp=sharing"
+    "proof_link": "https://drive.google.com/drive/folders/165QP3G223oLjjPrIqzXSvGxW80Yrroz3?usp=sharing",
+    "thumbnail": "/achievements/shaksham.jpeg"
   },
   {
     "name": "Saksham",
@@ -157,7 +52,8 @@
     "description": "National Social Summit 2026 at IIT Roorkee - 10th edition of the institute's flagship social festival focused on social responsibility, innovation, and sustainable development.",
     "short_description": "Winner - National Social Summit 2026 at IIT Roorkee - Team Vpaksh.",
     "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/drive/folders/1UMDGJocW9_3Od6t8sDWy-MKwGpaY_iOH?usp=drive_link"
+    "proof_link": "https://drive.google.com/drive/folders/1UMDGJocW9_3Od6t8sDWy-MKwGpaY_iOH?usp=drive_link",
+    "thumbnail": "/achievements/saksham.jpeg"
   },
   {
     "name": "Saksham",
@@ -167,17 +63,8 @@
     "description": "Epoque Prastuti 2k26 is the annual cultural fest of KIET Deemed to be University.",
     "short_description": "Winner - Epoque Prastuti'26 Cultural Fest - Team Vpaksh.",
     "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/drive/folders/1JyZlPQXtW5I7sPxblEcJR1NUzNC4tHbJ?usp=drive_link"
-  },
-  {
-    "name": "Hifza Siddiqui",
-    "title": "Robo'craze: Inter college Robo race",
-    "category": "Hackathon",
-    "event_type": "Hackathon",
-    "description": "Inter-college Robo Race competition organized by GNIOT Group of Institutions. Challenge to design and build manually controlled, wireless robots to navigate an obstacle-filled track.",
-    "short_description": "Participation - Robo'craze Inter-college Robo Race by GNIOT.",
-    "achievement_type": "Participation",
-    "proof_link": "https://drive.google.com/file/d/1QQQg3IaDfFmlGGinxoZQ9ddTknEMVvhO/view?usp=drivesdk"
+    "proof_link": "https://drive.google.com/drive/folders/1JyZlPQXtW5I7sPxblEcJR1NUzNC4tHbJ?usp=drive_link",
+    "thumbnail": "/achievements/saksham-epoque.jpeg"
   },
   {
     "name": "Dikshansh",
@@ -187,37 +74,8 @@
     "description": "INNOTECH'25 is the annual national innovation & technology conclave of KIET, organized in collaboration with TBI-KIET and supported by the MeitY Startup Hub.",
     "short_description": "Winner - INNOTECH'25 National Innovation & Technology Conclave - Team 404 NOT FOUNDERS.",
     "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/drive/folders/1NXPsgS6FPBdecfN898InyyA1Qm6n7RqC"
-  },
-  {
-    "name": "Utkarsh Shahi",
-    "title": "Innotech 2025",
-    "category": "Hackathon",
-    "event_type": "Hackathon",
-    "description": "Organised well and helpful for students with innovative ideas.",
-    "short_description": "Participation - Innotech 2025 - Team THE INVINCIBLES.",
-    "achievement_type": "Participation",
-    "proof_link": "https://drive.google.com/file/d/1tz394d1_C2ttqBok93cUGYGWtpyewwVq/view?usp=sharing"
-  },
-  {
-    "name": "Anushka Singhal",
-    "title": "Mr and Ms Freshers",
-    "category": "Award/ Certification",
-    "event_type": "Extra-Curricular",
-    "description": "Freshers Party 2025 organized by FRESCO's at KIET.",
-    "short_description": "Second Runner Up - Mr and Ms Freshers Event.",
-    "achievement_type": "Second Runner Up",
-    "proof_link": "https://drive.google.com/drive/folders/19B9OkVPdCQbSF04w4TR1ESZYPQnPoAiy"
-  },
-  {
-    "name": "Shivam Srivastava",
-    "title": "Football Sports Events - RANN'26, MAC'26, CHRISPO'26, SAMAGRA'26, HPL'25",
-    "category": "Sports",
-    "event_type": "Co-Curricular",
-    "description": "Football sports events participation across multiple national fests.",
-    "short_description": "Winner - Football Sports Events - FC KIET Team.",
-    "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/drive/folders/1AtZSXmm9dRFGPIfI6j8cX5QV2l8VxQ0x"
+    "proof_link": "https://drive.google.com/drive/folders/1NXPsgS6FPBdecfN898InyyA1Qm6n7RqC",
+    "thumbnail": "/achievements/dikshansh.jpeg"
   },
   {
     "name": "Saar Malhotra",
@@ -227,26 +85,106 @@
     "description": "The JSS Youth Parliament 2026 is a mock legislative session designed to foster leadership and civic awareness. Students debate national issues while developing public speaking, policy-making, and democratic values.",
     "short_description": "Winner - JSS Youth Parliament 2026 - National Event.",
     "achievement_type": "Winner",
-    "proof_link": "https://drive.google.com/drive/folders/1NrymH4z3sCKGUCDn4LDZFxNqY0ZSAnP7"
+    "proof_link": "https://drive.google.com/drive/folders/1NrymH4z3sCKGUCDn4LDZFxNqY0ZSAnP7",
+    "thumbnail": "/achievements/saar-malhotra.jpeg"
   },
   {
-    "name": "Archit Mittal",
-    "title": "Skit - Epoque Event",
+    "name": "Anushka Singhal",
+    "title": "Mr and Ms Freshers",
     "category": "Award/ Certification",
     "event_type": "Extra-Curricular",
-    "description": "Actor in the skit event during Epoque at KIET Ghaziabad.",
-    "short_description": "Participation - Skit Performance at Epoque Event.",
-    "achievement_type": "Participation",
-    "proof_link": "https://drive.google.com/drive/folders/1wAzZ_sN6ID1P5NsQ9kPKTFhrwd1-Cyzi"
+    "description": "Freshers Party 2025 organized by FRESCO's at KIET.",
+    "short_description": "Second Runner Up - Mr and Ms Freshers Event.",
+    "achievement_type": "Second Runner Up",
+    "proof_link": "https://drive.google.com/drive/folders/19B9OkVPdCQbSF04w4TR1ESZYPQnPoAiy",
+    "thumbnail": "/achievements/anushka-singhal.jpeg"
   },
   {
-    "name": "Abhishek Kumar",
-    "title": "Anchor - Group Singing Event at Epoque Prastuti 2026",
-    "category": "Anchoring / Event Management",
-    "event_type": "Extra-Curricular",
-    "description": "Anchored the group singing event at Prastuti 2026, managing stage coordination, audience engagement, and ensuring smooth program flow.",
-    "short_description": "Participation - Anchor at Epoque Prastuti 2026 Group Singing Event.",
+    "name": "Mansi verma",
+    "title": "Fellowship in DoraDAO #Girlswhoyap a biggest web3 community in Dubai",
+    "category": "Extra - Curricular",
+    "event_type": "International Event",
+    "description": "I'm excited to share that I've been selected for the Doradão GirlsWhoYap Fellowship in Dubai! 🌟 This program brings together innovative women in tech for learning, networking, and global exposure.",
+    "short_description": "DoraDAO GirlsWhoYap Fellowship in Dubai! 🌟 This program brings together innovative women in tech for learning, networking, and global exposure.",
+    "achievement_type": "PARTICIPATION",
+    "proof_link": "https://drive.google.com/file/d/1wCJBOvFVD1Ky_PvQIFsfBwlJRnA4zXG3/view?usp=drivesdk",
+    "thumbnail": "/achievements/mansi.jpeg"
+  },
+  {
+    "name": "Pari Singhal",
+    "title": "Innotech'25",
+    "category": "Extra - Curricular",
+    "event_type": "Inter college Event (Organised Inside KIET Group of Institutions)",
+    "description": "Presented hardware+software project called NagarDarpan - An ecosystem for the nagarnigam to track a city's progress.",
+    "short_description": "NagarDarpan project presentation at Innotech'25 - Ecosystem for city progress tracking.",
+    "achievement_type": "PARTICIPATION",
+    "proof_link": "https://drive.google.com/file/d/1fc0hB58E_7Wd46dSpuonF5Vks8stGrZV/view?usp=drivesdk",
+    "thumbnail": "/achievements/pari.jpeg"
+  },
+  {
+    "name": "Piyush Singh Bhakuni",
+    "title": "Techsprint 26 - Hackathon",
+    "category": "Hackathon",
+    "event_type": "Hackathon",
+    "description": "Winner of GDG intra-college hackathon at Sir Chhotu Ram Institute of Engineering and Technology using Google technologies.",
+    "short_description": "Winner - Techsprint 26 Hackathon organized by Google Developer Group SCRIET.",
+    "achievement_type": "Winner",
+    "proof_link": "https://drive.google.com/file/d/1_QndsbmdAII_-nn_SPNiWtOeWliQHYeu/view?usp=drivesdk",
+    "thumbnail": "/achievements/piyush-singh.jpeg"
+  },
+  {
+    "name": "Parul Yadav",
+    "title": "NCC Felicitation",
+    "category": "Award/ Certification",
+    "event_type": "Co-Curricular",
+    "description": "Felicitated for securing the 1st position in Case Manthan, a competition held during the fest SAMANTH at Delhi Technological University (DTU).",
+    "short_description": "1st Position in Case Manthan - Felicitated for excellence in NCC activities.",
+    "achievement_type": "Winner",
+    "proof_link": "https://drive.google.com/drive/u/0/folders/1g50zd0gRRi3jGYjWSAtR_s0Uq5WDJ91X",
+    "thumbnail": "/achievements/parul-yadav.jpeg"
+  },
+  {
+    "name": "Aditya Maurya",
+    "title": "Research Paper Publication",
+    "category": "Publications",
+    "event_type": "Co-Curricular",
+    "description": "Research paper published under the guidance of faculty.",
+    "short_description": "Research paper published at National Level.",
+    "achievement_type": "Winner",
+    "proof_link": "https://drive.google.com/file/d/12QL5ssTGkrE8FFo6Ggu8l8tWQEYOYmk5/view?usp=drivesdk",
+    "thumbnail": "/achievements/aditya-maurya.jpeg"
+  },
+  {
+    "name": "Hifza Siddiqui",
+    "title": "Robo'craze: Inter college Robo race",
+    "category": "Hackathon",
+    "event_type": "Hackathon",
+    "description": "Inter-college Robo Race competition organized by GNIOT Group of Institutions. Challenge to design and build manually controlled, wireless robots to navigate an obstacle-filled track.",
+    "short_description": "Participation - Robo'craze Inter-college Robo Race by GNIOT.",
     "achievement_type": "Participation",
-    "proof_link": "https://drive.google.com/file/d/1_URwm7GBltjzKtRRuGVrveSwSV7OOrxT/view?usp=drivesdk"
+    "proof_link": "https://drive.google.com/file/d/1QQQg3IaDfFmlGGinxoZQ9ddTknEMVvhO/view?usp=drivesdk",
+    "thumbnail": "/achievements/hifza.jpeg"
+  },
+  {
+    "name": "Utkarsh Shahi",
+    "title": "Innotech 2025",
+    "category": "Hackathon",
+    "event_type": "Hackathon",
+    "description": "Organised well and helpful for students with innovative ideas.",
+    "short_description": "Participation - Innotech 2025 - Team THE INVINCIBLES.",
+    "achievement_type": "Participation",
+    "proof_link": "https://drive.google.com/file/d/1tz394d1_C2ttqBok93cUGYGWtpyewwVq/view?usp=sharing",
+    "thumbnail": "/achievements/utkarsh-shahi.jpeg"
+  },
+  {
+    "name": "Shivam Srivastava",
+    "title": "Football Sports Events - RANN'26, MAC'26, CHRISPO'26, SAMAGRA'26, HPL'25",
+    "category": "Sports",
+    "event_type": "Co-Curricular",
+    "description": "Football sports events participation across multiple national fests.",
+    "short_description": "Winner - Football Sports Events - FC KIET Team.",
+    "achievement_type": "Winner",
+    "proof_link": "https://drive.google.com/drive/folders/1AtZSXmm9dRFGPIfI6j8cX5QV2l8VxQ0x",
+    "thumbnail": "/achievements/shivam-shrivastava.jpeg"
   }
 ]
