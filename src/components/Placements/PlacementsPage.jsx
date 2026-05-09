@@ -131,6 +131,7 @@ const outcomeTabs = [
       "This batch established the baseline with strong early conversion and consistent internship-to-placement movement.",
     purpleValue: 68,
     greenValue: 60,
+    dremeOffers: 8,
   },
   {
     id: "2019-2023",
@@ -143,42 +144,46 @@ const outcomeTabs = [
       "This cycle shows healthy growth in hiring volume while maintaining strong placement conversion.",
     purpleValue: 136,
     greenValue: 121,
+    dremeOffers: 12,
   },
   {
     id: "2020-2024",
     label: "2020-2024",
-    totalStudents: 199,
-    placedStudents: 172,
+    totalStudents: 200,
+    placedStudents: 173,
     avgPackage: "5.96 LPA",
     placementRate: "86.4%",
     description:
       "The 2020-2024 cycle demonstrates consistent placement momentum with broad participation from product and service-based recruiters.",
-    purpleValue: 199,
-    greenValue: 172,
+    purpleValue: 200,
+    greenValue: 173,
+    dremeOffers: 27,
   },
   {
     id: "2021-2025",
     label: "2021-2025",
-    totalStudents: 210,
-    placedStudents: 185,
+    totalStudents: 206,
+    placedStudents: 190,
     avgPackage: "6.14 LPA",
     placementRate: "88.1%",
     description:
       "The 2021-2025 cycle reflects one of the strongest conversion trends, supported by repeated recruiter engagement and interview readiness training.",
-    purpleValue: 210,
-    greenValue: 185,
+    purpleValue: 206,
+    greenValue: 190,
+    dremeOffers : 21
   },
   {
     id: "2022-2026",
     label: "2022-2026 Ongoing",
     totalStudents: 210,
-    placedStudents: 165,
-    avgPackage: "5.96 LPA",
-    placementRate: "78.6%",
+    placedStudents: 168,
+    avgPackage: "5.81 LPA",
+    placementRate: "80.0%",
     description:
       "The current 2022-2026 cycle is ongoing with active recruiter participation and continued support in the final stages.",
     purpleValue: 210,
-    greenValue: 165,
+    greenValue: 168,
+    dremeOffers : 8
   },
 ];
 
@@ -316,56 +321,6 @@ const PlacementsPage = () => {
         />
 
         <section className="mb-12 md:mb-16">
-          <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Career pipelines</p>
-            <AnimatedHeadline as="h2" highlight="Hackathon" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
-              Internship and Hackathon Highlights
-            </AnimatedHeadline>
-            <p className="text-white/80 leading-7 mb-6 max-w-3xl">
-              These opportunities reflect the range of internships, women-focused mentoring tracks,
-              and competitive hackathons available to students.
-            </p>
-            <h3 className="text-lg font-semibold mb-3 text-[#f9c7b1]">Selected opportunities</h3>
-            <DataTable
-              headers={["Company", "Role", "Highlights"]}
-              rows={internshipHighlights.map((item) => [item.company, item.role, item.highlights])}
-            />
-          </div>
-        </section>
-
-        <section className="mb-12 md:mb-16">
-          <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Recruitment support</p>
-            <AnimatedHeadline as="h2" highlight="Internship" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
-              Recruiter-Linked Internship Opportunities
-            </AnimatedHeadline>
-            <p className="text-white/80 leading-7 mb-6 max-w-3xl">
-              A separate list of high-visibility recruiter programs and internships to keep the page easy to scan.
-            </p>
-            <DataTable
-              headers={["Company", "Role", "Highlights"]}
-              rows={recruiterHighlights.map((item) => [item.company, item.role, item.highlights])}
-            />
-          </div>
-        </section>
-
-        <section className="mb-12 md:mb-16">
-          <div className="rounded-4xl bg-white border border-slate-200 p-6 md:p-8 shadow-xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Support system</p>
-            <AnimatedHeadline as="h2" highlight="Readiness" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
-              Student Readiness & Tracking
-            </AnimatedHeadline>
-            <p className="text-slate-600 leading-7 mb-6 max-w-3xl">
-              The readiness model focuses on proof of work, visibility, and assessment-backed preparation.
-            </p>
-            <DataTable
-              headers={["Metric", "Purpose", "Mandatory For"]}
-              rows={readinessMetrics.map((item) => [item.metric, item.purpose, item.mandatoryFor])}
-            />
-          </div>
-        </section>
-
-        <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-white border border-slate-200 p-6 md:p-8 shadow-xl">
             <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Outcomes</p>
             <AnimatedHeadline as="h2" highlight="Overview" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
@@ -439,31 +394,74 @@ const PlacementsPage = () => {
                       <p className="text-xs text-slate-500 mt-1">{activeOutcome.placedStudents} placed students</p>
                     </div>
                     <div className="rounded-2xl bg-white border border-slate-200 px-4 py-3">
-                      <p className="text-xs uppercase tracking-wide text-slate-500">Remaining Area</p>
-                      <p className="text-2xl font-bold text-slate-600">{uncoveredPercent.toFixed(1)}%</p>
-                      <p className="text-xs text-slate-500 mt-1">{activeOutcome.totalStudents - activeOutcome.placedStudents} not placed</p>
+                      <p className="text-xs uppercase tracking-wide text-slate-500">dream offers</p>
+                      <p className="text-2xl font-bold text-slate-600">{((+(activeOutcome.dremeOffers)/(activeOutcome.totalStudents)) * 100).toFixed(1)}%</p>
+                      <p className="text-xs text-slate-500 mt-1">{activeOutcome.dremeOffers} dream offers</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 mt-4 text-xs md:text-sm text-slate-700">
-                    <span className="inline-flex items-center gap-2">
-                      <span className="h-3 w-3 rounded-full bg-[#9ecb3c]" /> Covered (Placed)
-                    </span>
-                    <span className="inline-flex items-center gap-2">
-                      <span className="h-3 w-3 rounded-full bg-[#e2e8f0]" /> Remaining
-                    </span>
-                  </div>
+                  
 
-                  <p className="mt-3 text-xs text-slate-500">
-                    Based on total students ({activeOutcome.totalStudents}) and placed students ({activeOutcome.placedStudents}).
-                  </p>
+                
                 </div>
               </div>
             </div>
 
-            <p className="mt-4 text-sm text-slate-500">{activeOutcome.label} - Ongoing Tracking</p>
+            {/* <p className="mt-4 text-sm text-slate-500">{activeOutcome.label} - Ongoing Tracking</p> */}
           </div>
         </section>
+
+        <section className="mb-12 md:mb-16">
+          <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl">
+            <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Career pipelines</p>
+            <AnimatedHeadline as="h2" highlight="Hackathon" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
+              Internship and Hackathon Highlights
+            </AnimatedHeadline>
+            <p className="text-white/80 leading-7 mb-6 max-w-3xl">
+              These opportunities reflect the range of internships, women-focused mentoring tracks,
+              and competitive hackathons available to students.
+            </p>
+            <h3 className="text-lg font-semibold mb-3 text-[#f9c7b1]">Selected opportunities</h3>
+            <DataTable
+              headers={["Company", "Role", "Highlights"]}
+              rows={internshipHighlights.map((item) => [item.company, item.role, item.highlights])}
+            />
+          </div>
+        </section>
+
+        <section className="mb-12 md:mb-16">
+          <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl">
+            <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Recruitment support</p>
+            <AnimatedHeadline as="h2" highlight="Internship" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
+              Recruiter-Linked Internship Opportunities
+            </AnimatedHeadline>
+            <p className="text-white/80 leading-7 mb-6 max-w-3xl">
+              A separate list of high-visibility recruiter programs and internships to keep the page easy to scan.
+            </p>
+            <DataTable
+              headers={["Company", "Role", "Highlights"]}
+              rows={recruiterHighlights.map((item) => [item.company, item.role, item.highlights])}
+            />
+          </div>
+        </section>
+
+        <section className="mb-12 md:mb-16">
+          <div className="rounded-4xl bg-white border border-slate-200 p-6 md:p-8 shadow-xl">
+            <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Support system</p>
+            <AnimatedHeadline as="h2" highlight="Readiness" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
+              Student Readiness & Tracking
+            </AnimatedHeadline>
+            <p className="text-slate-600 leading-7 mb-6 max-w-3xl">
+              The readiness model focuses on proof of work, visibility, and assessment-backed preparation.
+            </p>
+            <DataTable
+              headers={["Metric", "Purpose", "Mandatory For"]}
+              rows={readinessMetrics.map((item) => [item.metric, item.purpose, item.mandatoryFor])}
+            />
+          </div>
+        </section>
+
+        
 
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-white border border-[#e5d7ff] p-6 md:p-8 shadow-xl">

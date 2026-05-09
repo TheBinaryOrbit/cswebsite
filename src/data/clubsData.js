@@ -20,40 +20,178 @@ export const clubsData = [
       "Industry talks and certification-oriented workshops.",
       "Stronger placement readiness for AI, data, and software roles.",
     ],
-    members: [
+
+    "members": [
       {
-        name: "Aarav Singh",
-        role: "Club Lead",
-        year: "4th Year",
-        image: personImg,
-        email: "aarav.singh@kiet.edu",
-        linkedin: "https://www.linkedin.com/",
+        "name": "Abhishek Kumar",
+        "role": "Core Lead",
+        "year": "3rd Year",
+        "image": "personImg",
+        "email": "abhishekkumarbihta0021@gmail.com",
+        "linkedin": "https://www.linkedin.com/"
       },
       {
-        name: "Nisha Gupta",
-        role: "ML Mentor",
-        year: "3rd Year",
-        image: personImg,
-        email: "nisha.gupta@kiet.edu",
-        linkedin: "https://www.linkedin.com/",
+        "name": "Anurag Gautam",
+        "role": "CORE LEAD",
+        "year": "3rd Year",
+        "image": "personImg",
+        "email": "anurag.2327cs1038@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
       },
       {
-        name: "Rohan Mehta",
-        role: "Project Coordinator",
-        year: "3rd Year",
-        image: personImg,
-        email: "rohan.mehta@kiet.edu",
-        linkedin: "https://www.linkedin.com/",
+        "name": "Aaditya Singhal",
+        "role": "Vice President & AIML Lead",
+        "year": "2nd Year",
+        "image": "personImg",
+        "email": "aadityasinghal77@gmail.com",
+        "linkedin": "https://www.linkedin.com/"
       },
       {
-        name: "Isha Verma",
-        role: "Research Associate",
-        year: "2nd Year",
-        image: personImg,
-        email: "isha.verma@kiet.edu",
-        linkedin: "https://www.linkedin.com/",
+        "name": "Mansi Verma",
+        "role": "Blockchain Lead",
+        "year": "2nd Year",
+        "image": "personImg",
+        "email": "mansi.2428cs2540@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
       },
-    ],
+      {
+        "name": "Tulika Anand",
+        "role": "President",
+        "year": "2nd Year",
+        "image": "personImg",
+        "email": "tulika.2428cs1475@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Satvik Srivastava",
+        "role": "Technical Lead & Treasurer",
+        "year": "2nd Year",
+        "image": "personImg",
+        "email": "satvik.2428cs1048@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Shaswat Mishra",
+        "role": "Corporate Relations and Management Lead",
+        "year": "2nd Year",
+        "image": "personImg",
+        "email": "shaswat.2428cs1787@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Rudra Sharma",
+        "role": "2nd year member",
+        "year": "2nd Year",
+        "image": "personImg",
+        "email": "rudra.2428cs527@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Vedansh Agarwal",
+        "role": "2nd year member",
+        "year": "2nd Year",
+        "image": "personImg",
+        "email": "vedanshagarwaldpr1234@gmail.com",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        name : "Ayushi Rai",
+        role : "1st year Core member",
+        year : "1st Year",
+        image : "personImg",
+        email : "ayushi.25001127@kiet.edu",
+        linkedin : "https://www.linkedin.com/"
+      },
+      {
+        "name": "Mehak Agarwal",
+        "role": "Graphics Team",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "mehak.25001157@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Anshulika Raturi",
+        "role": "1st year core",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "anshulikaraturi@gmail.com",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Saar Malhotra",
+        "role": "1st Year Core",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "saar.25001224@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Himanshu Goel",
+        "role": "1st year member",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "himanshu.25004159@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Atul kumar",
+        "role": "core lead",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "atul.25013015@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Neev Wadhwa",
+        "role": "1st year core",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "neev.25001168@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Harsh Kumar Kushwaha",
+        "role": "Event Management and Documentation",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "harsh.25001111@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Mohd Sarfaraz",
+        "role": "Machine Learning AI and Graphics",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "mohd.25001163@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Akash Tiwari",
+        "role": "1st year member",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "akash.25002042@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Jiya Singhal",
+        "role": "1st year member",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "jiya.25001127@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      },
+      {
+        "name": "Vidhanshi Upadhyay",
+        "role": "1st year member",
+        "year": "1st Year",
+        "image": "personImg",
+        "email": "vidhanshi.25004363@kiet.edu",
+        "linkedin": "https://www.linkedin.com/"
+      }
+    ]
+    ,
     glimpses: [img1, img2, img3],
   },
   {

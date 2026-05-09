@@ -3,7 +3,8 @@ import { useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import AnimatedHeadline from "../AnimatedHeadline";
 import { Link } from "react-router-dom";
-import { FaChartPie, FaUsers, FaBriefcase, FaPercentage, FaBuilding, FaChartLine } from "react-icons/fa";
+import { FaChartPie, FaUsers, FaBriefcase, FaPercentage, FaBuilding, FaChartLine, FaDollarSign, FaWallet, FaEnvelope } from "react-icons/fa";
+import { FaLetterboxd, FaMoneyBillTransfer } from "react-icons/fa6";
 
 /* ─── Variants ─────────────────────────────────────────────── */
 const fadeInUp = {
@@ -43,8 +44,8 @@ const placementData = [
   {
     id: "2021-2025",
     label: "2021-2025",
-    total: 210,
-    placed: 185,
+    total: 206,
+    placed: 190,
     avg: "6.14 LPA",
     rate: 88.1,
     desc: "The 2021-2025 cycle reflects one of the strongest conversion trends, supported by repeated recruiter engagement and interview readiness training.",
@@ -156,9 +157,9 @@ const Placements = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
               {([
                 { label: "Highest Placement", val: "45 LPA", icon: <FaChartLine />, color: "text-orange-500" },
-                { label: "Total Students", val: 206, icon: <FaUsers />, color: "text-blue-600" },
+                { label: "Avg Package", val: "6.08LPA", icon: <FaWallet />, color: "text-blue-600" },
                 { label: "Placed", val: 188, icon: <FaBriefcase />, color: "text-green-600" },
-                { label: "Total Offers", val: 261, icon: <FaPercentage />, color: "text-purple-600" }
+                { label: "Total Offers", val: 261, icon: <FaEnvelope />, color: "text-purple-600" }
               ]).map((stat, i) => (
                 <div key={i} className="bg-slate-50/70 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border border-slate-200/80 flex flex-row sm:flex-col items-center sm:items-start gap-2 sm:gap-0">
                   <div className={`text-lg sm:text-xl md:text-2xl sm:mb-1 md:sm:mb-2 ${stat.color} shrink-0`}>{stat.icon}</div>
@@ -199,10 +200,10 @@ const Placements = () => {
                 <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-blue-200 bg-blue-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
                   <div className="flex items-center gap-2 text-blue-700">
                     <FaChartLine className="text-xs sm:text-sm md:text-base shrink-0" />
-                    <p className="text-[9px] sm:text-xs font-bold uppercase">Avg Package</p>
+                    <p className="text-[9px] sm:text-xs font-bold uppercase">Avg Package (Dream Offers)</p>
                   </div>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-600 mt-1">6.08 LPA</p>
-                  <p className="text-[9px] sm:text-xs text-gray-500">Per Placement</p>
+                  <p className="text-[9px] sm:text-xs text-gray-500">Of Our best Students</p>
                 </div>
                 <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-purple-200 bg-purple-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
                   <div className="flex items-center gap-2 text-purple-700">

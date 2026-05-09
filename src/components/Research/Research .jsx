@@ -5,46 +5,48 @@ import { FiUser } from "react-icons/fi";
 import { animate, motion, useInView, useMotionValue, useTransform } from "framer-motion";
 import ResearchTabs from "./ResearchTabs";
 import AnimatedHeadline from "../AnimatedHeadline";
-
-// ─── LIVE DATA from R&D Excel files (2025-26 actual) ──────────────────────
-// Journals: 27 | Conferences: 61 | Book Chapters: 4 | Books: 18 | Patents: 54
-// Journal SCI: 10, Scopus: 4
+import { researchRecords } from "../../data/researchData";
 
 const THEME = {
   primary: "#113959",
   accent: "#f15b20",
 };
 
-// ─── Stats cards (2025-26 current session) ─────────────────────────────────
+// ─── Stats cards (Session 2025-26 Aggregate) ──────────────────────────────
 const statCards = [
-  { label: "Journals",               value: 23 },
-  { label: "Conferences & Chapters", value: 51 },
-  { label: "Books Published",        value: 7  },
-  { label: "Patents",                value: 45 },
+  { label: "Journals (Total)", value: 28 }, // Faculty (14) + Students (Placeholder/Verified)
+  { label: "Conferences", value: 62 },      // Faculty (20) + Students (42)
+  { label: "Patents Published", value: 28 }, // Faculty (2) + Students (26)
+  { label: "Patents Granted", value: 2 },   // Faculty (2)
 ];
 
-// ─── Research output across 3 sessions (from actual file counts) ────────────
-const researchOutput = [
-  { session: "2025-26", journals: 23,  conferences: 51, patents: 45 },
-  { session: "2024-25", journals: 14,  conferences: 52, patents: 82 },
-  { session: "2023-24", journals: 24,  conferences: 63, patents: 103 },
+// ─── Data from Image 1: Faculty Publications ──────────────────────────────
+const facultyPublications = [
+  { session: "2025-26*", journals: 14, conferences: 20, pubPatents: 2, grantPatents: 2 },
+  { session: "2024-25", journals: 14, conferences: 12, pubPatents: 24, grantPatents: 2 },
+  { session: "2023-24", journals: 12, conferences: 26, pubPatents: 23, grantPatents: 3 },
 ];
 
-// ─── Journal indexing across 3 sessions ────────────────────────────────────
-const journalIndexing = [
-  { session: "2025-26", journals: 23, sci: 10, scopus: 4 },
-  { session: "2024-25", journals: 14, sci: 9,  scopus: 4 },
-  { session: "2023-24", journals: 24, sci: 6,  scopus: 8 },
+// ─── Data from Image 2: Student Publications ──────────────────────────────
+const studentPublications = [
+  { session: "2025-26*", conferences: 42, patents: 26, details: "29-Published, 13-Registered" },
+  { session: "2024-25", conferences: 3, patents: 52, details: "" },
+  { session: "2023-24", conferences: 14, patents: 68, details: "" },
 ];
 
-const maxOutputTotal = Math.max(
-  ...researchOutput.map((item) => item.journals + item.conferences + item.patents)
-);
+const maxFacultyTotal = Math.max(...facultyPublications.map(f => f.journals + f.conferences + f.pubPatents + f.grantPatents));
+const maxStudentTotal = Math.max(...studentPublications.map(s => s.conferences + s.patents));
 
 function ProgressBar({ value, color }) {
   return (
-    <div className="h-2.5 w-full rounded-full bg-slate-200 overflow-hidden">
-      <div className="h-full rounded-full" style={{ width: `${value}%`, backgroundColor: color }} />
+    <div className="h-2.5 w-full rounded-full bg-slate-100 overflow-hidden">
+      <motion.div 
+        initial={{ width: 0 }}
+        whileInView={{ width: `${value}%` }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="h-full rounded-full" 
+        style={{ backgroundColor: color }} 
+      />
     </div>
   );
 }
@@ -65,223 +67,154 @@ function ResearchStatCard({ label, value, index }) {
   useEffect(() => {
     if (inView) {
       count.set(0);
-      const animation = animate(count, value, {
-        duration: 1.35,
-        ease: "easeOut",
-      });
+      const animation = animate(count, value, { duration: 1.5, ease: "easeOut" });
       return () => animation.stop();
     }
     count.set(0);
-    return undefined;
   }, [count, inView, value]);
 
   return (
     <motion.div
       ref={ref}
       className={`rounded-2xl border p-5 shadow-lg ${
-        isAccent
-          ? "border-[#f15b20]/25 bg-[#f15b20] text-white"
-          : "border-[#113959]/15 bg-[#113959] text-white"
+        isAccent ? "bg-[#f15b20] text-white" : "bg-[#113959] text-white"
       }`}
-      initial={{ opacity: 0, y: 28, scale: 0.94 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: false, amount: 0.55 }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
     >
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
-        {label}
-      </p>
-      <p className="mt-4 text-4xl font-extrabold leading-none md:text-5xl">
-        {displayValue}
-        <span className="align-top text-2xl md:text-3xl">+</span>
-      </p>
-      <div className="mt-5 h-1.5 rounded-full bg-white/20">
-        <motion.div
-          className="h-full rounded-full bg-white"
-          initial={{ width: 0 }}
+      <p className="text-[10px] font-bold uppercase tracking-widest opacity-80">{label}</p>
+      <p className="mt-2 text-4xl font-black">{displayValue}</p>
+      <div className="mt-4 h-1 rounded-full bg-white/20 overflow-hidden">
+        <motion.div 
+          className="h-full bg-white" 
+          initial={{ width: 0 }} 
           animate={inView ? { width: "100%" } : { width: 0 }}
-          transition={{ duration: 1.1, delay: 0.15, ease: "easeOut" }}
+          transition={{ duration: 1.5 }}
         />
       </div>
     </motion.div>
   );
 }
 
-// ─── researchRecords for ResearchTabs ────────────────────────────────────────
-// Import your generated researchData.ts and pass researchRecords here.
-// Below is the shape expected by ResearchTabs — populate from your data file.
-import { researchRecords } from "../../data/researchData";
-
 const Research = () => {
   return (
-    <section className="w-full py-8 sm:py-10" id="research-section">
-      <div className="max-w-7xl mx-auto p-4">
-        {/* ── Header ── */}
-        <div className="flex justify-center items-center h-fit">
-          <p
-            className="flex items-center px-3 rounded-lg text-xs gap-1 mb-4 py-1 font-semibold"
-            style={{ border: `1px solid ${THEME.primary}33`, color: THEME.primary }}
-          >
-            <FiUser size={12} />
-            <span className="text-xs font-semibold">Our Research</span>
+    <section className="w-full py-12 bg-slate-50/50" id="research-section">
+      <div className="max-w-7xl mx-auto px-4">
+        
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-white border border-slate-200 text-[#113959] text-xs font-bold gap-2 mb-4">
+            <FiUser /> <span>RESEARCH CENTER</span>
+          </div>
+          <AnimatedHeadline highlight="Data" className="text-3xl md:text-5xl font-black text-[#113959] mb-4">
+            Publications Overview
+          </AnimatedHeadline>
+          <p className="text-slate-500 max-w-2xl mx-auto text-sm md:text-base">
+            Comprehensive tracking of research output for Faculty and Students across the last three academic sessions.
           </p>
         </div>
 
-        <AnimatedHeadline
-          highlight="Research"
-          className="text-center text-2xl sm:text-3xl md:text-4xl font-bold capitalize mb-2 leading-tight"
-          style={{ color: THEME.primary }}
-        >
-          Research Data Overview
-        </AnimatedHeadline>
-        <p className="max-w-3xl mx-auto text-sm md:text-lg text-center text-slate-600 mb-6 md:mb-8">
-          Recent Journals, Conferences &amp; Book Chapters, Books and Patents from the department (Session 2025-26).
-        </p>
-
-        {/* ── Stat Cards (2025-26) ── */}
-        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {statCards.map((stat, index) => (
-            <ResearchStatCard
-              key={stat.label}
-              label={stat.label}
-              value={stat.value}
-              index={index}
-            />
+        {/* Top Summary Stats */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-10">
+          {statCards.map((stat, i) => (
+            <ResearchStatCard key={stat.label} {...stat} index={i} />
           ))}
         </div>
 
-        {/* ── Two analysis cards ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-
-          {/* Research Output Card */}
-          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4 sm:p-5">
-            <AnimatedHeadline as="h2" highlight="Output" className="text-lg sm:text-xl font-bold mb-1" style={{ color: THEME.primary }}>
-              Research Output
-            </AnimatedHeadline>
-            <p className="text-xs text-slate-500 mb-3">Journals + Conferences/Chapters + Patents across sessions</p>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-slate-200" style={{ color: THEME.primary }}>
-                    <th className="text-left py-2">Session</th>
-                    <th className="text-left py-2">Journals</th>
-                    <th className="text-left py-2">Conf+Chap</th>
-                    <th className="text-left py-2">Patents</th>
-                    
+        {/* Detailed Analysis Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          
+          {/* Card 1: Faculty */}
+          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
+            <h3 className="text-xl font-bold text-[#113959] flex items-center gap-2 mb-4">
+              <span className="w-2 h-6 bg-[#113959] rounded-full inline-block" />
+              Faculty Publications
+            </h3>
+            <div className="overflow-hidden rounded-xl border border-slate-100 mb-6">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-500 uppercase text-[10px] font-bold">
+                  <tr>
+                    <th className="px-4 py-3">Session</th>
+                    <th className="px-4 py-3 text-center">Journals</th>
+                    <th className="px-4 py-3 text-center">Conf/Books</th>
+                    <th className="px-4 py-3 text-right">Patents (P/G)</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {researchOutput.map((row) => {
-                    const total = row.journals + row.conferences + row.patents;
-                    const pct = Math.round((total / maxOutputTotal) * 100);
-                    return (
-                      <tr key={row.session} className="border-b border-slate-100">
-                        <td className="py-2 font-medium">{row.session}</td>
-                        <td className="py-2">{row.journals}</td>
-                        <td className="py-2">{row.conferences}</td>
-                        <td className="py-2">{row.patents}</td>
-                        
-                      </tr>
-                    );
-                  })}
+                <tbody className="divide-y divide-slate-50">
+                  {facultyPublications.map((row) => (
+                    <tr key={row.session} className="hover:bg-slate-50/50 transition-colors">
+                      <td className="px-4 py-3 font-semibold text-slate-700">{row.session}</td>
+                      <td className="px-4 py-3 text-center text-slate-600">{row.journals}</td>
+                      <td className="px-4 py-3 text-center text-slate-600">{row.conferences}</td>
+                      <td className="px-4 py-3 text-right font-bold text-[#f15b20]">{row.pubPatents} / {row.grantPatents}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
-
-            <div className="mt-4 space-y-3">
-              {researchOutput.map((row) => {
-                const total = row.journals + row.conferences + row.patents;
-                const pct = Math.round((total / maxOutputTotal) * 100);
-                return (
-                  <div key={`${row.session}-bar`}>
-                    <div className="flex justify-between text-xs sm:text-sm mb-1 text-slate-600">
-                      <span>{row.session}</span>
-                      <span className="font-semibold text-slate-900">
-                        {total} 
-                      </span>
-                    </div>
-                    <ProgressBar value={pct} color={THEME.primary} />
+            <div className="space-y-4">
+              {facultyPublications.map(row => (
+                <div key={row.session}>
+                  <div className="flex justify-between text-xs font-bold text-slate-600 mb-1.5">
+                    <span>{row.session} Volume</span>
+                    <span>{row.journals + row.conferences + row.pubPatents + row.grantPatents} Units</span>
                   </div>
-                );
-              })}
+                  <ProgressBar color={THEME.primary} value={( (row.journals + row.conferences + row.pubPatents + row.grantPatents) / maxFacultyTotal) * 100} />
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Journal Indexing Card */}
-          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4 sm:p-5">
-            <AnimatedHeadline as="h2" highlight="Indexing" className="text-lg sm:text-xl font-bold mb-1" style={{ color: THEME.primary }}>
-              Journal Indexing
-            </AnimatedHeadline>
-            <p className="text-xs text-slate-500 mb-3">SCI &amp; Scopus indexed journals per session</p>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-slate-200" style={{ color: THEME.primary }}>
-                    <th className="text-left py-2">Session</th>
-                    <th className="text-left py-2">Journals</th>
-                    <th className="text-left py-2">SCI/SCIE</th>
-                    <th className="text-left py-2">Scopus</th>
-                    <th className="text-left py-2">Indexed %</th>
+          {/* Card 2: Students */}
+          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
+            <h3 className="text-xl font-bold text-[#113959] flex items-center gap-2 mb-4">
+              <span className="w-2 h-6 bg-[#f15b20] rounded-full inline-block" />
+              Student Publications
+            </h3>
+            <div className="overflow-hidden rounded-xl border border-slate-100 mb-6">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-500 uppercase text-[10px] font-bold">
+                  <tr>
+                    <th className="px-4 py-3">Session</th>
+                    <th className="px-4 py-3 text-center">Conferences</th>
+                    <th className="px-4 py-3 text-right">Patents</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {journalIndexing.map((row) => {
-                    const indexedPct = Math.round(((row.sci + row.scopus) / row.journals) * 100);
-                    return (
-                      <tr key={row.session} className="border-b border-slate-100">
-                        <td className="py-2 font-medium">{row.session}</td>
-                        <td className="py-2">{row.journals}</td>
-                        <td className="py-2">{row.sci}</td>
-                        <td className="py-2">{row.scopus}</td>
-                        <td className="py-2 font-semibold" style={{ color: THEME.primary }}>
-                          {indexedPct}%
-                        </td>
-                      </tr>
-                    );
-                  })}
+                <tbody className="divide-y divide-slate-50">
+                  {studentPublications.map((row) => (
+                    <tr key={row.session} className="hover:bg-slate-50/50 transition-colors">
+                      <td className="px-4 py-3 font-semibold text-slate-700">{row.session}</td>
+                      <td className="px-4 py-3 text-center">
+                        <span className="font-bold text-[#113959]">{row.conferences}</span>
+                        {row.details && <p className="text-[10px] text-slate-400 font-normal">{row.details}</p>}
+                      </td>
+                      <td className="px-4 py-3 text-right font-bold text-slate-600">{row.patents}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
-
-            <div className="mt-4 space-y-3">
-              {journalIndexing.map((row) => {
-                const sciPct = Math.round((row.sci / row.journals) * 100);
-                const scopusPct = Math.round((row.scopus / row.journals) * 100);
-                return (
-                  <div key={`${row.session}-index`}>
-                    <div className="flex justify-between text-xs sm:text-sm mb-1 text-slate-600">
-                      <span className="font-medium text-slate-700">{row.session}</span>
-                      <span className="font-semibold text-slate-900">
-                        SCI {sciPct}% | Scopus {scopusPct}%
-                      </span>
-                    </div>
-                    <div className="flex gap-1">
-                      <div className="h-2.5 rounded-full overflow-hidden" style={{ width: `${sciPct + scopusPct}%`, flex: "none" }}>
-                        <div className="h-full flex">
-                          <div style={{ width: `${(sciPct / (sciPct + scopusPct || 1)) * 100}%`, backgroundColor: THEME.primary }} className="h-full rounded-l-full" />
-                          <div style={{ width: `${(scopusPct / (sciPct + scopusPct || 1)) * 100}%`, backgroundColor: THEME.accent }} className="h-full rounded-r-full" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex gap-3 mt-1 text-xs text-slate-500">
-                      <span className="flex items-center gap-1">
-                        <span className="inline-block w-2 h-2 rounded-full" style={{backgroundColor: THEME.primary}}/>
-                        SCI/SCIE: {row.sci}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <span className="inline-block w-2 h-2 rounded-full" style={{backgroundColor: THEME.accent}}/>
-                        Scopus: {row.scopus}
-                      </span>
-                    </div>
+            <div className="space-y-4">
+              {studentPublications.map(row => (
+                <div key={row.session}>
+                  <div className="flex justify-between text-xs font-bold text-slate-600 mb-1.5">
+                    <span>{row.session} Growth</span>
+                    <span>{row.conferences + row.patents} Total</span>
                   </div>
-                );
-              })}
+                  <ProgressBar color={THEME.accent} value={((row.conferences + row.patents) / maxStudentTotal) * 100} />
+                </div>
+              ))}
             </div>
           </div>
+
         </div>
 
-        {/* ── Tabbed Records ── */}
-        <ResearchTabs data={researchRecords} showAll />
+        {/* Tabbed Component for individual records */}
+        <div className="mt-16">
+           <ResearchTabs data={researchRecords} showAll />
+        </div>
       </div>
     </section>
   );

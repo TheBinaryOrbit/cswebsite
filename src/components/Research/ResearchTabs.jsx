@@ -138,7 +138,7 @@ export default function ResearchTabs({ data = {}, showAll = false, recentLimit =
       </div>
 
       {/* ── Table ── */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" style={{ maxHeight: "300px", overflowY: "auto" }}>
         <table className="w-full text-xs sm:text-sm">
           <thead>
             <tr className="border-b text-white" style={{ backgroundColor: TAB_THEME.primary }}>

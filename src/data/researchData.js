@@ -1497,7 +1497,7 @@ export const researchRecords = {
 export const researchStats = {
   journalCount:    23,
   conferenceCount: 51,   // conferences + book chapters
-  bookCount:       7,
+  bookCount:       1,
   patentCount:     45,
   total:           126,
 };

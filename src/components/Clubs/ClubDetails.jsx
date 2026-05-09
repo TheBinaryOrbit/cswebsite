@@ -19,7 +19,6 @@ const fadeUp = {
 function MemberCard({ member, index }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
@@ -28,85 +27,52 @@ function MemberCard({ member, index }) {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={fadeUp}
-      whileHover={{ scale: 1.03, y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      className="relative rounded-2xl overflow-hidden bg-[#ebebeb] h-70 cursor-pointer"
+      whileHover={{ y: -5 }}
+      className="relative flex flex-col justify-between p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow h-48 cursor-default"
     >
-      <motion.img
-        src={member.image}
-        alt={member.name}
-        className="w-full h-full object-cover"
-        animate={{
-          filter: hovered ? "grayscale(0%)" : "grayscale(100%)",
-          scale: hovered ? 1.08 : 1.02,
-        }}
-        transition={{ duration: 0.4 }}
-      />
-
-      <motion.div
-        className="absolute inset-0 bg-black"
-        animate={{ opacity: hovered ? 0.28 : 0 }}
-        transition={{ duration: 0.3 }}
-      />
-
-      <div className="absolute top-3 right-3 flex flex-col gap-2">
-        <AnimatePresence>
-          {hovered && (
-            <>
-              {member.email && (
-                <motion.a
-                  key="gmail"
-                  href={`mailto:${member.email}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  initial={{ opacity: 0, x: 20, scale: 0.7 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: 20, scale: 0.7 }}
-                  transition={{ duration: 0.22, delay: 0, ease: "easeOut" }}
-                  whileHover={{ scale: 1.2, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-md"
-                  style={{ background: "#EA4335" }}
-                >
-                  <MdEmail size={15} />
-                </motion.a>
-              )}
-
-              {member.linkedin && (
-                <motion.a
-                  key="linkedin"
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  initial={{ opacity: 0, x: 20, scale: 0.7 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: 20, scale: 0.7 }}
-                  transition={{ duration: 0.22, delay: 0.08, ease: "easeOut" }}
-                  whileHover={{ scale: 1.2, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-md"
-                  style={{ background: "#0077B5" }}
-                >
-                  <FaLinkedinIn size={13} />
-                </motion.a>
-              )}
-            </>
-          )}
-        </AnimatePresence>
+      {/* Name and Position Section */}
+      <div>
+        <h3 className="text-xl font-bold text-slate-900 truncate">
+          {member.name}
+        </h3>
+        <p className="text-sm font-semibold text-blue-600 mb-1">
+          {member.role}
+        </p>
+        <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+          {member.year}
+        </p>
       </div>
 
-      <motion.div
-        className="absolute left-2 right-2 sm:left-3 sm:right-3 bottom-2 sm:bottom-3 bg-white rounded-2xl border border-slate-200 shadow-lg px-3 sm:px-4 py-2.5 sm:py-3"
-        animate={{ y: hovered ? -4 : 0 }}
-        transition={{ duration: 0.25 }}
-      >
-        <h3 className="text-base sm:text-lg font-bold text-slate-900 truncate leading-tight">{member.name}</h3>
-        <p className="text-xs sm:text-sm font-medium text-slate-600 truncate">{member.role}</p>
-        <p className="text-[11px] sm:text-xs font-medium text-slate-500 truncate">{member.year}</p>
-      </motion.div>
+      {/* Action Buttons (Socials) */}
+      <div className="flex gap-3 mt-4">
+        {member.email && (
+          <motion.a
+            href={`mailto:${member.email}`}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-9 h-9 rounded-lg flex items-center justify-center text-white shadow-sm transition-colors"
+            style={{ background: "#EA4335" }}
+            title="Email Member"
+          >
+            <MdEmail size={18} />
+          </motion.a>
+        )}
+
+        {member.linkedin && (
+          <motion.a
+            href={member.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-9 h-9 rounded-lg flex items-center justify-center text-white shadow-sm transition-colors"
+            style={{ background: "#0077B5" }}
+            title="LinkedIn Profile"
+          >
+            <FaLinkedinIn size={16} />
+          </motion.a>
+        )}
+      </div>
     </motion.div>
   );
 }
@@ -210,7 +176,7 @@ const ClubDetails = () => {
         </section>
 
         {/* Members Section */}
-        {/* <section className="mt-8">
+        <section className="mt-8">
           <AnimatedHeadline as="h2" highlight="Members" className="text-xl font-bold text-slate-900">
             Members
           </AnimatedHeadline>
@@ -219,7 +185,7 @@ const ClubDetails = () => {
               <MemberCard key={member.name} member={member} index={index} />
             ))}
           </div>
-        </section> */}
+        </section>
       </div>
     </main>
   );
