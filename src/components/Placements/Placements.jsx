@@ -35,10 +35,11 @@ const placementData = [
   {
     id: "2020-2024",
     label: "2020-2024",
-    total: 199,
-    placed: 172,
+    total: 200,
+    placed: 173,
     avg: "5.96 LPA",
-    rate: 86.4,
+    rate: 86.5,
+    dreamOffers: 19,
     desc: "The 2020-2024 cycle demonstrates consistent placement momentum with broad participation from product and service-based recruiters.",
   },
   {
@@ -48,15 +49,17 @@ const placementData = [
     placed: 190,
     avg: "6.14 LPA",
     rate: 88.1,
+    dreamOffers: 39,
     desc: "The 2021-2025 cycle reflects one of the strongest conversion trends, supported by repeated recruiter engagement and interview readiness training.",
   },
   {
     id: "2022-2026",
     label: "2022-2026 Ongoing",
     total: 210,
-    placed: 165,
-    avg: "5.96 LPA",
-    rate: 78.6,
+    placed: 168,
+    avg: "5.81 LPA",
+    rate: 80.0,
+    dreamOffers: 22,
     desc: "The current 2022-2026 cycle is ongoing with active recruiter participation and continued support in the final stages.",
   },
 ];
@@ -77,31 +80,7 @@ const duplicatedCompanies = [...companies, ...companies];
 
 /* ─── Components ───────────────────────────────────────────── */
 
-function SimplePieChart({ percentage, inView }) {
-  const radius = 50;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (percentage / 100) * circumference;
-
-  return (
-    <div className="relative w-48 h-48 flex items-center justify-center">
-      <svg className="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r={radius} fill="transparent" stroke="hsl(210 40% 96.1%)" strokeWidth="10" />
-        <motion.circle
-          cx="60" cy="60" r={radius} fill="transparent" stroke="hsl(22.8 95.8% 55.5%)" strokeWidth="10"
-          strokeDasharray={circumference}
-          initial={{ strokeDashoffset: circumference }}
-          animate={inView ? { strokeDashoffset } : { strokeDashoffset: circumference }}
-          transition={{ duration: 1.5, ease: [0.25, 1, 0.5, 1] }}
-          strokeLinecap="round"
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <span className="text-4xl font-bold text-[#113959]">{percentage}<span className="text-2xl">%</span></span>
-        <span className="text-xs uppercase text-gray-500 font-semibold tracking-wider">Placed</span>
-      </div>
-    </div>
-  );
-}
+import SimplePieChart from "./SimplePieChart";
 
 const Placements = () => {
   const activeTab = "2021-2025";
@@ -117,8 +96,8 @@ const Placements = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div ref={ref} className="w-full bg-slate-50 py-12 sm:py-20 lg:py-28 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto bg-[#0a2840] p-4 sm:p-6 md:p-8 lg:p-12 rounded-2xl sm:rounded-3xl">
+    <div ref={ref} className="w-full bg-white py-12 sm:py-20 lg:py-28 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto bg-white p-4 sm:p-6 md:p-8 lg:p-12 rounded-4xl border border-slate-200 shadow-xl">
 
         {/* Header Section */}
         <div className="mb-8 md:mb-12 text-center">
@@ -130,14 +109,14 @@ const Placements = () => {
           >
             Career Outcomes
           </motion.p>
-          <AnimatedHeadline highlight="Success" className="text-white text-3xl sm:text-4xl md:text-5xl font-serif">
+          <AnimatedHeadline highlight="Success" className="text-[#113959] text-3xl sm:text-4xl md:text-5xl font-serif font-semibold">
             Placement Overview
           </AnimatedHeadline>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-slate-300 mt-4 max-w-2xl mx-auto text-sm sm:text-base px-4"
+            className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base px-4 leading-relaxed"
           >
             Explore our impressive placement records, showcasing the success of our students across various industries and top companies.
           </motion.p>
@@ -149,23 +128,23 @@ const Placements = () => {
           <motion.div
             key={activeTab + "left"}
             initial="hidden" animate="visible" variants={fadeInUp}
-            className="col-span-1 md:col-span-1 lg:col-span-5 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl border border-slate-100 w-full"
+            className="col-span-1 md:col-span-1 lg:col-span-5 bg-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-md border border-slate-200 w-full"
           >
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#113959] mb-2 text-center sm:text-left">Batch Snapshot: <span className="text-[#f15b20]">{data.label}</span></h3>
-            <p className="text-gray-500 mb-4 sm:mb-6 md:mb-8 text-xs sm:text-sm leading-relaxed text-center sm:text-left">{data.desc}</p>
+            <p className="text-slate-500 mb-4 sm:mb-6 md:mb-8 text-xs sm:text-sm leading-relaxed text-center sm:text-left">{data.desc}</p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {([
-                { label: "Highest Placement", val: "45 LPA", icon: <FaChartLine />, color: "text-orange-500" },
-                { label: "Avg Package", val: "6.08 LPA", icon: <FaWallet />, color: "text-blue-600" },
-                { label: "Placed", val: 188, icon: <FaBriefcase />, color: "text-green-600" },
-                { label: "Total Offers", val: 261, icon: <FaEnvelope />, color: "text-purple-600" }
+                { label: "Highest Placement", val: "45 LPA", icon: <FaChartLine />, color: "text-orange-500", bg: "bg-white" },
+                { label: "Avg Package", val: data.avg, icon: <FaWallet />, color: "text-blue-600", bg: "bg-white" },
+                { label: "Placed", val: data.placed, icon: <FaBriefcase />, color: "text-green-600", bg: "bg-white" },
+                { label: "Total Offers", val: 261, icon: <FaEnvelope />, color: "text-purple-600", bg: "bg-white" }
               ]).map((stat, i) => (
-                <div key={i} className="bg-slate-50/70 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border border-slate-200/80 flex flex-row sm:flex-col items-center sm:items-start gap-2 sm:gap-0">
+                <div key={i} className={`${stat.bg} p-3 sm:p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-row sm:flex-col items-center sm:items-start gap-2 sm:gap-0`}>
                   <div className={`text-lg sm:text-xl md:text-2xl sm:mb-1 md:sm:mb-2 ${stat.color} shrink-0`}>{stat.icon}</div>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 truncate">{stat.label}</span>
-                    <span className="text-base sm:text-lg md:text-2xl font-extrabold text-slate-800">{stat.val}</span>
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 truncate">{stat.label}</span>
+                    <span className="text-base sm:text-lg md:text-2xl font-extrabold text-[#113959]">{stat.val}</span>
                   </div>
                 </div>
               ))}
@@ -174,7 +153,7 @@ const Placements = () => {
             <Link to="/placements" className="bg-[#f15b20] text-white text-sm font-semibold px-4 py-2 rounded-xl mt-6 inline-block transition hover:bg-[#d14e1a] w-full text-center ">
               View Detailed Placement Report &rarr;
             </Link>
-            
+
           </motion.div>
 
           {/* Right: Chart & Recruiters */}
@@ -184,7 +163,7 @@ const Placements = () => {
             <motion.div
               key={activeTab + "right"}
               initial="hidden" animate="visible" variants={fadeInUp}
-              className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl border border-slate-100 flex flex-col md:flex-row lg:flex-row items-center justify-between gap-4 sm:gap-6"
+              className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-md border border-slate-200 flex flex-col md:flex-row lg:flex-row items-center justify-between gap-4 sm:gap-6"
             >
               <div className="flex-1 text-center md:text-left lg:text-left w-full md:w-auto">
                 <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#113959] mb-1">Placement Rate</h3>
@@ -196,31 +175,31 @@ const Placements = () => {
                 </div>
               </div>
 
-              <div className="w-full md:w-56 lg:w-56 space-y-2 sm:space-y-3 md:space-y-4 self-stretch flex flex-col">
-                <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-blue-200 bg-blue-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
+              <div className="w-full md:w-56 lg:w-56 space-y-3 sm:space-y-4 self-stretch flex flex-col">
+                <div className="flex-1 p-4 border border-blue-200 bg-white rounded-2xl shadow-sm flex flex-col justify-center">
                   <div className="flex items-center gap-2 text-blue-700">
                     <FaChartLine className="text-xs sm:text-sm md:text-base shrink-0" />
-                    <p className="text-[9px] sm:text-xs font-bold uppercase">Avg Package (Dream Offers)</p>
+                    <p className="text-[10px] sm:text-xs font-bold uppercase">Avg Package (Dream Offers)</p>
                   </div>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-600 mt-1">6.08 LPA</p>
-                  <p className="text-[9px] sm:text-xs text-gray-500">Of Our best Students</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-600 mt-1">{data.avg}</p>
+                  <p className="text-[10px] sm:text-xs text-slate-500">Of Our best Students</p>
                 </div>
-                <div className="flex-1 p-2.5 sm:p-3 md:p-4 border border-purple-200 bg-purple-50/50 rounded-lg sm:rounded-2xl flex flex-col justify-center">
+                <div className="flex-1 p-4 border border-purple-200 bg-white rounded-2xl shadow-sm flex flex-col justify-center">
                   <div className="flex items-center gap-2 text-purple-700">
                     <FaBriefcase className="text-xs sm:text-sm md:text-base shrink-0" />
-                    <p className="text-[9px] sm:text-xs font-bold uppercase">Dream Offers</p>
+                    <p className="text-[10px] sm:text-xs font-bold uppercase">Dream Offers</p>
                   </div>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-600 mt-1">22</p>
-                  <p className="text-[9px] sm:text-xs text-gray-500">Premium Companies</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-600 mt-1">{data.dreamOffers || 0}</p>
+                  <p className="text-[10px] sm:text-xs text-slate-500">Premium Companies</p>
                 </div>
               </div>
             </motion.div>
 
             {/* Recruiter Section */}
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 overflow-x-auto">
+            <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 border border-slate-100 overflow-x-auto shadow-sm">
               <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
                 <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#113959]">Top Recruiters</h3>
-                <span className="bg-orange-50 text-[#f15b20] text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded-full whitespace-nowrap">
+                <span className="bg-orange-100 text-[#f15b20] text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full whitespace-nowrap">
                   300+ Companies
                 </span>
               </div>

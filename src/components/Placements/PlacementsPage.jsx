@@ -1,6 +1,7 @@
-"use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useInView } from "framer-motion";
 import AnimatedHeadline from "../AnimatedHeadline";
+import SimplePieChart from "./SimplePieChart";
 
 const internshipHighlights = [
   {
@@ -157,7 +158,7 @@ const outcomeTabs = [
       "The 2020-2024 cycle demonstrates consistent placement momentum with broad participation from product and service-based recruiters.",
     purpleValue: 200,
     greenValue: 173,
-    dremeOffers: 27,
+    dremeOffers: 19,
   },
   {
     id: "2021-2025",
@@ -170,7 +171,7 @@ const outcomeTabs = [
       "The 2021-2025 cycle reflects one of the strongest conversion trends, supported by repeated recruiter engagement and interview readiness training.",
     purpleValue: 206,
     greenValue: 190,
-    dremeOffers : 21
+    dremeOffers: 39
   },
   {
     id: "2022-2026",
@@ -183,7 +184,7 @@ const outcomeTabs = [
       "The current 2022-2026 cycle is ongoing with active recruiter participation and continued support in the final stages.",
     purpleValue: 210,
     greenValue: 168,
-    dremeOffers : 8
+    dremeOffers: 22
   },
 ];
 
@@ -299,6 +300,10 @@ function OfferBoard({ title, rows }) {
 const PlacementsPage = () => {
   const [activeOutcomeId, setActiveOutcomeId] = useState(outcomeTabs[0].id);
   const activeOutcome = outcomeTabs.find((tab) => tab.id === activeOutcomeId) || outcomeTabs[0];
+
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
   const coveredPercent = activeOutcome.totalStudents > 0
     ? Number(((activeOutcome.placedStudents / activeOutcome.totalStudents) * 100).toFixed(1))
     : 0;
@@ -311,7 +316,7 @@ const PlacementsPage = () => {
     : "0.0%";
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white" ref={ref}>
       <div className="max-w-6xl mx-auto px-4 py-10 md:py-16">
         <SectionHeading
           eyebrow="Placements"
@@ -335,11 +340,10 @@ const PlacementsPage = () => {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveOutcomeId(tab.id)}
-                  className={`px-4 py-2 rounded-full border text-sm md:text-base font-semibold transition ${
-                    activeOutcomeId === tab.id
+                  className={`px-4 py-2 rounded-full border text-sm md:text-base font-semibold transition ${activeOutcomeId === tab.id
                       ? "bg-[#113959] text-white border-[#113959]"
                       : "bg-white text-[#113959] border-slate-300 hover:border-[#113959]"
-                  }`}
+                    }`}
                 >
                   {tab.label}
                 </button>
@@ -379,13 +383,9 @@ const PlacementsPage = () => {
                 </h3>
 
                 <div className="flex flex-col items-center justify-center py-2 md:py-6">
-                  <div
-                    className="h-56 w-56 md:h-64 md:w-64 rounded-full border border-slate-200"
-                    style={{
-                      background: `conic-gradient(#9ecb3c 0% ${coveredPercent}%, #e2e8f0 ${coveredPercent}% 100%)`,
-                    }}
-                    title={`${activeOutcome.label}: ${activeOutcome.placedStudents}/${activeOutcome.totalStudents} placed (${coveredPercent}%)`}
-                  />
+                  <div className="scale-100 origin-center">
+                    <SimplePieChart percentage={coveredPercent} inView={inView} />
+                  </div>
 
                   <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
                     <div className="rounded-2xl bg-white border border-slate-200 px-4 py-3">
@@ -395,14 +395,14 @@ const PlacementsPage = () => {
                     </div>
                     <div className="rounded-2xl bg-white border border-slate-200 px-4 py-3">
                       <p className="text-xs uppercase tracking-wide text-slate-500">dream offers</p>
-                      <p className="text-2xl font-bold text-slate-600">{((+(activeOutcome.dremeOffers)/(activeOutcome.totalStudents)) * 100).toFixed(1)}%</p>
+                      <p className="text-2xl font-bold text-slate-600">{((+(activeOutcome.dremeOffers) / (activeOutcome.totalStudents)) * 100).toFixed(1)}%</p>
                       <p className="text-xs text-slate-500 mt-1">{activeOutcome.dremeOffers} dream offers</p>
                     </div>
                   </div>
 
-                  
 
-                
+
+
                 </div>
               </div>
             </div>
@@ -461,7 +461,7 @@ const PlacementsPage = () => {
           </div>
         </section>
 
-        
+
 
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-white border border-[#e5d7ff] p-6 md:p-8 shadow-xl">
@@ -490,7 +490,7 @@ const PlacementsPage = () => {
             </p>
           </div>
           <div className="space-y-8">
-            <OfferBoard title="Recent Salary Offers" rows={[...salaryOffersLeft , ...salaryOffersRight]} />
+            <OfferBoard title="Recent Salary Offers" rows={[...salaryOffersLeft, ...salaryOffersRight]} />
             {/* <OfferBoard title="Recent Salary Offers" rows={} /> */}
           </div>
         </section>
