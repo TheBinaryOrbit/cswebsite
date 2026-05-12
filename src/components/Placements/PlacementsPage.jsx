@@ -1,7 +1,23 @@
 import { useState, useRef } from "react";
-import { useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import AnimatedHeadline from "../AnimatedHeadline";
 import SimplePieChart from "./SimplePieChart";
+import { FaChartLine, FaUsers, FaBriefcase, FaEnvelope, FaWallet } from "react-icons/fa";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
+
+const companies = [
+  { name: "Cisco", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpN6aBizk7tcnKkgX8_JDOLEl8KjnoHg4kwQ&s" },
+  { name: "Accenture", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" },
+  { name: "ServiceNow", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/ServiceNow_logo.svg/3840px-ServiceNow_logo.svg.png" },
+  { name: "Infosys", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" },
+  { name: "Capgemini", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9R4TOuPk3d0ohT9KoG2fiSjaDgAHi9XIJHXVw&s" },
+  { name: "Cognizant", logo: "https://1000logos.net/wp-content/uploads/2021/09/Cognizant-Logo.jpg" },
+  { name: "HCL", logo: "https://1000logos.net/wp-content/uploads/2021/09/HCL-Logo.png" },
+];
 
 const internshipHighlights = [
   {
@@ -122,56 +138,36 @@ const studentSupport = [
 
 const outcomeTabs = [
   {
-    id: "2018-2022",
-    label: "2018-2022",
-    totalStudents: 68,
-    placedStudents: 60,
-    avgPackage: "5.12 LPA",
-    placementRate: "88.2%",
-    description:
-      "This batch established the baseline with strong early conversion and consistent internship-to-placement movement.",
-    purpleValue: 68,
-    greenValue: 60,
-    dremeOffers: 8,
-  },
-  {
-    id: "2019-2023",
-    label: "2019-2023",
-    totalStudents: 136,
-    placedStudents: 121,
-    avgPackage: "5.74 LPA",
-    placementRate: "89.0%",
-    description:
-      "This cycle shows healthy growth in hiring volume while maintaining strong placement conversion.",
-    purpleValue: 136,
-    greenValue: 121,
-    dremeOffers: 12,
-  },
-  {
     id: "2020-2024",
     label: "2020-2024",
     totalStudents: 200,
     placedStudents: 173,
-    avgPackage: "5.96 LPA",
+    avgPackage: "5.77 LPA",
     placementRate: "86.4%",
     description:
       "The 2020-2024 cycle demonstrates consistent placement momentum with broad participation from product and service-based recruiters.",
     purpleValue: 200,
     greenValue: 173,
     dremeOffers: 19,
+    dreamAvgPackage: "14.84 LPA",
+    highestPlacement: "60 LPA",
+    totalOffers: 247,
   },
   {
     id: "2021-2025",
     label: "2021-2025",
     totalStudents: 206,
     placedStudents: 190,
-    avgPackage: "6.14 LPA",
+    avgPackage: "5.88 LPA",
     placementRate: "88.1%",
     description:
       "The 2021-2025 cycle reflects one of the strongest conversion trends, supported by repeated recruiter engagement and interview readiness training.",
     purpleValue: 206,
     greenValue: 190,
-    dremeOffers: 39
+    dremeOffers: 39,
+    dreamAvgPackage: "11.49 LPA",
+    highestPlacement: "13.5 LPA",
+    totalOffers: 271,
   },
   {
     id: "2022-2026",
@@ -184,7 +180,10 @@ const outcomeTabs = [
       "The current 2022-2026 cycle is ongoing with active recruiter participation and continued support in the final stages.",
     purpleValue: 210,
     greenValue: 168,
-    dremeOffers: 22
+    dremeOffers: 22,
+    dreamAvgPackage: "14.52 LPA",
+    highestPlacement: "45 LPA",
+    totalOffers: 226,
   },
 ];
 
@@ -326,93 +325,164 @@ const PlacementsPage = () => {
         />
 
         <section className="mb-12 md:mb-16">
-          <div className="rounded-4xl bg-white border border-slate-200 p-6 md:p-8 shadow-xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Outcomes</p>
-            <AnimatedHeadline as="h2" highlight="Overview" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
-              Placement Data Overview: 2022 to 2026
-            </AnimatedHeadline>
-            <p className="text-slate-600 leading-7 mb-6 max-w-3xl">
-              Year-wise average package data gives a quick view of progress across recent batches.
-            </p>
-            <div className="flex flex-wrap gap-2 md:gap-3 mb-6">
+          <div className="rounded-4xl bg-[#0a2840] p-6 md:p-8 lg:p-12 shadow-2xl">
+            {/* Header */}
+            <div className="mb-8 md:mb-12 text-center">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-[#f15b20] uppercase tracking-widest text-xs sm:text-sm font-bold mb-3"
+              >
+                Career Outcomes
+              </motion.p>
+              <AnimatedHeadline as="h2" highlight="Overview" className="text-white text-2xl sm:text-4xl md:text-5xl font-serif font-semibold">
+                Placement Data Overview
+              </AnimatedHeadline>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="text-white/70 mt-4 max-w-2xl mx-auto text-sm sm:text-base px-4 leading-relaxed"
+              >
+                Year-wise average package data gives a quick view of progress across recent batches.
+              </motion.p>
+            </div>
+
+            {/* Tabs */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8">
               {outcomeTabs.map((tab) => (
                 <button
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveOutcomeId(tab.id)}
-                  className={`px-4 py-2 rounded-full border text-sm md:text-base font-semibold transition ${activeOutcomeId === tab.id
-                      ? "bg-[#113959] text-white border-[#113959]"
-                      : "bg-white text-[#113959] border-slate-300 hover:border-[#113959]"
-                    }`}
+                  className={`px-4 py-2 rounded-full border text-sm md:text-base font-semibold transition ${
+                    activeOutcomeId === tab.id
+                      ? "bg-white text-[#113959] border-white"
+                      : "bg-transparent text-white border-white/40 hover:border-white"
+                  }`}
                 >
                   {tab.label}
                 </button>
               ))}
             </div>
 
-            <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 md:gap-8">
-              <div className="rounded-3xl border border-slate-200 bg-white p-5 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold text-[#113959] mb-4">
-                  {activeOutcome.label} Snapshot
-                </h3>
-                <p className="text-slate-600 leading-7 mb-5">{activeOutcome.description}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 md:gap-8 items-start">
 
-                <div className="space-y-3">
-                  <div className="rounded-2xl bg-[#113959]/5 border border-[#113959]/10 px-4 py-3">
-                    <p className="text-xs uppercase tracking-wide text-slate-500">Total Students</p>
-                    <p className="text-2xl font-bold text-[#113959]">{activeOutcome.totalStudents}</p>
+              {/* Left: Snapshot Card */}
+              <motion.div
+                key={activeOutcomeId + "left"}
+                initial="hidden" animate="visible" variants={fadeInUp}
+                className="col-span-1 md:col-span-1 lg:col-span-5 bg-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-md border border-slate-200 w-full"
+              >
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0a2840] mb-2 text-center sm:text-left">
+                  Batch Snapshot: <span className="text-[#f15b20]">{activeOutcome.label}</span>
+                </h3>
+                <p className="text-slate-500 mb-4 sm:mb-6 md:mb-8 text-xs sm:text-sm leading-relaxed text-center sm:text-left">
+                  {activeOutcome.description}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  {[
+                    { label: "Highest Placement", val: activeOutcome.highestPlacement, icon: <FaChartLine />, color: "text-orange-500" },
+                    { label: "Avg Package", val: activeOutcome.avgPackage, icon: <FaWallet />, color: "text-blue-600" },
+                    { label: "Placed", val: activeOutcome.placedStudents, icon: <FaBriefcase />, color: "text-green-600" },
+                    { label: "Total Offers", val: activeOutcome.totalOffers, icon: <FaEnvelope />, color: "text-purple-600" }
+                  ].map((stat, i) => (
+                    <div key={i} className="bg-white p-3 sm:p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-row sm:flex-col items-center sm:items-start gap-2 sm:gap-0">
+                      <div className={`text-lg sm:text-xl md:text-2xl sm:mb-1 md:mb-2 ${stat.color} shrink-0`}>{stat.icon}</div>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 truncate">{stat.label}</span>
+                        <span className="text-base sm:text-lg md:text-2xl font-extrabold text-[#0a2840]">{stat.val}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Right: Chart & Recruiters */}
+              <div className="col-span-1 md:col-span-1 lg:col-span-7 flex flex-col gap-4 sm:gap-6 md:gap-8 w-full">
+
+                {/* Pie Chart Card */}
+                <motion.div
+                  key={activeOutcomeId + "right"}
+                  initial="hidden" animate="visible" variants={fadeInUp}
+                  className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-md border border-slate-200 flex flex-col md:flex-row lg:flex-row items-center justify-between gap-4 sm:gap-6"
+                >
+                  <div className="flex-1 text-center md:text-left lg:text-left w-full md:w-auto">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#0a2840] mb-1">Placement Rate</h3>
+                    <p className="text-xs sm:text-sm text-slate-500 mb-3 sm:mb-4">A visual representation of the placement success for the {activeOutcome.label} batch.</p>
+                    <div className="flex justify-center md:justify-start lg:justify-start">
+                      <div className="scale-75 sm:scale-90 md:scale-100 origin-top">
+                        <SimplePieChart percentage={coveredPercent} inView={inView} />
+                      </div>
+                    </div>
                   </div>
-                  <div className="rounded-2xl bg-[#f15b20]/5 border border-[#f15b20]/15 px-4 py-3">
-                    <p className="text-xs uppercase tracking-wide text-slate-500">Placed Students</p>
-                    <p className="text-2xl font-bold text-[#f15b20]">{activeOutcome.placedStudents}</p>
+
+                  <div className="w-full md:w-56 lg:w-56 space-y-3 sm:space-y-4 self-stretch flex flex-col">
+                    <div className="flex-1 p-4 border border-blue-200 bg-white rounded-2xl shadow-sm flex flex-col justify-center">
+                      <div className="flex items-center gap-2 text-blue-700">
+                        <FaChartLine className="text-xs sm:text-sm md:text-base shrink-0" />
+                        <p className="text-[10px] sm:text-xs font-bold uppercase">Avg Package (Dream Offers)</p>
+                      </div>
+                      <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-600 mt-1">{activeOutcome.dreamAvgPackage || activeOutcome.avgPackage}</p>
+                      <p className="text-[10px] sm:text-xs text-slate-500">Of Our best Students</p>
+                    </div>
+                    <div className="flex-1 p-4 border border-purple-200 bg-white rounded-2xl shadow-sm flex flex-col justify-center">
+                      <div className="flex items-center gap-2 text-purple-700">
+                        <FaBriefcase className="text-xs sm:text-sm md:text-base shrink-0" />
+                        <p className="text-[10px] sm:text-xs font-bold uppercase">Dream Offers</p>
+                      </div>
+                      <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-600 mt-1">{activeOutcome.dremeOffers}</p>
+                      <p className="text-[10px] sm:text-xs text-slate-500">Premium Companies</p>
+                    </div>
                   </div>
-                  <div className="rounded-2xl bg-[#9ecb3c]/10 border border-[#9ecb3c]/20 px-4 py-3">
-                    <p className="text-xs uppercase tracking-wide text-slate-500">Average Package</p>
-                    <p className="text-2xl font-bold text-[#2e4d0f]">{activeOutcome.avgPackage}</p>
+                </motion.div>
+
+                {/* Recruiter Section */}
+                <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 border border-slate-100 overflow-x-auto shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#0a2840]">Top Recruiters</h3>
+                    <span className="bg-orange-100 text-[#f15b20] text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full whitespace-nowrap">
+                      300+ Companies
+                    </span>
                   </div>
-                  <div className="rounded-2xl bg-slate-50 border border-slate-200 px-4 py-3">
-                    <p className="text-xs uppercase tracking-wide text-slate-500">Placement Rate</p>
-                    <p className="text-2xl font-bold text-slate-800">{placementRate}</p>
+
+                  <div className="relative h-10 sm:h-12 md:h-16 flex items-center overflow-hidden">
+                    <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-r from-white via-transparent to-white" />
+                    <motion.div
+                      className="flex gap-6 sm:gap-8 md:gap-12 items-center w-max"
+                      animate={{ x: ["0%", "-50%"] }}
+                      transition={{
+                        ease: "linear",
+                        duration: 20,
+                        repeat: Infinity,
+                      }}
+                    >
+                      {[...companies, ...companies].map((brand, i) => (
+                        <div
+                          key={`company-${i}`}
+                          className="shrink-0 w-20 sm:w-24 md:w-32 h-8 sm:h-10 md:h-12 flex items-center justify-center"
+                        >
+                          <img
+                            src={brand.logo}
+                            alt={brand.name}
+                            className="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                          />
+                        </div>
+                      ))}
+                    </motion.div>
                   </div>
                 </div>
-              </div>
 
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold text-[#113959] mb-4">
-                  Batch Trend Pie Chart ({activeOutcome.label})
-                </h3>
-
-                <div className="flex flex-col items-center justify-center py-2 md:py-6">
-                  <div className="scale-100 origin-center">
-                    <SimplePieChart percentage={coveredPercent} inView={inView} />
-                  </div>
-
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
-                    <div className="rounded-2xl bg-white border border-slate-200 px-4 py-3">
-                      <p className="text-xs uppercase tracking-wide text-slate-500">Covered Area</p>
-                      <p className="text-2xl font-bold text-[#739d1f]">{coveredPercent.toFixed(1)}%</p>
-                      <p className="text-xs text-slate-500 mt-1">{activeOutcome.placedStudents} placed students</p>
-                    </div>
-                    <div className="rounded-2xl bg-white border border-slate-200 px-4 py-3">
-                      <p className="text-xs uppercase tracking-wide text-slate-500">dream offers</p>
-                      <p className="text-2xl font-bold text-slate-600">{((+(activeOutcome.dremeOffers) / (activeOutcome.totalStudents)) * 100).toFixed(1)}%</p>
-                      <p className="text-xs text-slate-500 mt-1">{activeOutcome.dremeOffers} dream offers</p>
-                    </div>
-                  </div>
-
-
-
-
-                </div>
               </div>
             </div>
 
-            {/* <p className="mt-4 text-sm text-slate-500">{activeOutcome.label} - Ongoing Tracking</p> */}
           </div>
         </section>
 
         <section className="mb-12 md:mb-16">
-          <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl">
+          <div className="rounded-4xl bg-[#0a2840] text-white p-6 md:p-8 shadow-2xl">
             <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Career pipelines</p>
             <AnimatedHeadline as="h2" highlight="Hackathon" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
               Internship and Hackathon Highlights
@@ -430,7 +500,7 @@ const PlacementsPage = () => {
         </section>
 
         <section className="mb-12 md:mb-16">
-          <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl">
+          <div className="rounded-4xl bg-[#0a2840] text-white p-6 md:p-8 shadow-2xl">
             <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Recruitment support</p>
             <AnimatedHeadline as="h2" highlight="Internship" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
               Recruiter-Linked Internship Opportunities
@@ -448,7 +518,7 @@ const PlacementsPage = () => {
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-white border border-slate-200 p-6 md:p-8 shadow-xl">
             <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Support system</p>
-            <AnimatedHeadline as="h2" highlight="Readiness" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
+            <AnimatedHeadline as="h2" highlight="Readiness" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#0a2840] mb-4">
               Student Readiness & Tracking
             </AnimatedHeadline>
             <p className="text-slate-600 leading-7 mb-6 max-w-3xl">
@@ -466,7 +536,7 @@ const PlacementsPage = () => {
         <section className="mb-12 md:mb-16">
           <div className="rounded-4xl bg-white border border-[#e5d7ff] p-6 md:p-8 shadow-xl">
             <p className="text-xs uppercase tracking-[0.28em] text-[#f15b20] mb-3">Mentorship</p>
-            <AnimatedHeadline as="h2" highlight="Synergy" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#113959] mb-4">
+            <AnimatedHeadline as="h2" highlight="Synergy" className="text-2xl md:text-4xl font-serif font-semibold leading-tight text-[#0a2840] mb-4">
               The Path Ahead: Parent-Faculty Synergy
             </AnimatedHeadline>
             <p className="text-slate-700 leading-7 mb-6 max-w-3xl">
@@ -480,7 +550,7 @@ const PlacementsPage = () => {
         </section>
 
         <section className="mb-12 md:mb-16">
-          <div className="rounded-4xl bg-[#113959] text-white p-6 md:p-8 shadow-2xl mb-6">
+          <div className="rounded-4xl bg-[#0a2840] text-white p-6 md:p-8 shadow-2xl mb-6">
             <p className="text-xs uppercase tracking-[0.28em] text-white/70 mb-3">Placement snapshots</p>
             <AnimatedHeadline as="h2" highlight="Salary" className="text-2xl md:text-4xl font-serif font-semibold leading-tight mb-4">
               Recent Salary Offers

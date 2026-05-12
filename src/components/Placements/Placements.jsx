@@ -15,31 +15,16 @@ const fadeInUp = {
 /* ─── Data ─────────────────────────────────────────────────── */
 const placementData = [
   {
-    id: "2018-2022",
-    label: "2018-2022",
-    total: 68,
-    placed: 60,
-    avg: "5.12 LPA",
-    rate: 88.2,
-    desc: "This batch established the baseline with strong early conversion and consistent internship-to-placement movement.",
-  },
-  {
-    id: "2019-2023",
-    label: "2019-2023",
-    total: 136,
-    placed: 121,
-    avg: "5.74 LPA",
-    rate: 89.0,
-    desc: "This cycle shows healthy growth in hiring volume while maintaining strong placement conversion.",
-  },
-  {
     id: "2020-2024",
     label: "2020-2024",
     total: 200,
     placed: 173,
-    avg: "5.96 LPA",
+    avg: "5.77 LPA",
     rate: 86.5,
     dreamOffers: 19,
+    dreamAvg: "14.84 LPA",
+    highestPlacement: "60 LPA",
+    totalOffers: 247,
     desc: "The 2020-2024 cycle demonstrates consistent placement momentum with broad participation from product and service-based recruiters.",
   },
   {
@@ -47,9 +32,12 @@ const placementData = [
     label: "2021-2025",
     total: 206,
     placed: 190,
-    avg: "6.14 LPA",
+    avg: "5.88 LPA",
     rate: 88.1,
     dreamOffers: 39,
+    dreamAvg: "11.49 LPA",
+    highestPlacement: "13.5 LPA",
+    totalOffers: 271,
     desc: "The 2021-2025 cycle reflects one of the strongest conversion trends, supported by repeated recruiter engagement and interview readiness training.",
   },
   {
@@ -60,6 +48,9 @@ const placementData = [
     avg: "5.81 LPA",
     rate: 80.0,
     dreamOffers: 22,
+    dreamAvg: "14.52 LPA",
+    highestPlacement: "45 LPA",
+    totalOffers: 226,
     desc: "The current 2022-2026 cycle is ongoing with active recruiter participation and continued support in the final stages.",
   },
 ];
@@ -97,7 +88,7 @@ const Placements = () => {
 
   return (
     <div ref={ref} className="w-full bg-white py-12 sm:py-20 lg:py-28 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto bg-white p-4 sm:p-6 md:p-8 lg:p-12 rounded-4xl border border-slate-200 shadow-xl">
+      <div className="max-w-7xl mx-auto bg-[#0a2840] p-4 sm:p-6 md:p-8 lg:p-12 rounded-4xl shadow-2xl">
 
         {/* Header Section */}
         <div className="mb-8 md:mb-12 text-center">
@@ -109,14 +100,14 @@ const Placements = () => {
           >
             Career Outcomes
           </motion.p>
-          <AnimatedHeadline highlight="Success" className="text-[#113959] text-3xl sm:text-4xl md:text-5xl font-serif font-semibold">
+          <AnimatedHeadline highlight="Overview" className="text-white text-3xl sm:text-4xl md:text-5xl font-serif font-semibold">
             Placement Overview
           </AnimatedHeadline>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base px-4 leading-relaxed"
+            className="text-white/70 mt-4 max-w-2xl mx-auto text-sm sm:text-base px-4 leading-relaxed"
           >
             Explore our impressive placement records, showcasing the success of our students across various industries and top companies.
           </motion.p>
@@ -130,21 +121,21 @@ const Placements = () => {
             initial="hidden" animate="visible" variants={fadeInUp}
             className="col-span-1 md:col-span-1 lg:col-span-5 bg-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-md border border-slate-200 w-full"
           >
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#113959] mb-2 text-center sm:text-left">Batch Snapshot: <span className="text-[#f15b20]">{data.label}</span></h3>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0a2840] mb-2 text-center sm:text-left">Batch Snapshot: <span className="text-[#f15b20]">{data.label}</span></h3>
             <p className="text-slate-500 mb-4 sm:mb-6 md:mb-8 text-xs sm:text-sm leading-relaxed text-center sm:text-left">{data.desc}</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {([
-                { label: "Highest Placement", val: "45 LPA", icon: <FaChartLine />, color: "text-orange-500", bg: "bg-white" },
+                { label: "Highest Placement", val: data.highestPlacement || "45 LPA", icon: <FaChartLine />, color: "text-orange-500", bg: "bg-white" },
                 { label: "Avg Package", val: data.avg, icon: <FaWallet />, color: "text-blue-600", bg: "bg-white" },
                 { label: "Placed", val: data.placed, icon: <FaBriefcase />, color: "text-green-600", bg: "bg-white" },
-                { label: "Total Offers", val: 261, icon: <FaEnvelope />, color: "text-purple-600", bg: "bg-white" }
+                { label: "Total Offers", val: data.totalOffers || 261, icon: <FaEnvelope />, color: "text-purple-600", bg: "bg-white" }
               ]).map((stat, i) => (
                 <div key={i} className={`${stat.bg} p-3 sm:p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-row sm:flex-col items-center sm:items-start gap-2 sm:gap-0`}>
                   <div className={`text-lg sm:text-xl md:text-2xl sm:mb-1 md:sm:mb-2 ${stat.color} shrink-0`}>{stat.icon}</div>
                   <div className="flex flex-col min-w-0">
                     <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 truncate">{stat.label}</span>
-                    <span className="text-base sm:text-lg md:text-2xl font-extrabold text-[#113959]">{stat.val}</span>
+                    <span className="text-base sm:text-lg md:text-2xl font-extrabold text-[#0a2840]">{stat.val}</span>
                   </div>
                 </div>
               ))}
@@ -166,7 +157,7 @@ const Placements = () => {
               className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-md border border-slate-200 flex flex-col md:flex-row lg:flex-row items-center justify-between gap-4 sm:gap-6"
             >
               <div className="flex-1 text-center md:text-left lg:text-left w-full md:w-auto">
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#113959] mb-1">Placement Rate</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#0a2840] mb-1">Placement Rate</h3>
                 <p className="text-xs sm:text-sm text-slate-500 mb-3 sm:mb-4">A visual representation of the placement success for the {activeTab} batch.</p>
                 <div className="flex justify-center md:justify-start lg:justify-start">
                   <div className="scale-75 sm:scale-90 md:scale-100 origin-top">
@@ -181,7 +172,7 @@ const Placements = () => {
                     <FaChartLine className="text-xs sm:text-sm md:text-base shrink-0" />
                     <p className="text-[10px] sm:text-xs font-bold uppercase">Avg Package (Dream Offers)</p>
                   </div>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-600 mt-1">{data.avg}</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-600 mt-1">{data.dreamAvg || data.avg}</p>
                   <p className="text-[10px] sm:text-xs text-slate-500">Of Our best Students</p>
                 </div>
                 <div className="flex-1 p-4 border border-purple-200 bg-white rounded-2xl shadow-sm flex flex-col justify-center">
@@ -198,7 +189,7 @@ const Placements = () => {
             {/* Recruiter Section */}
             <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 border border-slate-100 overflow-x-auto shadow-sm">
               <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#113959]">Top Recruiters</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#0a2840]">Top Recruiters</h3>
                 <span className="bg-orange-100 text-[#f15b20] text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full whitespace-nowrap">
                   300+ Companies
                 </span>
