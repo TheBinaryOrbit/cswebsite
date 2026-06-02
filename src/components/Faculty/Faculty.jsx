@@ -148,6 +148,8 @@ const Faculty = () => {
 
   const facultyList = facultyData.filter((faculty) => faculty.position !== "Dean & Professor");
 
+
+
   return (
     <div id="faculty-section" ref={sectionRef} className="w-full py-5 sm:py-10 overflow-hidden">
       <div className="max-w-7xl mx-auto p-4">
@@ -237,13 +239,15 @@ const Faculty = () => {
           </AnimatedSection>
         </motion.div>
 
+
+
         {/* Faculty Cards */}
         <div className="relative">
           <div
             ref={rowRef}
             onScroll={handleAutoScroll}
             className="flex overflow-x-auto gap-4 sm:gap-5 md:gap-6 scroll-smooth py-8 pl-1 pr-4 no-scrollbar"
-            style={{ 
+            style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
               WebkitOverflowScrolling: "touch"
@@ -262,7 +266,7 @@ const Faculty = () => {
             {/* Progress bar */}
             <div className="w-full sm:flex-1 sm:max-w-175 flex items-center gap-3">
               <div className="h-4 flex-1 bg-slate-200 rounded-full overflow-hidden border border-slate-300 shadow-inner">
-              <motion.div
+                <motion.div
                   className="h-full bg-[#002855] rounded-full"
                   animate={{ width: `${percentage}%` }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
@@ -301,7 +305,7 @@ const Faculty = () => {
               </motion.button>
             </div>
 
-              
+
 
           </div>
         </div>

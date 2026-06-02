@@ -150,6 +150,89 @@ const AboutSection = ({ emoji, title, content, details }) => {
           </ul>
         </motion.div>
       </div>
+
+      {/* Additional Links */}
+      <div className="mt-6 flex flex-col sm:flex-row gap-4">
+        {content.link1Text && (
+          <div className="flex items-center justify-between p-4 rounded-xl border border-slate-200 bg-white hover:shadow-md transition-all duration-300 group flex-1">
+            <div className="flex items-center gap-3 min-w-0 flex-1 mr-4">
+              <div className="p-2 rounded-lg bg-orange-50 text-[#f15b20] group-hover:bg-orange-100 transition-colors flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <span className="font-serif font-semibold text-slate-800 transition-colors group-hover:text-[#113959] text-sm md:text-base truncate" title={content.link1Text}>
+                {content.link1Text}
+              </span>
+            </div>
+            
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <a
+                href={content.link1Url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-slate-400 hover:text-[#113959] hover:bg-slate-100 transition-all flex items-center justify-center cursor-pointer"
+                title="View PDF"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </a>
+              <a
+                href={content.link1Url}
+                download
+                className="p-2 rounded-lg text-slate-400 hover:text-[#f15b20] hover:bg-orange-50 transition-all flex items-center justify-center cursor-pointer"
+                title="Download PDF"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        )}
+
+        {content.link2Text && (
+          <div className="flex items-center justify-between p-4 rounded-xl border border-slate-200 bg-white hover:shadow-md transition-all duration-300 group flex-1">
+            <div className="flex items-center gap-3 min-w-0 flex-1 mr-4">
+              <div className="p-2 rounded-lg bg-orange-50 text-[#f15b20] group-hover:bg-orange-100 transition-colors flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <span className="font-serif font-semibold text-slate-800 transition-colors group-hover:text-[#113959] text-sm md:text-base truncate" title={content.link2Text}>
+                {content.link2Text}
+              </span>
+            </div>
+            
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <a
+                href={content.link2Url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-slate-400 hover:text-[#113959] hover:bg-slate-100 transition-all flex items-center justify-center cursor-pointer"
+                title="View PDF"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </a>
+              <a
+                href={content.link2Url}
+                download
+                className="p-2 rounded-lg text-slate-400 hover:text-[#f15b20] hover:bg-orange-50 transition-all flex items-center justify-center cursor-pointer"
+                title="Download PDF"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
     </motion.div>
   );
 };
@@ -192,6 +275,10 @@ This blend of technical excellence, ethical grounding, innovative mindset, and r
       "Life-long learning: Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.",
     ],
     videoId: "ODtRCxMvEXU",
+    link1Text: "COs and CO-PO Mapping 2025-26 ODD Semester_CS",
+    link1Url: "/COs and CO-PO Mapping 2025-26 ODD Semester_CS.pdf",
+    link2Text: "COs and CO-PO Mapping 2025-26 EVEN Semester_CS",
+    link2Url: "/COs and CO-PO Mapping 2025-26 EVEN Semester_CS.pdf",
   };
 
   const dataScienceData = {
@@ -225,6 +312,10 @@ This combination of technical depth, hands-on experience, and ethical grounding 
       "PO8 (Life-long learning): Change management skills and the ability to learn, keep up with contemporary technologies and ways of working.",
     ],
     videoId: "glRXKj5f53M",
+    link1Text: "COs and CO-PO Mapping 2025-26 ODD Semester_CSE(DS)",
+    link1Url: "/COs and CO-PO Mapping 2025-26 ODD Semester_CSE(DS).pdf",
+    link2Text: "COs and CO-PO Mapping 2025-26 EVEN Semester_CSE(DS)",
+    link2Url: "/COs and CO-PO Mapping 2025-26 EVEN Semester_CSE(DS).pdf",
   };
 
   const csDetails = [
