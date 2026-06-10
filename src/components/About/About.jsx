@@ -13,7 +13,8 @@ const THEME = {
 const AboutSection = ({ emoji, title, content, details }) => {
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isPoExpanded, setIsPoExpanded] = useState(false);
+  const [isPsoExpanded, setIsPsoExpanded] = useState(false);
 
   return (
     <motion.div
@@ -119,40 +120,133 @@ const AboutSection = ({ emoji, title, content, details }) => {
         </ul>
       </div>
 
-      {/* Program Outcomes */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6">
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center gap-2 text-lg font-serif font-semibold mb-3 hover:opacity-70 transition-opacity w-full"
-          style={{ color: THEME.accent }}
-        >
-          Program Outcomes
-          <motion.div
-            animate={{ rotate: isExpanded ? 90 : 0 }}
-            transition={{ duration: 0.3 }}
+      {/* Outcomes Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        {/* Program Outcomes */}
+        <div className="bg-white rounded-2xl border border-slate-200 p-6">
+          <button
+            onClick={() => setIsPoExpanded(!isPoExpanded)}
+            className="flex items-center gap-2 text-lg font-serif font-semibold mb-3 hover:opacity-70 transition-opacity w-full"
+            style={{ color: THEME.accent }}
           >
-            <FiArrowRight />
+            Program Outcomes
+            <motion.div
+              animate={{ rotate: isPoExpanded ? 90 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <FiArrowRight />
+            </motion.div>
+          </button>
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={isPoExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <ul className="space-y-2 pt-2">
+              {content.programOutcomes.map((outcome, index) => (
+                <li key={index} className="flex gap-3 text-slate-700">
+                  <FiArrowRight className="mt-1 flex-shrink-0" style={{ color: THEME.accent }} />
+                  <span className="text-justify text-sm md:text-base">{outcome}</span>
+                </li>
+              ))}
+            </ul>
           </motion.div>
-        </button>
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={isExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="overflow-hidden"
-        >
-          <ul className="space-y-2 pt-2">
-            {content.programOutcomes.map((outcome, index) => (
-              <li key={index} className="flex gap-3 text-slate-700">
-                <FiArrowRight className="mt-1 flex-shrink-0" style={{ color: THEME.accent }} />
-                <span className="text-justify text-sm md:text-base">{outcome}</span>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+        </div>
+
+        {/* Vision, Mission, PEO, PSO */}
+        <div className="bg-white rounded-2xl border border-slate-200 p-6">
+          <button
+            onClick={() => setIsPsoExpanded(!isPsoExpanded)}
+            className="flex items-center gap-2 text-lg font-serif font-semibold mb-3 hover:opacity-70 transition-opacity w-full"
+            style={{ color: THEME.accent }}
+          >
+            Vision, Mission, PEO, PSO
+            <motion.div
+              animate={{ rotate: isPsoExpanded ? 90 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <FiArrowRight />
+            </motion.div>
+          </button>
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={isPsoExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="space-y-4 pt-2">
+              {/* Vision */}
+              {content.vision && (
+                <div>
+                  <h4 className="text-sm font-serif font-semibold text-slate-800 mb-1">
+                    Vision of the Department
+                  </h4>
+                  <p className="text-justify text-xs md:text-sm text-slate-600 leading-relaxed">
+                    {content.vision}
+                  </p>
+                </div>
+              )}
+
+              {/* Mission */}
+              {content.mission && content.mission.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-serif font-semibold text-slate-800 mb-1">
+                    Mission of the Department
+                  </h4>
+                  <ul className="space-y-1">
+                    {content.mission.map((point, index) => (
+                      <li key={index} className="flex gap-2 text-slate-600">
+                        <FiArrowRight className="mt-1 flex-shrink-0 text-xs text-[#f15b20]" />
+                        <span className="text-justify text-xs md:text-sm">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* PEOs */}
+              {content.peos && content.peos.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-serif font-semibold text-slate-800 mb-1">
+                    PEO (Program Educational Objectives)
+                  </h4>
+                  <p className="text-xs text-slate-500 mb-1 italic">Graduates shall be:</p>
+                  <ul className="space-y-1">
+                    {content.peos.map((point, index) => (
+                      <li key={index} className="flex gap-2 text-slate-600">
+                        <FiArrowRight className="mt-1 flex-shrink-0 text-xs text-[#f15b20]" />
+                        <span className="text-justify text-xs md:text-sm">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* PSOs */}
+              {content.programSpecificOutcomes && content.programSpecificOutcomes.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-serif font-semibold text-slate-800 mb-1">
+                    PSO (Program Specific Outcomes)
+                  </h4>
+                  <p className="text-xs text-slate-500 mb-1 italic">Students shall be:</p>
+                  <ul className="space-y-1">
+                    {content.programSpecificOutcomes.map((point, index) => (
+                      <li key={index} className="flex gap-2 text-slate-600">
+                        <FiArrowRight className="mt-1 flex-shrink-0 text-xs text-[#f15b20]" />
+                        <span className="text-justify text-xs md:text-sm">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Additional Links */}
-      <div className="mt-6 flex flex-col sm:flex-row gap-4">
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         {content.link1Text && (
           <div className="flex items-center justify-between p-4 rounded-xl border border-slate-200 bg-white hover:shadow-md transition-all duration-300 group flex-1">
             <div className="flex items-center gap-3 min-w-0 flex-1 mr-4">
@@ -261,18 +355,27 @@ This blend of technical excellence, ethical grounding, innovative mindset, and r
       "To develop socially responsible professionals while encouraging personal and professional growth.",
     ],
     programOutcomes: [
-      "Engineering knowledge: Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.",
-      "Problem analysis: Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.",
-      "Design/development of solutions: Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.",
-      "Conduct investigations of complex problems: Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions.",
-      "Modern tool usage: Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modeling to complex engineering activities with an understanding of the limitations.",
-      "The engineer and society: Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.",
-      "Environment and sustainability: Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.",
-      "Ethics: Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.",
-      "Individual and team work: Function effectively as an individual, and as a member or leader in diverse teams, and in multidisciplinary settings.",
-      "Communication: Communicate effectively on complex engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.",
-      "Project management and finance: Demonstrate knowledge and understanding of engineering and management principles and apply these to one's own work, as a member or leader in a team, to manage projects in multidisciplinary environments.",
-      "Life-long learning: Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.",
+      "PO1 (Engineering knowledge): Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.",
+      "PO2 (Problem analysis): Identify, review, formulate, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.",
+      "PO3 (Design/development of solutions): Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.",
+      "PO4 (Conduct investigations of complex problems): Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions.",
+      "PO5 (Modern tool usage): Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modeling to complex engineering activities with an understanding of the limitations.",
+      "PO6 (The engineer and society): Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.",
+      "PO7 (Environment and sustainability): Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.",
+      "PO8 (Ethics): Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.",
+      "PO9 (Individual and team work): Function effectively as an individual, and as a member or leader in diverse teams, and in multidisciplinary settings.",
+      "PO10 (Communication): Communicate effectively on complex engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.",
+      "PO11 (Project management and finance): Demonstrate knowledge and understanding of engineering and management principles and apply these to one's own work, as a member or leader in a team, to manage projects in multidisciplinary environments.",
+      "PO12 (Life-long learning): Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.",
+    ],
+    peos: [
+      "Engaged in successful career in the software industry and higher Studies.",
+      "Adaptable to the recent trends for developing innovative solutions.",
+      "Socially responsible global citizen and leaders in their domain.",
+    ],
+    programSpecificOutcomes: [
+      "Utilize their technical skills of problem solving for boosting their employability.",
+      "Equipped to leverage their domain knowledge and expertise to enhance their research profile.",
     ],
     videoId: "ODtRCxMvEXU",
     link1Text: "COs and CO-PO Mapping 2025-26 ODD Semester_CS",
@@ -294,22 +397,35 @@ This combination of technical depth, hands-on experience, and ethical grounding 
       "Guidance from experienced faculty and industry experts",
       "Industry collaborations offering practical exposure and career-oriented learning",
     ],
-    vision: "To excel in Data Science education, fostering analytical skills to deliver intelligent solutions for industry and society.",
+    vision: "To foster excellence in Data Science education, producing graduates with analytical skills to power intelligent solutions for industry and society globally.",
     mission: [
-      "To provide strong foundation in Data Science through effective teaching learning process.",
-      "To develop students abilities in Data Analytics and research on emerging technologies using modern tools and real world data challenges.",
-      "To strengthen industry–academia partnerships through projects, internships to provide practical exposure to data science.",
-      "To nurture ethical and adaptable professional committed to responsible use of data for sustainable impact.",
+      "M1: To prepare students with strong data science competencies to serve industry and society worldwide through innovative learning.",
+      "M2: To provide skill-based education using modern analytical tools, technologies, and real-world problem-solving.",
+      "M3: To promote industry–academia partnerships for projects, internships, and research leading to careers and innovation.",
+      "M4: To encourage a learning culture that adapts swiftly to innovations in Data Science",
     ],
     programOutcomes: [
-      "PO1 (Foundation Knowledge): Apply knowledge of mathematics, programming logic and coding fundamentals for solution architecture and problem solving.",
-      "PO2 (Problem Analysis): Identify, review, formulate and analyse problems for primarily focussing on customer requirements using critical thinking frameworks.",
-      "PO3 (Development of Solutions): Design, develop and investigate problems with an innovative approach for solutions incorporating ESG/SDG goals.",
-      "PO4 (Modern Tool Usage): Select, adapt and apply modern computational tools such as development of algorithms with an understanding of the limitations including human biases.",
-      "PO5 (Individual and Teamwork): Function and communicate effectively as an individual or a team leader in diverse and multidisciplinary groups. Use methodologies such as agile.",
-      "PO6 (Project Management and Finance): Use the principles of project management such as scheduling, work breakdown structure and be conversant with the principles of Finance for profitable project management.",
-      "PO7 (Ethics): Commit to professional ethics in managing software projects with financial aspects. Learn to use new technologies for cyber security and insulate customers from malware.",
-      "PO8 (Life-long learning): Change management skills and the ability to learn, keep up with contemporary technologies and ways of working.",
+      "PO1 (Engineering knowledge): Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.",
+      "PO2 (Problem analysis): Identify, review, formulate, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.",
+      "PO3 (Design/development of solutions): Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.",
+      "PO4 (Conduct investigations of complex problems): Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions.",
+      "PO5 (Modern tool usage): Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modeling to complex engineering activities with an understanding of the limitations.",
+      "PO6 (The engineer and society): Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.",
+      "PO7 (Environment and sustainability): Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.",
+      "PO8 (Ethics): Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.",
+      "PO9 (Individual and team work): Function effectively as an individual, and as a member or leader in diverse teams, and in multidisciplinary settings.",
+      "PO10 (Communication): Communicate effectively on complex engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.",
+      "PO11 (Project management and finance): Demonstrate knowledge and understanding of engineering and management principles and apply these to one's own work, as a member or leader in a team, to manage projects in multidisciplinary environments.",
+      "PO12 (Life-long learning): Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.",
+    ],
+    peos: [
+      "Proficient in applying analytical and problem-solving skills to develop intelligent, data-driven solutions.",
+      "Successful in careers, research, or entrepreneurship through expertise in modern Data Science tools.",
+      "Adaptable to emerging trends with a commitment to lifelong learning, ethics, and professional excellence.",
+    ],
+    programSpecificOutcomes: [
+      "Utilize data-driven problem-solving skills to enhance their employability.",
+      "Empowered to leverage their data science knowledge and expertise to enhance their research profile.",
     ],
     videoId: "glRXKj5f53M",
     link1Text: "COs and CO-PO Mapping 2025-26 ODD Semester_CSE(DS)",
